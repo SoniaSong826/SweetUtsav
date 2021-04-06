@@ -4,7 +4,7 @@ import colors from "../config/colors";
 import AppLoading from "expo-app-loading";
 import { useFonts, Roboto_700Bold } from "@expo-google-fonts/roboto";
 
-function AppButton({ title, onPress, color="primary" }) {
+function AppButton({ title,style, onPress, color="primary" }) {
     let [fontsLoaded] = useFonts({
         Roboto_700Bold,
       });
@@ -14,7 +14,7 @@ function AppButton({ title, onPress, color="primary" }) {
   }
   return (
       
-    <TouchableOpacity style={[styles.button,{backgroundColor:colors[color]}]} onPress={onPress}>
+    <TouchableOpacity style={[styles.button,{backgroundColor:colors[color]}, style]} onPress={onPress}>
         <Text style={styles.text}>{title}</Text>
     </TouchableOpacity>
   );
