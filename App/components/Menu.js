@@ -1,17 +1,13 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet,ScrollView } from "react-native";
 import Card from "./Card";
-import TopBar from "./TopBar";
+
 
 function Menu(props) {
   return (
-    <View style={styles.container}>
-      <TopBar
-        title="All Products"
-        leftIcon={require("../assets/arrow-round-back.png")}
-      ></TopBar>
-      <View style={styles.menu}>
-        <Card
+      <ScrollView>
+        <View style={styles.scrollView}>
+          <Card
           title="Balushahi"
           subTitle="$15.50 – $30.95"
           image={require("../assets/FoodExample/DrySweets/Balushahi-S411A-170x185.jpg")}
@@ -31,19 +27,16 @@ function Menu(props) {
           subTitle="$39.95"
           image={require("../assets/FoodExample/GiftBox/sweetbox3.jpg")}
         ></Card>
-      </View>
-    </View>
+        </View>
+      </ScrollView>
   );
 }
 const styles = StyleSheet.create({
-    container:{
-    
-    },
-  menu: {
+  scrollView: {
     marginHorizontal: "4%",
     flexWrap: "wrap",
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent:"space-between",
   },
 });
 export default Menu;

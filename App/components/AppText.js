@@ -14,7 +14,7 @@ function AppText({ children, style }) {
   if (!fontsLoaded) {
     return <AppLoading />;
   }
-  return <Text style={[styles.text, style]}>{children}</Text>;
+  return <Text style={[styles.text, style ]}>{children}</Text>;
  
 }
 
