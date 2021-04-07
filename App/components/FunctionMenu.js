@@ -14,6 +14,11 @@ function FunctionMenu(props) {
           onPress={() => console.log("Order Now button clicked")}
         ></FunctionIcon>
         <FunctionIcon
+          title="Categories"
+          image={require("../assets/function-icon/Categories.png")}
+          onPress={() => console.log("Categories button clicked")}
+        ></FunctionIcon>
+        <FunctionIcon
           title="My Account"
           image={require("../assets/function-icon/My_Account.png")}
           onPress={() => console.log("My Account button clicked")}
@@ -23,24 +28,20 @@ function FunctionMenu(props) {
           image={require("../assets/function-icon/Location.png")}
           onPress={() => console.log("Location button clicked")}
         ></FunctionIcon>
-        <FunctionIcon
+
+      </View>
+      <View style={styles.menuRow}>        
+      <FunctionIcon
           title="Events"
           image={require("../assets/function-icon/Events.png")}
+          color="secondary"
           onPress={() => console.log("Events button clicked")}
         ></FunctionIcon>
-      </View>
-      <View style={styles.menuRow}>
         <FunctionIcon
           title="Policies"
           image={require("../assets/function-icon/Policies.png")}
           color="secondary"
           onPress={() => console.log("Policies button clicked")}
-        ></FunctionIcon>
-        <FunctionIcon
-          title="About Us"
-          image={require("../assets/function-icon/About_Us.png")}
-          color="secondary"
-          onPress={() => console.log("About Us button clicked")}
         ></FunctionIcon>
         <FunctionIcon
           title="Contact Us"

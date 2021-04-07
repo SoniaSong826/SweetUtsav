@@ -5,6 +5,7 @@ import WelcomeScreen from './App/screens/WelcomeScreen';
 import AllProducts from './App/screens/AllProducts';
 import ItemDetails from './App/screens/ItemDetails';
 import FunctionMenu from './App/components/FunctionMenu';
+import PostSlides from './App/components/PostSlides'
 
 export default function App() {
 
@@ -12,7 +13,8 @@ export default function App() {
     //<ItemDetails itemName={"Balushahi"}></ItemDetails>
     //<AllProducts/>
     //<WelcomeScreen />
-    <FunctionMenu/>
+    //<FunctionMenu/>
+    <PostSlides/>
   );
 }
 
