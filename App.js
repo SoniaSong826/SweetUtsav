@@ -7,6 +7,7 @@ import ItemDetails from './App/screens/ItemDetails';
 import FunctionMenu from './App/components/FunctionMenu';
 import PostSlides from './App/components/PostSlides'
 import MainPage from './App/screens/MainPage';
+import Categories from './App/screens/Categories';
 
 export default function App() {
 
@@ -16,7 +17,8 @@ export default function App() {
     //<WelcomeScreen />
     //<FunctionMenu/>
     //<PostSlides/>
-    <MainPage/>
+    //<MainPage/>
+    <Categories/>
   );
 }
 

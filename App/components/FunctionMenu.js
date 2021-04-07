@@ -74,6 +74,7 @@ const styles = StyleSheet.create({
     width: "90%",
     flexDirection: "row",
     justifyContent: "space-between",
+    marginBottom:4,
   },
 });
 export default FunctionMenu;

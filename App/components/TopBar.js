@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   SafeAreaView,
   Text,
+  TouchableWithoutFeedback,
 } from "react-native";
 import colors from "../config/colors";
 import AppLoading from "expo-app-loading";
@@ -25,7 +26,11 @@ function TopBar({ title, leftIcon }) {
     <View style={styles.bar}>
       <AppText style={styles.title}>{title}</AppText>
       <View style={styles.twoButtons}>
-        <Image style={styles.leftIcon} source={leftIcon}></Image>
+        <TouchableWithoutFeedback
+          onPress={() => console.log("left icon clicked")}
+        >
+          <Image style={styles.leftIcon} source={leftIcon}></Image>
+        </TouchableWithoutFeedback>
         <TouchableOpacity
           style={styles.button}
           onPress={() => console.log("Cart button clicked")}
@@ -42,7 +47,7 @@ function TopBar({ title, leftIcon }) {
 }
 const styles = StyleSheet.create({
   bar: {
-    height:85,
+    height: 85,
     paddingTop: 35,
     flexDirection: "row",
     backgroundColor: colors.darkSecondary,
@@ -54,7 +59,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: "100%",
     justifyContent: "space-between",
-    paddingBottom:2,
+    paddingBottom: 2,
   },
   title: {
     position: "absolute",

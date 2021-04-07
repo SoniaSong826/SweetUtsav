@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
   icon: {
     width: 55,
     height: 55,
+    marginBottom:4,
   },
 });
 export default FunctionIcon;
