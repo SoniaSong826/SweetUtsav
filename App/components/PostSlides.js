@@ -3,7 +3,7 @@ import { View, StyleSheet } from "react-native";
 import colors from "../config/colors";
 import { SliderBox } from "react-native-image-slider-box";
 
-const postFolder = '../assets/Posts/';
+const postFolder = "../assets/Posts/";
 
 export default class PostSlides extends Component {
   constructor(props) {
@@ -22,14 +22,13 @@ export default class PostSlides extends Component {
     return (
       <View style={styles.container}>
         <SliderBox
+          sliderBoxHeight={130}
           images={this.state.images}
-          onCurrentImagePressed={(index) =>
-            console.warn(`image ${index} pressed`)
-          }
-          sliderBoxHeight={200}
+          ImageComponentStyle={{ borderRadius: 10, width: "90%" }}
+          resizeMethod={"scale"}
+          resizeMode={"center"}
           dotColor={colors.primary}
           inactiveDotColor={colors.lightGray}
-          paginationBoxVerticalPadding={20}
           autoplay
           circleLoop
         />
@@ -40,8 +39,6 @@ export default class PostSlides extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    width: "90%",
-    height: 130,
-    borderRadius: 10,
+    justifyContent: "center",
   },
 });

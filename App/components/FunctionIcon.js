@@ -13,21 +13,23 @@ function FunctionIcon({ title, style, image, onPress, color = "primary" }) {
     return <AppLoading />;
   }
   return (
-    <View style={styles.iconContainer} onPress={onPress}>
-      <Image style={styles.icon} source={image}></Image>
-      <AppText style={(styles.title, { color: colors[color]})}>
-        {title}
-      </AppText>
-    </View>
+    <TouchableOpacity>
+      <View style={styles.iconContainer} onPress={onPress}>
+        <Image style={styles.icon} source={image}></Image>
+        <AppText style={(styles.title, { color: colors[color] })}>
+          {title}
+        </AppText>
+      </View>
+    </TouchableOpacity>
   );
 }
 const styles = StyleSheet.create({
   iconContainer: {
-    width:90,
-    height:76,
-    marginBottom:12,
+    width: 90,
+    height: 76,
+    marginBottom: 12,
     alignItems: "center",
-    justifyContent:"center",
+    justifyContent: "center",
     flexDirection: "column",
   },
   icon: {

@@ -6,6 +6,7 @@ import AllProducts from './App/screens/AllProducts';
 import ItemDetails from './App/screens/ItemDetails';
 import FunctionMenu from './App/components/FunctionMenu';
 import PostSlides from './App/components/PostSlides'
+import MainPage from './App/screens/MainPage';
 
 export default function App() {
 
@@ -14,7 +15,8 @@ export default function App() {
     //<AllProducts/>
     //<WelcomeScreen />
     //<FunctionMenu/>
-    <PostSlides/>
+    //<PostSlides/>
+    <MainPage/>
   );
 }
 

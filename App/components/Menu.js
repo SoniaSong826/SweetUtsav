@@ -33,7 +33,7 @@ function Menu(props) {
 }
 const styles = StyleSheet.create({
   scrollView: {
-    marginHorizontal: "4%",
+    marginHorizontal: "5%",
     flexWrap: "wrap",
     flexDirection: "row",
     justifyContent:"space-between",
