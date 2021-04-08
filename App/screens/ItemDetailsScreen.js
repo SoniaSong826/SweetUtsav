@@ -17,7 +17,7 @@ import AppButton from "../components/AppButton";
 import Menu from "../components/Menu";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 
-function ItemDetails({ itemName }) {
+function ItemDetailsScreen({ itemName }) {
   return (
     <ImageBackground
       style={styles.backGround}
@@ -187,4 +187,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ItemDetails;
+export default ItemDetailsScreen;

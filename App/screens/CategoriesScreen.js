@@ -11,7 +11,7 @@ import {
 import AppText from "../components/AppText";
 import colors from "../config/colors";
 
-function Categories(props) {
+function CategoriesScreen(props) {
   return (
     <ImageBackground
       style={styles.backGround}
@@ -134,4 +134,4 @@ const styles = StyleSheet.create({
     fontSize: 25,
   },
 });
-export default Categories;
+export default CategoriesScreen;

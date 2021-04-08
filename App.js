@@ -2,12 +2,14 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import WelcomeScreen from './App/screens/WelcomeScreen';
-import AllProducts from './App/screens/AllProducts';
-import ItemDetails from './App/screens/ItemDetails';
+import AllProductsScreen from './App/screens/AllProductsScreen';
+import ItemDetailsScreen from './App/screens/ItemDetailsScreen';
 import FunctionMenu from './App/components/FunctionMenu';
 import PostSlides from './App/components/PostSlides'
-import MainPage from './App/screens/MainPage';
-import Categories from './App/screens/Categories';
+import MainPageScreen from './App/screens/MainPageScreen';
+import CategoriesScreen from './App/screens/CategoriesScreen';
+import ContactUsScreen from './App/screens/ContactUsScreen';
+
 
 export default function App() {
 
@@ -18,7 +20,8 @@ export default function App() {
     //<FunctionMenu/>
     //<PostSlides/>
     //<MainPage/>
-    <Categories/>
+    //<CategoriesScreen/>
+    <ContactUsScreen/>
   );
 }
 

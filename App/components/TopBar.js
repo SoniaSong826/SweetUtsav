@@ -14,7 +14,7 @@ import { useFonts, Roboto_500Medium } from "@expo-google-fonts/roboto";
 import AppButton from "./AppButton";
 import AppText from "./AppText";
 
-function TopBar({ title, leftIcon }) {
+function TopBar({ title, leftIcon, cartVisiable = true }) {
   let [fontsLoaded] = useFonts({
     Roboto_500Medium,
   });
@@ -22,29 +22,45 @@ function TopBar({ title, leftIcon }) {
   if (!fontsLoaded) {
     return <AppLoading />;
   }
-  return (
-    <View style={styles.bar}>
-      <AppText style={styles.title}>{title}</AppText>
-      <View style={styles.twoButtons}>
-        <TouchableWithoutFeedback
-          onPress={() => console.log("left icon clicked")}
-        >
-          <Image style={styles.leftIcon} source={leftIcon}></Image>
-        </TouchableWithoutFeedback>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => console.log("Cart button clicked")}
-        >
-          <Image
-            style={styles.cartIcon}
-            source={require("../assets/Icon-ios-cart.png")}
-          ></Image>
-          <Text style={styles.cartText}>My Cart</Text>
-        </TouchableOpacity>
+  if (cartVisiable) {
+    return (
+      <View style={styles.bar}>
+        <AppText style={styles.title}>{title}</AppText>
+        <View style={styles.twoButtons}>
+          <TouchableWithoutFeedback
+            onPress={() => console.log("left icon clicked")}
+          >
+            <Image style={styles.leftIcon} source={leftIcon}></Image>
+          </TouchableWithoutFeedback>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => console.log("Cart button clicked")}
+          >
+            <Image
+              style={styles.cartIcon}
+              source={require("../assets/Icon-ios-cart.png")}
+            ></Image>
+            <Text style={styles.cartText}>My Cart</Text>
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
-  );
+    );
+  } else {
+    return (
+      <View style={styles.bar}>
+        <AppText style={styles.title}>{title}</AppText>
+        <View style={styles.twoButtons}>
+          <TouchableWithoutFeedback
+            onPress={() => console.log("left icon clicked")}
+          >
+            <Image style={styles.leftIcon} source={leftIcon}></Image>
+          </TouchableWithoutFeedback>
+        </View>
+      </View>
+    );
+  }
 }
+
 const styles = StyleSheet.create({
   bar: {
     height: 85,

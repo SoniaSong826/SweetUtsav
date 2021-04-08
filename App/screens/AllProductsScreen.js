@@ -4,7 +4,7 @@ import Menu from "../components/Menu";
 import colors from "../config/colors";
 import TopBar from "../components/TopBar";
 
-function AllProducts(props) {
+function AllProductsScreen(props) {
   return (
     <ImageBackground
       style={styles.backGround}
@@ -25,4 +25,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AllProducts;
+export default AllProductsScreen;
