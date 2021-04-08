@@ -9,6 +9,7 @@ import {
 import colors from "../config/colors";
 import TopBar from "../components/TopBar";
 import AppText from "../components/AppText";
+import AppButton from "../components/AppButton";
 
 function ContactUsScreen(props) {
   return (
@@ -35,6 +36,7 @@ function ContactUsScreen(props) {
             maxLength={1000}
             style={styles.bigTextbox}
           ></TextInput>
+          <AppButton style={styles.sendButton} title="Send" onPress={()=> console.log("send button clicked")}></AppButton>
         </View>
       </ScrollView>
     </ImageBackground>
@@ -69,5 +71,8 @@ const styles = StyleSheet.create({
     textAlignVertical: "top",
     borderRadius: 5,
   },
+  sendButton:{
+    marginTop:25,
+  }
 });
 export default ContactUsScreen;

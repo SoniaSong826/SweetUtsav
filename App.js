@@ -9,6 +9,7 @@ import PostSlides from './App/components/PostSlides'
 import MainPageScreen from './App/screens/MainPageScreen';
 import CategoriesScreen from './App/screens/CategoriesScreen';
 import ContactUsScreen from './App/screens/ContactUsScreen';
+import AboutUsScreen from './App/screens/AboutUsScreen';
 
 
 export default function App() {
@@ -21,7 +22,8 @@ export default function App() {
     //<PostSlides/>
     //<MainPage/>
     //<CategoriesScreen/>
-    <ContactUsScreen/>
+    //<ContactUsScreen/>
+    <AboutUsScreen/>
   );
 }
 
