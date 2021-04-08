@@ -11,7 +11,7 @@ import {
 import colors from "../config/colors";
 import AppText from "../components/AppText";
 import TopBar from "../components/TopBar";
-import { text } from "../assets/AboutUsInfo.json";
+import { aboutUs } from "../assets/Info.json";
 const windowScale = Dimensions.get("window").scale;
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -34,7 +34,7 @@ function AboutUsScreen() {
               source={require("../assets/aboutus-banner.png")}
             ></Image>
           </View>
-          <AppText style={styles.text}>{text}</AppText>
+          <AppText style={styles.text}>{aboutUs}</AppText>
           <View style={styles.socialIconContainer}>
             <TouchableOpacity onPress={() => console.log("facebook clicked")}>
               <Image

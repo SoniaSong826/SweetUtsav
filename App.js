@@ -10,6 +10,7 @@ import MainPageScreen from './App/screens/MainPageScreen';
 import CategoriesScreen from './App/screens/CategoriesScreen';
 import ContactUsScreen from './App/screens/ContactUsScreen';
 import AboutUsScreen from './App/screens/AboutUsScreen';
+import EventsScreen from './App/screens/EventsScreen';
 
 
 export default function App() {
@@ -23,7 +24,7 @@ export default function App() {
     //<MainPage/>
     //<CategoriesScreen/>
     //<ContactUsScreen/>
-    <AboutUsScreen/>
+    <EventsScreen></EventsScreen>
   );
 }
 
