@@ -19,7 +19,7 @@ export default function App() {
 
   return (
     //<ItemDetails itemName={"Balushahi"}></ItemDetails>
-    //<AllProducts/>
+    <AllProductsScreen/>
     //<WelcomeScreen />
     //<FunctionMenu/>
     //<PostSlides/>
@@ -28,7 +28,7 @@ export default function App() {
     //<ContactUsScreen/>
     //<LoginScreen></LoginScreen>
     //<EventsScreen></EventsScreen>
-    <LocationScreen></LocationScreen>
+    //<LocationScreen></LocationScreen>
   );
 }
 

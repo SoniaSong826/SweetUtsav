@@ -10,12 +10,12 @@ import {
 import colors from "../config/colors";
 import AppText from "./AppText";
 
-function Card({ title, subTitle, image }) {
+function Card({ title, price, image }) {
   return (
     <TouchableOpacity style={styles.card}>
       <Image style={styles.image} source={image} />
       <AppText style={styles.title}>{title}</AppText>
-      <AppText style={styles.subTitle}>{subTitle}</AppText>
+      <AppText style={styles.price}>{price}</AppText>
     </TouchableOpacity>
   );
 }
@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
     paddingTop: 3,
     paddingBottom: 12,
     marginVertical: 8,
+    marginHorizontal:5,
     shadowOffset: { width: 1, height: 1 },
     shadowColor: colors.darkGray,
     shadowOpacity: 0.4,
@@ -39,7 +40,6 @@ const styles = StyleSheet.create({
     //overflow:"hidden",
   },
   title: {
-    flex: 1,
     flexWrap: "nowrap",
     color: colors.black,
     marginBottom: 7,
