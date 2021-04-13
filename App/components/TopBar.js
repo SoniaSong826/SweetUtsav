@@ -7,6 +7,7 @@ import {
   SafeAreaView,
   Text,
   TouchableWithoutFeedback,
+  StatusBar
 } from "react-native";
 import colors from "../config/colors";
 import AppLoading from "expo-app-loading";
@@ -64,10 +65,11 @@ function TopBar({ title, leftIcon, cartVisiable = true }) {
 const styles = StyleSheet.create({
   bar: {
     height: 85,
-    paddingTop: 35,
+    paddingTop: StatusBar.currentHeight,
     flexDirection: "row",
     backgroundColor: colors.darkSecondary,
     alignItems: "flex-end",
+    width:"100%",
     justifyContent: "center",
   },
   twoButtons: {

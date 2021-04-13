@@ -12,6 +12,7 @@ import ContactUsScreen from './App/screens/ContactUsScreen';
 import AboutUsScreen from './App/screens/AboutUsScreen';
 import EventsScreen from './App/screens/EventsScreen';
 import LoginScreen from "./App/screens/LoginScreen";
+import LocationScreen from "./App/screens/LocationScreen"
 
 
 export default function App() {
@@ -25,8 +26,9 @@ export default function App() {
     //<MainPage/>
     //<CategoriesScreen/>
     //<ContactUsScreen/>
-    <LoginScreen></LoginScreen>
+    //<LoginScreen></LoginScreen>
     //<EventsScreen></EventsScreen>
+    <LocationScreen></LocationScreen>
   );
 }
 
