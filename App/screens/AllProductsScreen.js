@@ -1,6 +1,5 @@
 import React from "react";
-import { View, StyleSheet, ImageBackground,FlatList } from "react-native";
-import Menu from "../components/Menu";
+import { View, StyleSheet, ImageBackground, FlatList } from "react-native";
 import colors from "../config/colors";
 import TopBar from "../components/TopBar";
 import Card from "../components/Card";
@@ -47,13 +46,13 @@ function AllProductsScreen(props) {
         keyExtractor={(menu) => menu.id.toString()}
         renderItem={({ item }) => (
           <Card
-            style={styles.itemContainer}
             title={item.title}
             price={item.price}
             image={item.image}
-          />
+            onPress={()=>console.log("message selected")}
+          ></Card>
         )}
-        columnWrapperStyle={styles.flatlist} 
+        columnWrapperStyle={styles.flatlist}
         numColumns={3}
         contentContainerStyle={styles.content}
         horizontal={false}
@@ -67,11 +66,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   flatlist: {
-    flexWrap: 'wrap',
+    flexWrap: "wrap",
   },
   content: {
     alignSelf: "flex-start",
-  }
+  },
 });
 
 export default AllProductsScreen;

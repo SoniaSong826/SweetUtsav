@@ -1,25 +1,29 @@
 import React from "react";
-import {
-  View,
-  StyleSheet,
-  Image,
-  Text,
-  SafeAreaView,
-  TouchableOpacity,
-} from "react-native";
+import { View, StyleSheet, Image, TouchableHighlight } from "react-native";
 import colors from "../config/colors";
 import AppText from "./AppText";
 
-function Card({ title, price, image }) {
+function Card({ title, price, image, onPress }) {
   return (
-    <TouchableOpacity style={styles.card}>
-      <Image style={styles.image} source={image} />
-      <AppText style={styles.title}>{title}</AppText>
-      <AppText style={styles.price}>{price}</AppText>
-    </TouchableOpacity>
+    <TouchableHighlight
+      underlayColor={colors.primary}
+      onPress={onPress}
+      style={styles.container}
+    >
+      <View style={styles.card}>
+        <Image style={styles.image} source={image} />
+        <AppText style={styles.title}>{title}</AppText>
+        <AppText style={styles.price}>{price}</AppText>
+      </View>
+    </TouchableHighlight>
   );
 }
 const styles = StyleSheet.create({
+  container: {
+    marginVertical: 8,
+    marginHorizontal: 5,
+    borderRadius: 6,
+  },
   card: {
     width: 115,
     height: 172,
@@ -30,11 +34,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingTop: 3,
     paddingBottom: 12,
-    marginVertical: 8,
-    marginHorizontal:5,
+
     shadowOffset: { width: 1, height: 1 },
     shadowColor: colors.darkGray,
-    shadowOpacity: 0.4,
+    shadowOpacity: 0.2,
     shadowRadius: 2,
     elevation: 1,
     //overflow:"hidden",

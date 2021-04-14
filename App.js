@@ -13,13 +13,14 @@ import AboutUsScreen from './App/screens/AboutUsScreen';
 import EventsScreen from './App/screens/EventsScreen';
 import LoginScreen from "./App/screens/LoginScreen";
 import LocationScreen from "./App/screens/LocationScreen"
+import CartScreen from './App/screens/CartScreen';
 
 
 export default function App() {
 
   return (
     //<ItemDetails itemName={"Balushahi"}></ItemDetails>
-    <AllProductsScreen/>
+    //<AllProductsScreen/>
     //<WelcomeScreen />
     //<FunctionMenu/>
     //<PostSlides/>
@@ -29,6 +30,7 @@ export default function App() {
     //<LoginScreen></LoginScreen>
     //<EventsScreen></EventsScreen>
     //<LocationScreen></LocationScreen>
+    <CartScreen></CartScreen>
   );
 }
 

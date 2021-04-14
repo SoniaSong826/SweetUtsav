@@ -15,7 +15,7 @@ import { useFonts, Roboto_500Medium } from "@expo-google-fonts/roboto";
 import AppButton from "./AppButton";
 import AppText from "./AppText";
 
-function TopBar({ title, leftIcon, cartVisiable = true }) {
+function TopBar({ title, leftIcon, cartVisiable = true, color = colors.darkSecondary }) {
   let [fontsLoaded] = useFonts({
     Roboto_500Medium,
   });
@@ -69,7 +69,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     backgroundColor: colors.darkSecondary,
     alignItems: "flex-end",
-    width:"100%",
     justifyContent: "center",
   },
   twoButtons: {
