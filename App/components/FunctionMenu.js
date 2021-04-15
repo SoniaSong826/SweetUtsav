@@ -10,48 +10,48 @@ function FunctionMenu(props) {
         <View style={styles.menuRow}>
           <FunctionIcon
             title="Order Now"
-            image={require("../assets/function-icon/Order_Now.png")}
+            iconName = "cart"
             color="red"
             onPress={() => console.log("Order Now button clicked")}
           ></FunctionIcon>
           <FunctionIcon
             title="Categories"
-            image={require("../assets/function-icon/Categories.png")}
+            iconName="cupcake"
             onPress={() => console.log("Categories button clicked")}
           ></FunctionIcon>
           <FunctionIcon
             title="My Account"
-            image={require("../assets/function-icon/My_Account.png")}
+            iconName="account"
             onPress={() => console.log("My Account button clicked")}
           ></FunctionIcon>
           <FunctionIcon
-            title="Location"
-            image={require("../assets/function-icon/Location.png")}
+            title="Locations"
+            iconName="map-marker-multiple"
             onPress={() => console.log("Location button clicked")}
           ></FunctionIcon>
         </View>
         <View style={styles.menuRow}>
           <FunctionIcon
             title="Events"
-            image={require("../assets/function-icon/Events.png")}
+            iconName="party-popper"
             color="secondary"
             onPress={() => console.log("Events button clicked")}
           ></FunctionIcon>
           <FunctionIcon
             title="Policies"
-            image={require("../assets/function-icon/Policies.png")}
+            iconName="format-list-bulleted-square"
             color="secondary"
             onPress={() => console.log("Policies button clicked")}
           ></FunctionIcon>
           <FunctionIcon
             title="Contact Us"
-            image={require("../assets/function-icon/Contact_Us.png")}
+            iconName="face-agent"
             color="secondary"
             onPress={() => console.log("Contact Us button clicked")}
           ></FunctionIcon>
           <FunctionIcon
             title="Follow Us"
-            image={require("../assets/function-icon/Follow_Us.png")}
+            iconName="at"
             color="secondary"
             onPress={() => console.log("Follow Us button clicked")}
           ></FunctionIcon>

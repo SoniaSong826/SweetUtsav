@@ -5,11 +5,17 @@ import {
   View,
   StyleSheet,
   ScrollView,
+  Dimensions,
   TouchableOpacity,
   TouchableWithoutFeedback,
 } from "react-native";
 import AppText from "../components/AppText";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../config/colors";
+import Constants from "expo-constants";
+
+const windowWidth = Dimensions.get("window").width;
+const windowHeight = Dimensions.get("window").height;
 
 function CategoriesScreen(props) {
   return (
@@ -17,16 +23,17 @@ function CategoriesScreen(props) {
       style={styles.backGround}
       source={require("../assets/green_background.jpg")}
     >
+      <AppText style={styles.title}>Categories</AppText>
       <View style={styles.topBarConatiner}>
-        <AppText style={styles.title}>Categories</AppText>
-        <TouchableWithoutFeedback
-          onPress={() => console.log("back arrow clicked")}
-        >
-          <Image
-            style={styles.backIcon}
-            source={require("../assets/arrow-round-back.png")}
-          ></Image>
-        </TouchableWithoutFeedback>
+          <TouchableWithoutFeedback
+            onPress={() => console.log("left icon clicked")}
+          >
+            <MaterialCommunityIcons
+              name="arrow-left"
+              size={35}
+              color={colors.white}
+            ></MaterialCommunityIcons>
+          </TouchableWithoutFeedback>
       </View>
       <ScrollView>
         <View style={styles.container}>
@@ -82,21 +89,24 @@ function CategoriesScreen(props) {
   );
 }
 const styles = StyleSheet.create({
+  twoButtons: {
+    paddingHorizontal: 15,
+    flexDirection: "row",
+    width: "100%",
+    alignItems: "center",
+  },
   backGround: {
     flex: 1,
+    alignItems:"center"
   },
-  backIcon: {
-    height: 20,
-    position: "absolute",
-    top: 47,
-    left: 30,
-  },
-  topBarConatiner:{
-      alignItems:"center",
-      paddingTop:40,
+  topBarConatiner: {
+    position:"absolute",
+    width:"90%",
+    alignItems: "flex-start",
+    paddingTop: Constants.statusBarHeight,
   },
   container: {
-    paddingTop:25,
+    paddingTop: 35,
     justifyContent: "center",
     alignItems: "center",
     alignContent: "space-around",
@@ -104,7 +114,8 @@ const styles = StyleSheet.create({
   postRow: {
     flexDirection: "row",
     justifyContent: "space-between",
-    width: "90%",
+    width: windowWidth-50,
+    marginHorizontal:25,
     alignItems: "center",
     alignContent: "center",
   },
@@ -116,8 +127,8 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 3, height: 3 },
   },
   post: {
-    width: 171,
-    height: 252,
+    width: windowWidth/2.5,
+    height:windowWidth/1.7,
     borderRadius: 8,
   },
   logoRow: {
@@ -126,12 +137,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   logo: {
-    width: 139,
-    height: 152,
+    width: 118,
+    height: 128,
   },
   title: {
     color: colors.white,
     fontSize: 25,
+    marginTop:Constants.statusBarHeight,
   },
 });
 export default CategoriesScreen;

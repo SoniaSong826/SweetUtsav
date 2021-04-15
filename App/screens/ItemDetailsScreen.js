@@ -23,10 +23,7 @@ function ItemDetailsScreen({ itemName }) {
       style={styles.backGround}
       source={require("../assets/white_background.jpg")}
     >
-      <TopBar
-        title={itemName}
-        leftIcon={require("../assets/arrow-round-back.png")}
-      ></TopBar>
+      <TopBar title={itemName}></TopBar>
       <ScrollView contentContainerStyle={styles.scrollView}>
         <Image
           style={styles.image}
@@ -111,7 +108,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  textsContainer: {  justifyContent: "center" },
+  textsContainer: { justifyContent: "center" },
   textButtonContainer: {
     width: "90%",
     flexDirection: "row",
@@ -156,8 +153,8 @@ const styles = StyleSheet.create({
   },
   addButton: {
     width: 165,
-    marginTop:5,
-    height:45,
+    marginTop: 5,
+    height: 45,
   },
   primaryTitle: {
     marginTop: 8,

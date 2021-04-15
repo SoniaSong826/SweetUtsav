@@ -16,6 +16,8 @@ import ListItemSeparator from "../components/ListItemSeparator";
 import AppText from "../components/AppText";
 import ListItemDeleteAction from "../components/ListItemDeleteAction";
 import AppButton from "../components/AppButton";
+import Constants from "expo-constants";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const initialCart = [
   {
@@ -53,10 +55,11 @@ function CartScreen(props) {
           <TouchableWithoutFeedback
             onPress={() => console.log("left icon clicked")}
           >
-            <Image
-              style={styles.leftIcon}
-              source={require("../assets/arrow-round-back.png")}
-            ></Image>
+            <MaterialCommunityIcons
+            name ="arrow-left"
+              size={35}
+              color={colors.white}
+            ></MaterialCommunityIcons>
           </TouchableWithoutFeedback>
         </View>
       </View>
@@ -85,19 +88,20 @@ function CartScreen(props) {
 }
 const styles = StyleSheet.create({
   bar: {
-    height: 85,
-    paddingTop: StatusBar.currentHeight,
+    height: Constants.statusBarHeight + 40,
+    paddingTop: Constants.statusBarHeight,
+    paddingBottom:8,
     flexDirection: "row",
     backgroundColor: colors.primary,
     alignItems: "flex-end",
     justifyContent: "center",
   },
   twoButtons: {
-    paddingHorizontal: 14,
+    paddingHorizontal: 15,
     flexDirection: "row",
     width: "100%",
     justifyContent: "space-between",
-    paddingBottom: 2,
+    alignItems:"center"
   },
   title: {
     position: "absolute",
@@ -106,9 +110,7 @@ const styles = StyleSheet.create({
     paddingBottom: 12,
   },
   leftIcon: {
-    height: 20,
-    marginVertical: 12,
-  },
+    marginLeft: 5,},
   backGround: {
     flex: 1,
     justifyContent: "center",

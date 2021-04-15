@@ -85,7 +85,6 @@ function LocationScreen(props) {
     source={require("../assets/white_background.jpg")}>
       <TopBar
         title="Locations"
-        leftIcon={require("../assets/arrow-round-back.png")} 
         cartVisiable = {false}
       ></TopBar>
       <View style={styles.container}>

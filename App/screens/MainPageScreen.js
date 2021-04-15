@@ -1,9 +1,8 @@
 import React from "react";
 import { View, StyleSheet, ImageBackground, ScrollView } from "react-native";
 import colors from "../config/colors";
-import AppText from "../components/AppText";
 import TopBar from "../components/TopBar";
-import AppButton from "../components/AppButton";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Menu from "../components/Menu";
 import PostSlides from "../components/PostSlides";
 import FunctionMenu from "../components/FunctionMenu";
@@ -14,9 +13,9 @@ function MainPage() {
       style={styles.backGround}
       source={require("../assets/white_background.jpg")}
     >
-      <TopBar title={"Sweet UTSAV"}></TopBar>
+      <TopBar leftIcon="map-marker" title={"Sweet UTSAV"}></TopBar>
       <FunctionMenu style={styles.functionMenu}></FunctionMenu>
-      <View><PostSlides></PostSlides></View>
+      <PostSlides></PostSlides>
       <Menu></Menu>
       
     </ImageBackground>

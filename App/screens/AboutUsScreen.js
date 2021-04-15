@@ -12,9 +12,9 @@ import colors from "../config/colors";
 import AppText from "../components/AppText";
 import TopBar from "../components/TopBar";
 import { aboutUs } from "../assets/Info.json";
-const windowScale = Dimensions.get("window").scale;
+
 const windowWidth = Dimensions.get("window").width;
-const windowHeight = Dimensions.get("window").height;
+
 function AboutUsScreen() {
   return (
     <ImageBackground
@@ -23,7 +23,6 @@ function AboutUsScreen() {
     >
       <TopBar
         title="About Us"
-        leftIcon={require("../assets/arrow-round-back.png")}
         cartVisiable={false}
       ></TopBar>
       <ScrollView>

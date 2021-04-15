@@ -21,7 +21,6 @@ function LoginScreen(props) {
     >
       <TopBar
         title="Hello! My Sweetie!"
-        leftIcon={require("../assets/arrow-round-back.png")}
         cartVisiable={false}
       ></TopBar>
       <View>

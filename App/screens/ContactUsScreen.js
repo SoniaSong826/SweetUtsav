@@ -19,7 +19,6 @@ function ContactUsScreen(props) {
     >
       <TopBar
         title="Contact Us"
-        leftIcon={require("../assets/arrow-round-back.png")}
         cartVisiable={false}
       ></TopBar>
       <ScrollView>

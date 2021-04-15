@@ -4,18 +4,23 @@ import {
   StyleSheet,
   Image,
   TouchableOpacity,
-  SafeAreaView,
   Text,
   TouchableWithoutFeedback,
-  StatusBar
+  StatusBar,
 } from "react-native";
 import colors from "../config/colors";
 import AppLoading from "expo-app-loading";
 import { useFonts, Roboto_500Medium } from "@expo-google-fonts/roboto";
-import AppButton from "./AppButton";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import AppText from "./AppText";
+import Constants from "expo-constants";
 
-function TopBar({ title, leftIcon, cartVisiable = true, color = colors.darkSecondary }) {
+function TopBar({
+  title,
+  leftIcon = "arrow-left",
+  cartVisiable = true,
+  color = colors.darkSecondary,
+}) {
   let [fontsLoaded] = useFonts({
     Roboto_500Medium,
   });
@@ -31,16 +36,17 @@ function TopBar({ title, leftIcon, cartVisiable = true, color = colors.darkSecon
           <TouchableWithoutFeedback
             onPress={() => console.log("left icon clicked")}
           >
-            <Image style={styles.leftIcon} source={leftIcon}></Image>
+            <MaterialCommunityIcons
+              style={styles.leftIcon}
+              name={leftIcon}
+              size={35}
+              color={colors.white}
+            ></MaterialCommunityIcons>
           </TouchableWithoutFeedback>
           <TouchableOpacity
             style={styles.button}
             onPress={() => console.log("Cart button clicked")}
           >
-            <Image
-              style={styles.cartIcon}
-              source={require("../assets/Icon-ios-cart.png")}
-            ></Image>
             <Text style={styles.cartText}>My Cart</Text>
           </TouchableOpacity>
         </View>
@@ -54,7 +60,12 @@ function TopBar({ title, leftIcon, cartVisiable = true, color = colors.darkSecon
           <TouchableWithoutFeedback
             onPress={() => console.log("left icon clicked")}
           >
-            <Image style={styles.leftIcon} source={leftIcon}></Image>
+            <MaterialCommunityIcons
+              style={styles.leftIcon}
+              name={leftIcon}
+              size={35}
+              color={colors.white}
+            ></MaterialCommunityIcons>
           </TouchableWithoutFeedback>
         </View>
       </View>
@@ -64,19 +75,21 @@ function TopBar({ title, leftIcon, cartVisiable = true, color = colors.darkSecon
 
 const styles = StyleSheet.create({
   bar: {
-    height: 85,
-    paddingTop: StatusBar.currentHeight,
+    height: Constants.statusBarHeight + 40,
+    paddingTop: Constants.statusBarHeight,
+    paddingBottom: 8,
     flexDirection: "row",
     backgroundColor: colors.darkSecondary,
     alignItems: "flex-end",
     justifyContent: "center",
   },
   twoButtons: {
-    paddingHorizontal: 14,
+    paddingLeft: 15,
+    paddingRight:5,
     flexDirection: "row",
     width: "100%",
     justifyContent: "space-between",
-    paddingBottom: 2,
+    alignItems:"center"
   },
   title: {
     position: "absolute",
@@ -85,13 +98,12 @@ const styles = StyleSheet.create({
     paddingBottom: 12,
   },
   leftIcon: {
-    height: 20,
-    marginVertical: 12,
+    marginLeft: 5,
   },
   button: {
-    height: 40,
-    width: 105,
-    borderRadius: 10,
+    height: 35,
+    width: 95,
+    borderRadius: 8,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-evenly",
@@ -104,7 +116,7 @@ const styles = StyleSheet.create({
   },
   cartText: {
     fontFamily: "Roboto_500Medium",
-    fontSize: 15,
+    fontSize: 16,
     color: colors.white,
   },
 });

@@ -13,7 +13,6 @@ function AllProductsScreen(props) {
     >
       <TopBar
         title="All Products"
-        leftIcon={require("../assets/arrow-round-back.png")}
       ></TopBar>
       <Menu></Menu>
     </ImageBackground>

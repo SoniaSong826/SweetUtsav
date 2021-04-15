@@ -24,7 +24,6 @@ function EventsScreen() {
     >
       <TopBar
         title="Events"
-        leftIcon={require("../assets/arrow-round-back.png")}
         cartVisiable={false}
       ></TopBar>
       <ScrollView>
