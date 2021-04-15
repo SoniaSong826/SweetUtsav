@@ -10,13 +10,13 @@ function FunctionMenu(props) {
         <View style={styles.menuRow}>
           <FunctionIcon
             title="Order Now"
-            iconName = "cart"
+            iconName = "cupcake"
             color="red"
             onPress={() => console.log("Order Now button clicked")}
           ></FunctionIcon>
           <FunctionIcon
             title="Categories"
-            iconName="cupcake"
+            iconName="apps"
             onPress={() => console.log("Categories button clicked")}
           ></FunctionIcon>
           <FunctionIcon

@@ -14,20 +14,26 @@ import EventsScreen from "./App/screens/EventsScreen";
 import LoginScreen from "./App/screens/LoginScreen";
 import LocationScreen from "./App/screens/LocationScreen";
 import CartScreen from "./App/screens/CartScreen";
+import AppPicker from "./App/components/AppPicker";
+import AppTextInput from "./App/components/AppTextInput";
 
 export default function App() {
-  return ( 
+  return (
     //<ItemDetailsScreen itemName={"Balushahi"}></ItemDetailsScreen>
     //<AllProductsScreen/>
     //<WelcomeScreen />
     //<FunctionMenu/>
     //<PostSlides/>
-    <MainPageScreen/>
+    //<MainPageScreen/>
     //<CategoriesScreen/>
     //<ContactUsScreen/>
     //<LoginScreen></LoginScreen>
     //<EventsScreen></EventsScreen>
     //<LocationScreen></LocationScreen>
     //<CartScreen></CartScreen>
+    <View>
+      <AppPicker icon = "apps" placeholder="abc"></AppPicker>
+      <AppTextInput icon = "apps" placeholder="abc"></AppTextInput>
+    </View>
   );
 }

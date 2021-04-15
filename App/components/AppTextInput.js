@@ -7,6 +7,7 @@ import {
   Roboto_700Bold,
   Roboto_400Regular,
 } from "@expo-google-fonts/roboto";
+import defaultStyles from "../config/styles";
 
 function AppTextInput({ icon, ...otherProps }) {
   return (
@@ -25,20 +26,22 @@ function AppTextInput({ icon, ...otherProps }) {
 }
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.lightGray,
-    borderRadius: 25,
+    backgroundColor: colors.white,
+    borderColor: colors.lightGray,
+    borderWidth: 1,
+    borderRadius: 10,
     flexDirection: "row",
     marginVertical: 10,
     padding: 15,
     width: "100%",
   },
   icon: {
-    marginLeft: 10,
+    marginHorizontal: 10,
   },
   text: {
     fontSize: 18,
     fontFamily: "Roboto_400Regular",
-    color: colors.darkGray,
+    color: colors.lightGray,
   },
 });
 export default AppTextInput;
