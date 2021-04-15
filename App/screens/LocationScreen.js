@@ -1,17 +1,26 @@
 import React from "react";
-import { FlatList, ScrollView, View, StyleSheet } from "react-native";
+import { FlatList, ScrollView, View, StyleSheet, Dimensions, ImageBackground } from "react-native";
 import ListItemSeparator from "../components/ListItemSeparator";
 import LocationItem from "../components/LocationItem";
 import TopBar from "../components/TopBar";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
+const telIcon = "phone";
+const mobileIcon ="cellphone";
 
 const sweetLocation = [
   {
     id: 1,
-    title: "Sydney",
+    title: "Seven Hills",
     address1: "6/17 Brumby Street",
     address2: "Seven Hills, NSW, 2147",
-    tel: "02-8608 7146, 0450 740 277",
+    tel: "(02) 8608 7146",
+    mobile: "0450 740 277",
     image: require("../assets/icon_with_background.png"),
+    iconFirst:telIcon,
+    iconSecond:mobileIcon,
   },
   {
     id: 2,
@@ -19,37 +28,61 @@ const sweetLocation = [
     address1: "22 Lavinia Dr",
     address2: "Tarneit VIC 3029",
     tel: "(03) 8742 4445",
+    mobile: "0482 400 001",
     image: require("../assets/icon_with_background.png"),
+    iconFirst:telIcon,
+    iconSecond:mobileIcon,
   },
   {
     id: 3,
-    title: "Caronline Springs",
+    title: "Caroline Springs",
     address1: "Shop 20, 13-15 Lake St",
     address2: "Caroline Springs, VIC, 3023",
     tel: "(03) 8315 7716",
+    mobile: "0410 855 028",
     image: require("../assets/icon_with_background.png"),
+    iconFirst:telIcon,
+    iconSecond:mobileIcon,
   },
   {
     id: 4,
     title: "Lyndhurst",
     address1: "A17/945 Thompsons Road",
     address2: "Lyndhurst, VIC, 3975",
-    tel: "8738 9170, 8738 9168",
+    tel: "(03) 8738 9170",
+    mobile:"(03) 8738 9168",
     image: require("../assets/icon_with_background.png"),
+    iconFirst:telIcon,
+    iconSecond:telIcon,
   },
   {
     id: 5,
     title: "Brisbane",
     address1: "Shop 4, 111-121 Grand Plaza Drive",
     address2: "Browns Plains, QLD, 4118",
-    tel: "(07)-3416 2879, 0405 287 287",
+    tel: "(07) 3416 2879",
+    mobile:"0405 287 287",
     image: require("../assets/icon_with_background.png"),
+    iconFirst:telIcon,
+    iconSecond:mobileIcon,
+  },
+  {
+    id: 6,
+    title: "Melbourne",
+    address1: "Suite1301/227, Collins Street",
+    address2: "Melbourne, VIC, 3000",
+    tel: "(03) 8080 9933",
+    mobile:"0458 254 017",
+    image: require("../assets/icon_with_background.png"),
+    iconFirst:telIcon,
+    iconSecond:mobileIcon,
   },
 ];
 
 function LocationScreen(props) {
   return (
-    <View>
+    <ImageBackground style={styles.backGround}
+    source={require("../assets/white_background.jpg")}>
       <TopBar
         title="Locations"
         leftIcon={require("../assets/arrow-round-back.png")} 
@@ -66,16 +99,22 @@ function LocationScreen(props) {
               address1={item.address1}
               address2={item.address2}
               tel={item.tel}
+              mobile={item.mobile}
+              iconFirst={item.iconFirst}
+              iconSecond={item.iconSecond}
               image={item.image}
             />
           )}
           ItemSeparatorComponent={ListItemSeparator}
         ></FlatList>
       </View>
-    </View>
+    </ImageBackground>
   );
 }
 const styles = StyleSheet.create({
+  backGround:{
+    flex: 1,
+  },
   container: {
     alignItems: "center",
     height:"100%",

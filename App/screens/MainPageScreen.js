@@ -15,17 +15,18 @@ function MainPage() {
       source={require("../assets/white_background.jpg")}
     >
       <TopBar title={"Sweet UTSAV"}></TopBar>
-      <ScrollView>
-          <FunctionMenu style ={styles.functionMenu}></FunctionMenu>
-          <PostSlides style={styles.postSlides}></PostSlides>
-          <Menu style={styles.functionMenu}></Menu>
-      </ScrollView>
+      <FunctionMenu style={styles.functionMenu}></FunctionMenu>
+      <View><PostSlides></PostSlides></View>
+      <Menu></Menu>
+      
     </ImageBackground>
   );
 }
 const styles = StyleSheet.create({
   backGround: {
     flex: 1,
+    alignItems: "center",
+    height:"100%",
   },
 });
 

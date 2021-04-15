@@ -9,5 +9,6 @@ export default {
     lightPrimary:'',
     lightSecondary:'',
     darkGray:'#595959',
-    lightGray:'#C7BDBD'
+    lightGray:'#C7BDBD',
+    danger:"#FF5252",
 }

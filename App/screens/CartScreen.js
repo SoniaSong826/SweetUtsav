@@ -1,13 +1,23 @@
-import React from "react";
-import { View, StyleSheet, ImageBackground, FlatList, StatusBar, TouchableWithoutFeedback, Image } from "react-native";
+import React, { useState } from "react";
+import {
+  View,
+  StyleSheet,
+  ImageBackground,
+  FlatList,
+  StatusBar,
+  TouchableWithoutFeedback,
+  Image,
+} from "react-native";
 import colors from "../config/colors";
 import TopBar from "../components/TopBar";
 import Card from "../components/Card";
 import CartItem from "../components/CartItem";
 import ListItemSeparator from "../components/ListItemSeparator";
-import AppText from "../components/AppText"
- 
-const cart = [
+import AppText from "../components/AppText";
+import ListItemDeleteAction from "../components/ListItemDeleteAction";
+import AppButton from "../components/AppButton";
+
+const initialCart = [
   {
     id: 1,
     title: "Balushahi",
@@ -27,6 +37,11 @@ const cart = [
 ];
 
 function CartScreen(props) {
+  const [cart, setCart] = useState(initialCart);
+  const handleDelete = (product) => {
+    const newCarts = cart.filter((m) => m.id !== product.id);
+    setCart(newCarts);
+  };
   return (
     <ImageBackground
       style={styles.backGround}
@@ -38,7 +53,10 @@ function CartScreen(props) {
           <TouchableWithoutFeedback
             onPress={() => console.log("left icon clicked")}
           >
-            <Image style={styles.leftIcon} source={require("../assets/arrow-round-back.png")}></Image>
+            <Image
+              style={styles.leftIcon}
+              source={require("../assets/arrow-round-back.png")}
+            ></Image>
           </TouchableWithoutFeedback>
         </View>
       </View>
@@ -53,12 +71,15 @@ function CartScreen(props) {
             amount={item.amount}
             option={item.option}
             image={item.image}
-            onPress={() => console.log("message selected")}
+            renderRightAction={() => 
+              <ListItemDeleteAction onPress={() => handleDelete(item)} />
+            }
           ></CartItem>
         )}
         contentContainerStyle={styles.content}
         ItemSeparatorComponent={ListItemSeparator}
       ></FlatList>
+      <AppButton style={styles.button} title ="Check Out"></AppButton>
     </ImageBackground>
   );
 }
@@ -67,7 +88,7 @@ const styles = StyleSheet.create({
     height: 85,
     paddingTop: StatusBar.currentHeight,
     flexDirection: "row",
-    backgroundColor: colors.darkPrimary,
+    backgroundColor: colors.primary,
     alignItems: "flex-end",
     justifyContent: "center",
   },
@@ -97,6 +118,9 @@ const styles = StyleSheet.create({
   content: {
     alignSelf: "center",
   },
+  button:{
+    marginBottom:40,
+  }
 });
 
 export default CartScreen;
