@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto_700Bold",
     fontSize: 14,
     color: colors.primary,
+    
   },
 });
 export default AppText;

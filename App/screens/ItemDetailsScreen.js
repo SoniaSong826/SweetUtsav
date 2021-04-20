@@ -23,7 +23,7 @@ const categories = [
 ];
 
 function ItemDetailsScreen({ itemName }) {
-  const [category, setCategory] = useState();
+  const [category, setCategory] = useState(categories[0]);
   return (
     <ImageBackground
       style={styles.backGround}
@@ -40,18 +40,12 @@ function ItemDetailsScreen({ itemName }) {
             <AppText style={styles.itemName}>Balushahi</AppText>
             <AppText style={styles.itemPrice}>$15.50 – $30.95</AppText>
           </View>
-          <AppButton
-            style={styles.addButton}
-            title="Add to Cart"
-            onPress={() => console.log("Add to Cart button clicked")}
-          ></AppButton>
         </View>
 
         <View style={styles.selectionsContainer}>
           <View style={styles.weightOption}>
-            <AppText style={styles.boldtext}>Choose an option:</AppText>
+            <AppText style={styles.boldBigtext}>Choose an option:</AppText>
             <AppPicker
-              style={styles.optionPicker}
               icon="weight-gram"
               placeholder="Options"
               items={categories}
@@ -60,7 +54,7 @@ function ItemDetailsScreen({ itemName }) {
             ></AppPicker>
           </View>
           <View style={styles.amountOption}>
-            <AppText style={styles.boldtext}>Amount:</AppText>
+            <AppText style={styles.boldBigtext}>Amount:</AppText>
             <AppTextInput
               icon="magnify-plus"
               placeholder="1"
@@ -68,6 +62,10 @@ function ItemDetailsScreen({ itemName }) {
             />
           </View>
         </View>
+        <AppButton
+          title="Add to Cart"
+          onPress={() => console.log("Add to Cart button clicked")}
+        ></AppButton>
         <View style={styles.underlineTextbox}>
           <AppText style={styles.primaryTitle}>Description</AppText>
         </View>
@@ -111,8 +109,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  textsContainer: { 
-    justifyContent: "center" 
+  textsContainer: {
+    justifyContent: "center",
   },
   textButtonContainer: {
     width: "90%",
@@ -121,21 +119,27 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   itemName: {
-    paddingBottom: 2,
+    paddingBottom: 5,
     color: colors.black,
-    fontSize: 20,
+    fontSize: 22,
   },
   itemPrice: {
     color: colors.secondary,
-    fontSize: 20,
+    fontSize: 22,
   },
   selectionsContainer: {
     width: "100%",
-    paddingTop:10,
+    paddingTop: 10,
     paddingHorizontal: "5%",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
+  },
+  boldBigtext: {
+    fontFamily: "Roboto_700Bold",
+    lineHeight: 20,
+    fontSize: 16,
+    color: colors.black,
   },
   boldtext: {
     fontFamily: "Roboto_700Bold",
@@ -149,15 +153,9 @@ const styles = StyleSheet.create({
   amountOption: {
     width: 165,
   },
-  addButton: {
-    width: 165,
-    marginTop: 5,
-    height: 45,
-  },
   primaryTitle: {
     marginTop: 8,
-
-    fontSize: 18,
+    fontSize: 20,
     textAlign: "left",
     color: colors.primary,
   },
@@ -165,17 +163,19 @@ const styles = StyleSheet.create({
     width: "90%",
     borderColor: colors.lightGray,
     paddingBottom: 2,
+    marginBottom: 5,
     borderBottomWidth: 1,
   },
   secondaryTitle: {
     marginTop: 10,
     textAlign: "left",
-    fontSize: 18,
+    fontSize: 20,
     color: colors.secondary,
   },
   regulartext: {
     textAlign: "left",
     lineHeight: 20,
+    fontSize: 15,
     width: "90%",
     fontFamily: "Roboto_400Regular",
     color: colors.black,

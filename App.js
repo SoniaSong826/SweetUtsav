@@ -19,7 +19,7 @@ import AppTextInput from "./App/components/AppTextInput";
 
 export default function App() {
   return (
-    <ItemDetailsScreen itemName={"Balushahi"}></ItemDetailsScreen>
+    //<ItemDetailsScreen itemName={"Balushahi"}></ItemDetailsScreen>
     //<AllProductsScreen/>
     //<WelcomeScreen />
     //<FunctionMenu/>
@@ -27,7 +27,7 @@ export default function App() {
     //<MainPageScreen/>
     //<CategoriesScreen/>
     //<ContactUsScreen/>
-    //<LoginScreen></LoginScreen>
+    <LoginScreen></LoginScreen>
     //<EventsScreen></EventsScreen>
     //<LocationScreen></LocationScreen>
     //<CartScreen></CartScreen>

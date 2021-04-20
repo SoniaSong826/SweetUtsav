@@ -9,9 +9,9 @@ import {
 } from "@expo-google-fonts/roboto";
 import defaultStyles from "../config/styles";
 
-function AppTextInput({ icon, ...otherProps }) {
+function AppTextInput({ icon, height, ...otherProps }) {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container,{height:height}]}>
       {icon && (
         <MaterialCommunityIcons
           name={icon}
@@ -30,11 +30,12 @@ const styles = StyleSheet.create({
     borderColor: colors.lightGray,
     borderWidth: 1,
     borderRadius: 10,
+    alignItems: "center",
     flexDirection: "row",
     marginVertical: 10,
     padding: 10,
+    height: 42,
     width: "100%",
-    height: 45,
   },
   icon: {
     marginHorizontal: 10,
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 14,
     fontFamily: "Roboto_400Regular",
-    color: colors.lightGray,
+    color: colors.black,
   },
 });
 export default AppTextInput;

@@ -1,110 +1,81 @@
 import React from "react";
-import {
-  Text,
-  View,
-  StyleSheet,
-  ImageBackground,
-  Alert,
-  Dimensions,
-} from "react-native";
-import Menu from "../components/Menu";
+import { View, StyleSheet, ImageBackground, Image } from "react-native";
 import TopBar from "../components/TopBar";
-import AppText from "../components/AppText";
-import { Input } from "react-native-elements";
 import colors from "../config/colors";
 import AppButton from "../components/AppButton";
 import AppTextInput from "../components/AppTextInput";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-
-const windowWidth = Dimensions.get("window").width;
-const windowHeight = Dimensions.get("window").height;
+import AppText from "../components/AppText";
+import { Formik } from "formik";
+import * as Yup from "yup";
+import ErrorMessage from "../components/ErrorMessage";
 
 function LoginScreen(props) {
-  const [emailValue, onChangeEmail] = React.useState("");
-  const [passwordValue, onChangePassword] = React.useState("");
-
-  let regEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-  let regPassword = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-
+  const validationSchema = Yup.object().shape({
+    email: Yup.string().required().email().label("Email"),
+    password: Yup.string().required().min(8).label("Password"),
+  });
   return (
     <ImageBackground
       style={styles.backGround}
       source={require("../assets/white_background.jpg")}
     >
       <TopBar title="Hello! My Sweetie!" cartVisiable={false}></TopBar>
-      <View style={styles.container}>
-        <View>
-          <View style={styles.inputBox}>
-            <Input
-              placeholder="Email"
-              leftIcon={
-                <MaterialCommunityIcons
-                  name="email"
-                  size={24}
-                  color={colors.lightGray}
-                />
-              }
-              onChangeText={(text) => onChangeEmail(text)}
-              value={emailValue}
-              errorStyle={{ color: "red" }}
-            />
-          </View>
 
-          <View style={styles.inputBox}>
-            <Input
-              placeholder="Password"
-              leftIcon={
-                <MaterialCommunityIcons
-                  name="key"
-                  size={24}
-                  color={colors.lightGray}
-                />
-              }
-              onChangeText={(text) => onChangePassword(text)}
-              value={passwordValue}
-              secureTextEntry={true}
-            />
-          </View>
-        </View>
-
-        <AppButton
-          title="Sign in"
-          onPress={() => {
-            if (regEmail.test(emailValue) === false) {
-              Alert.alert("Invalid Email Address");
-              return;
-            }
-
-            if (regPassword.test(passwordValue) === false) {
-              Alert.alert(
-                "Invalid Password",
-                "Minimum eight characters, at least one letter and one number"
-              );
-
-              return;
-            }
-          }}
-        ></AppButton>
-      </View>
+      <Image style = {styles.logo} source={require("../assets/icon.png")}></Image>
+      <Formik
+        initialValues={{ email: "", password: "" }}
+        onSubmit={(values) => console.log(values)}
+        validationSchema={validationSchema}
+      >
+        {({ handleChange, handleSubmit, errors }) => (
+          <>
+            <View style={styles.container}>
+              <AppTextInput
+                style={styles.inputBox}
+                autoCapitalize="none"
+                autoCorrect={false}
+                height={50}
+                icon="email"
+                keyboardType="email-address"
+                placeholder="Email"
+                onChangeText={handleChange("email")}
+                textContentType="emailAddress"
+              ></AppTextInput>
+              <ErrorMessage error={errors.email}></ErrorMessage>
+              <AppTextInput
+                style={styles.inputBox}
+                autoCapitalize="none"
+                autoCorrect={false}
+                icon="lock"
+                height={50}
+                keyboardType="visible-password"
+                secureTextEntry={true}
+                placeholder="Password"
+                textContentType="password"
+                onChangeText={handleChange("password")}
+              ></AppTextInput>
+              <ErrorMessage error={errors.password}></ErrorMessage>
+            </View>
+            <AppButton title="Sign in" onPress={handleSubmit}></AppButton>
+          </>
+        )}
+      </Formik>
     </ImageBackground>
   );
 }
 const styles = StyleSheet.create({
   backGround: {
     flex: 1,
+    alignItems: "center",
+  },
+  logo:{
+    marginTop:60,
   },
   container: {
-    flex: 1,
-    alignItems: "center",
-    paddingTop: 40,
-  },
-  text: {
-    fontSize: 20,
-    paddingLeft: 40,
+    padding: 10,
   },
   inputBox: {
-    width: windowWidth,
-    paddingHorizontal: 30,
+    width: "80%",
   },
 });
 

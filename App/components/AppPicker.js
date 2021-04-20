@@ -18,7 +18,6 @@ import PickerItem from "./PickerItem";
 function AppPicker({
   icon,
   items,
-  style,
   placeholder,
   onSelectItem,
   selectedItem,
@@ -27,7 +26,7 @@ function AppPicker({
   return (
     <React.Fragment>
       <TouchableWithoutFeedback onPress={() => setModalVisible(true)}>
-        <View style={StyleSheet.flatten([styles.container, style])}>
+        <View style={styles.container}>
           {icon && (
             <MaterialCommunityIcons
               name={icon}
@@ -76,8 +75,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginVertical: 10,
     padding: 10,
+    height: 42,
     width: "100%",
-    height: 45,
   },
   icon: {
     marginHorizontal: 10,
@@ -86,7 +85,7 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 14,
     fontFamily: "Roboto_400Regular",
-    color: colors.lightGray,
+    color: colors.black,
   },
   safeArea: {
     marginTop: Constants.statusBarHeight,
