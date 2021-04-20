@@ -15,12 +15,19 @@ import AppText from "./AppText";
 import { FlatList } from "react-native-gesture-handler";
 import PickerItem from "./PickerItem";
 
-function AppPicker({ icon, items, placeholder, onSelectItem, selectedItem }) {
+function AppPicker({
+  icon,
+  items,
+  style,
+  placeholder,
+  onSelectItem,
+  selectedItem,
+}) {
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <React.Fragment>
       <TouchableWithoutFeedback onPress={() => setModalVisible(true)}>
-        <View style={styles.container}>
+        <View style={StyleSheet.flatten([styles.container, style])}>
           {icon && (
             <MaterialCommunityIcons
               name={icon}
@@ -68,15 +75,16 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     flexDirection: "row",
     marginVertical: 10,
-    padding: 15,
+    padding: 10,
     width: "100%",
+    height: 45,
   },
   icon: {
     marginHorizontal: 10,
   },
   text: {
     flex: 1,
-    fontSize: 18,
+    fontSize: 14,
     fontFamily: "Roboto_400Regular",
     color: colors.lightGray,
   },

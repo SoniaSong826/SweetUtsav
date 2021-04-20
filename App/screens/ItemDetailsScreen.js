@@ -1,23 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Image,
   View,
   StyleSheet,
   ImageBackground,
-  TextInput,
   Text,
   ScrollView,
 } from "react-native";
 import colors from "../config/colors";
 import AppText from "../components/AppText";
 import TopBar from "../components/TopBar";
-import DropDownPicker from "react-native-dropdown-picker";
 import { AmountInput } from "react-native-amount-input";
 import AppButton from "../components/AppButton";
 import Menu from "../components/Menu";
 import { Colors } from "react-native/Libraries/NewAppScreen";
+import AppPicker from "../components/AppPicker";
+import AppTextInput from "../components/AppTextInput";
+
+const categories = [
+  { label: "500g", value: 1 },
+  { label: "1kg", value: 2 },
+];
 
 function ItemDetailsScreen({ itemName }) {
+  const [category, setCategory] = useState();
   return (
     <ImageBackground
       style={styles.backGround}
@@ -44,22 +50,20 @@ function ItemDetailsScreen({ itemName }) {
         <View style={styles.selectionsContainer}>
           <View style={styles.weightOption}>
             <AppText style={styles.boldtext}>Choose an option:</AppText>
-            <DropDownPicker
-              items={[
-                { label: "500 g", value: "500 g" },
-                { label: "1 kg", value: "1 kg" },
-              ]}
-              defaultIndex={0}
-              containerStyle={{ height: 30 }}
-              onChangeItem={(item) => console.log(item.label, item.value)}
-            ></DropDownPicker>
+            <AppPicker
+              style={styles.optionPicker}
+              icon="weight-gram"
+              placeholder="Options"
+              items={categories}
+              selectedItem={category}
+              onSelectItem={(item) => setCategory(item)}
+            ></AppPicker>
           </View>
           <View style={styles.amountOption}>
             <AppText style={styles.boldtext}>Amount:</AppText>
-            <TextInput
-              placeholder=" 1"
-              underlineColorAndroid="transparent"
-              style={styles.TextInputStyle}
+            <AppTextInput
+              icon="magnify-plus"
+              placeholder="1"
               keyboardType={"numeric"}
             />
           </View>
@@ -67,7 +71,6 @@ function ItemDetailsScreen({ itemName }) {
         <View style={styles.underlineTextbox}>
           <AppText style={styles.primaryTitle}>Description</AppText>
         </View>
-
         <AppText style={styles.regulartext}>
           A popular sweet from the Indian subcontinent, balushahi is similar to
           a glazed doughnut. Incredibly rich in taste, this sweet is all time
@@ -108,7 +111,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  textsContainer: { justifyContent: "center" },
+  textsContainer: { 
+    justifyContent: "center" 
+  },
   textButtonContainer: {
     width: "90%",
     flexDirection: "row",
@@ -125,8 +130,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   selectionsContainer: {
-    height: 80,
     width: "100%",
+    paddingTop:10,
     paddingHorizontal: "5%",
     flexDirection: "row",
     alignItems: "center",
@@ -143,13 +148,6 @@ const styles = StyleSheet.create({
   },
   amountOption: {
     width: 165,
-  },
-  TextInputStyle: {
-    height: 30,
-    borderColor: colors.lightGray,
-    borderWidth: 1,
-    borderRadius: 4,
-    fontSize: 14,
   },
   addButton: {
     width: 165,

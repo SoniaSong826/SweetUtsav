@@ -32,14 +32,16 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     flexDirection: "row",
     marginVertical: 10,
-    padding: 15,
+    padding: 10,
     width: "100%",
+    height: 45,
   },
   icon: {
     marginHorizontal: 10,
   },
   text: {
-    fontSize: 18,
+    flex: 1,
+    fontSize: 14,
     fontFamily: "Roboto_400Regular",
     color: colors.lightGray,
   },
