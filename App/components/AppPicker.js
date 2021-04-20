@@ -9,16 +9,13 @@ import {
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../config/colors";
-import {
-  useFonts,
-  Roboto_700Bold,
-  Roboto_400Regular,
-} from "@expo-google-fonts/roboto";
 import defaultStyles from "../config/styles";
 import Constants from "expo-constants";
 import AppText from "./AppText";
+import { FlatList } from "react-native-gesture-handler";
+import PickerItem from "./PickerItem";
 
-function AppPicker({ icon, placeholder, ...otherProps }) {
+function AppPicker({ icon, items, placeholder, onSelectItem, selectedItem }) {
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <React.Fragment>
@@ -32,10 +29,8 @@ function AppPicker({ icon, placeholder, ...otherProps }) {
               style={styles.icon}
             />
           )}
-          <AppText
-            style={styles.text}
-          >
-            {placeholder}
+          <AppText style={styles.text}>
+            {selectedItem ? selectedItem.label : placeholder}
           </AppText>
           <MaterialCommunityIcons
             name="chevron-down"
@@ -47,6 +42,19 @@ function AppPicker({ icon, placeholder, ...otherProps }) {
       <Modal visible={modalVisible} animationType="slide">
         <View style={styles.safeArea}>
           <Button title="Close" onPress={() => setModalVisible(false)}></Button>
+          <FlatList
+            data={items}
+            keyExtractor={(item) => item.value.toString()}
+            renderItem={({ item }) => (
+              <PickerItem
+                label={item.label}
+                onPress={() => {
+                  setModalVisible(false);
+                  onSelectItem(item);
+                }}
+              ></PickerItem>
+            )}
+          ></FlatList>
         </View>
       </Modal>
     </React.Fragment>
@@ -69,11 +77,11 @@ const styles = StyleSheet.create({
   text: {
     flex: 1,
     fontSize: 18,
-        fontFamily: "Roboto_400Regular",
-        color: colors.lightGray,
+    fontFamily: "Roboto_400Regular",
+    color: colors.lightGray,
   },
-  safeArea:{
-      marginTop:Constants.statusBarHeight,
-  }
+  safeArea: {
+    marginTop: Constants.statusBarHeight,
+  },
 });
 export default AppPicker;

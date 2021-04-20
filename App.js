@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import WelcomeScreen from "./App/screens/WelcomeScreen";
 import AllProductsScreen from "./App/screens/AllProductsScreen";
@@ -17,7 +17,12 @@ import CartScreen from "./App/screens/CartScreen";
 import AppPicker from "./App/components/AppPicker";
 import AppTextInput from "./App/components/AppTextInput";
 
+const categories = [
+  { label: "500g", value: 1 },
+  { label: "1kg", value: 2 },
+];
 export default function App() {
+  const [category, setCategory] = useState();
   return (
     //<ItemDetailsScreen itemName={"Balushahi"}></ItemDetailsScreen>
     //<AllProductsScreen/>
@@ -31,9 +36,16 @@ export default function App() {
     //<EventsScreen></EventsScreen>
     //<LocationScreen></LocationScreen>
     //<CartScreen></CartScreen>
-    <View>
-      <AppPicker icon = "apps" placeholder="abc"></AppPicker>
-      <AppTextInput icon = "apps" placeholder="abc"></AppTextInput>
-    </View>
+
+    //<View>
+    <AppPicker
+      icon="apps"
+      placeholder="abc"
+      items={categories}
+      selectedItem={category}
+      onSelectItem={(item) => setCategory(item)}
+    ></AppPicker>
+    //  <AppTextInput icon = "apps" placeholder="abc"></AppTextInput>
+    //</View>
   );
 }
