@@ -21,17 +21,18 @@ function LoginScreen(props) {
     >
       <TopBar title="Hello! My Sweetie!" cartVisiable={false}></TopBar>
 
-      <Image style = {styles.logo} source={require("../assets/icon.png")}></Image>
+      <Image style={styles.logo} source={require("../assets/icon.png")}></Image>
       <Formik
         initialValues={{ email: "", password: "" }}
         onSubmit={(values) => console.log(values)}
         validationSchema={validationSchema}
       >
-        {({ handleChange, handleSubmit, errors }) => (
+        {({ handleChange, handleSubmit, errors, setFieldTouched, touched }) => (
           <>
             <View style={styles.container}>
               <AppTextInput
                 style={styles.inputBox}
+                onBlur={() => setFieldTouched("email")}
                 autoCapitalize="none"
                 autoCorrect={false}
                 height={50}
@@ -41,9 +42,13 @@ function LoginScreen(props) {
                 onChangeText={handleChange("email")}
                 textContentType="emailAddress"
               ></AppTextInput>
-              <ErrorMessage error={errors.email}></ErrorMessage>
+              <ErrorMessage
+                error={errors.email}
+                visible={touched.email}
+              ></ErrorMessage>
               <AppTextInput
                 style={styles.inputBox}
+                onBlur={() => setFieldTouched("password")}
                 autoCapitalize="none"
                 autoCorrect={false}
                 icon="lock"
@@ -54,7 +59,7 @@ function LoginScreen(props) {
                 textContentType="password"
                 onChangeText={handleChange("password")}
               ></AppTextInput>
-              <ErrorMessage error={errors.password}></ErrorMessage>
+              <ErrorMessage error={errors.password} visible={touched.password}></ErrorMessage>
             </View>
             <AppButton title="Sign in" onPress={handleSubmit}></AppButton>
           </>
