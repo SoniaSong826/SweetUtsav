@@ -8,12 +8,12 @@ import {
   Button,
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import colors from "../config/colors";
-import defaultStyles from "../config/styles";
+import colors from "../../config/colors";
+import defaultStyles from "../../config/styles";
 import Constants from "expo-constants";
-import AppText from "./AppText";
+import AppText from "../AppText";
 import { FlatList } from "react-native-gesture-handler";
-import PickerItem from "./PickerItem";
+import PickerItem from "../PickerItem";
 
 function AppPicker({
   icon,

@@ -14,23 +14,25 @@ import EventsScreen from "./App/screens/EventsScreen";
 import LoginScreen from "./App/screens/LoginScreen";
 import LocationScreen from "./App/screens/LocationScreen";
 import CartScreen from "./App/screens/CartScreen";
-import AppPicker from "./App/components/AppPicker";
+import AppPicker from "./App/components/form/AppPicker";
 import AppTextInput from "./App/components/AppTextInput";
+import SignUpScreen from "./App/screens/SignUpScreen";
 
 export default function App() {
   return (
     //<ItemDetailsScreen itemName={"Balushahi"}></ItemDetailsScreen>
-    //<AllProductsScreen/>
+    <AllProductsScreen/>
     //<WelcomeScreen />
     //<FunctionMenu/>
     //<PostSlides/>
     //<MainPageScreen/>
     //<CategoriesScreen/>
     //<ContactUsScreen/>
-    <LoginScreen></LoginScreen>
+    //<LoginScreen></LoginScreen>
     //<EventsScreen></EventsScreen>
     //<LocationScreen></LocationScreen>
     //<CartScreen></CartScreen>
+    //<SignUpScreen></SignUpScreen>
 
     //<View>
     //  <AppTextInput icon = "apps" placeholder="abc"></AppTextInput>

@@ -14,7 +14,7 @@ import { AmountInput } from "react-native-amount-input";
 import AppButton from "../components/AppButton";
 import Menu from "../components/Menu";
 import { Colors } from "react-native/Libraries/NewAppScreen";
-import AppPicker from "../components/AppPicker";
+import AppPicker from "../components/form/AppPicker";
 import AppTextInput from "../components/AppTextInput";
 
 const categories = [

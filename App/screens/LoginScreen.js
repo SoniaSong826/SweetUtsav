@@ -1,16 +1,13 @@
 import React from "react";
 import { View, StyleSheet, ImageBackground, Image } from "react-native";
 import TopBar from "../components/TopBar";
-import colors from "../config/colors";
-import AppButton from "../components/AppButton";
-import AppTextInput from "../components/AppTextInput";
-import AppText from "../components/AppText";
-import { Formik } from "formik";
 import * as Yup from "yup";
-import ErrorMessage from "../components/ErrorMessage";
-import AppFormField from "../components/AppFormField";
-import SubmitButton from "../components/SubmitButton";
-import AppForm from "../components/AppForm";
+import {
+  AppForm,
+  AppFormField,
+  SubmitButton,
+  ErrorMessage,
+} from "../components/form/index";
 
 function LoginScreen(props) {
   const validationSchema = Yup.object().shape({
