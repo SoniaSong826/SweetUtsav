@@ -4,20 +4,19 @@ import {
   StyleSheet,
   ImageBackground,
   FlatList,
-  StatusBar,
   TouchableWithoutFeedback,
-  Image,
+  Dimensions,
 } from "react-native";
 import colors from "../config/colors";
-import TopBar from "../components/TopBar";
-import Card from "../components/Card";
 import CartItem from "../components/CartItem";
-import ListItemSeparator from "../components/ListItemSeparator";
 import AppText from "../components/AppText";
 import ListItemDeleteAction from "../components/ListItemDeleteAction";
 import AppButton from "../components/AppButton";
 import Constants from "expo-constants";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+
+const windowWidth = Dimensions.get("window").width;
+const windowHeight = Dimensions.get("window").height;
 
 const initialCart = [
   {
@@ -47,7 +46,7 @@ function CartScreen(props) {
   return (
     <ImageBackground
       style={styles.backGround}
-      source={require("../assets/white_background_2.jpg")}
+      source={require("../assets/lightOrange_background.jpg")}
     >
       <View style={styles.bar}>
         <AppText style={styles.title}>My Cart</AppText>
@@ -56,7 +55,7 @@ function CartScreen(props) {
             onPress={() => console.log("left icon clicked")}
           >
             <MaterialCommunityIcons
-            name ="arrow-left"
+              name="arrow-left"
               size={35}
               color={colors.white}
             ></MaterialCommunityIcons>
@@ -68,21 +67,23 @@ function CartScreen(props) {
         style={styles.flatList}
         keyExtractor={(cart) => cart.id.toString()}
         renderItem={({ item }) => (
-          <CartItem
-            title={item.title}
-            price={item.price}
-            amount={item.amount}
-            option={item.option}
-            image={item.image}
-            renderRightAction={() => 
-              <ListItemDeleteAction onPress={() => handleDelete(item)} />
-            }
-          ></CartItem>
+          <View style={styles.content}>
+            <CartItem
+              title={item.title}
+              price={item.price}
+              amount={item.amount}
+              option={item.option}
+              image={item.image}
+              renderRightAction={() => (
+                <ListItemDeleteAction onPress={() => handleDelete(item)} />
+              )}
+            ></CartItem>
+          </View>
         )}
-        contentContainerStyle={styles.content}
-        ItemSeparatorComponent={ListItemSeparator}
+        contentContainerStyle={{ alignItems: "center" }}
       ></FlatList>
-      <AppButton style={styles.button} title ="Check Out"></AppButton>
+      <AppText style={styles.total}>Total：$35.48</AppText>
+      <AppButton style={styles.button} title="Check Out"></AppButton>
     </ImageBackground>
   );
 }
@@ -90,7 +91,7 @@ const styles = StyleSheet.create({
   bar: {
     height: Constants.statusBarHeight + 40,
     paddingTop: Constants.statusBarHeight,
-    paddingBottom:8,
+    paddingBottom: 8,
     flexDirection: "row",
     backgroundColor: colors.primary,
     alignItems: "flex-end",
@@ -101,7 +102,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: "100%",
     justifyContent: "space-between",
-    alignItems:"center"
+    alignItems: "center",
   },
   title: {
     position: "absolute",
@@ -110,19 +111,30 @@ const styles = StyleSheet.create({
     paddingBottom: 12,
   },
   leftIcon: {
-    marginLeft: 5,},
+    marginLeft: 5,
+  },
+  content: {
+    shadowOffset: { width: 1, height: 1 },
+    shadowColor: colors.darkGray,
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+    elevation: 5,
+  },
+  flatList: {
+    width: windowWidth,
+  },
   backGround: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
   },
+  total: {
+    fontSize:25,
 
-  content: {
-    alignSelf: "center",
   },
-  button:{
-    marginBottom:40,
-  }
+  button: {
+    marginBottom: 40,
+  },
 });
 
 export default CartScreen;

@@ -20,21 +20,23 @@ function CartItem({ title, price, amount, option, image, renderRightAction }) {
             <AppText style={styles.text}>{"Option: " + option}</AppText>
           </View>
         </View>
-        <View style={styles.priceContainer}>
           <AppText style={styles.price}>{price}</AppText>
-        </View>
       </View>
     </Swipeable>
   );
 }
 const styles = StyleSheet.create({
   card: {
-    width: windowWidth,
+    width: windowWidth - 30,
+    backgroundColor: colors.white,
+    marginTop: 10,
     paddingHorizontal: 12,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     paddingVertical: 8,
+    borderRadius:7,
+
   },
   itemDetailsContainer: {
     flexDirection: "row",
@@ -48,11 +50,12 @@ const styles = StyleSheet.create({
     flexWrap: "nowrap",
     color: colors.black,
     fontSize: 18,
+    marginBottom:3,
   },
   text: {
     color: colors.black,
     fontFamily: "Roboto_400Regular",
-    fontSize: 12,
+    fontSize: 14,
     flexWrap: "nowrap",
   },
   image: {
@@ -63,7 +66,6 @@ const styles = StyleSheet.create({
   price: {
     fontSize: 20,
   },
-  priceContainer: {},
 });
 
 export default CartItem;

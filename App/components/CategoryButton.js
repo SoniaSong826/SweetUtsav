@@ -25,7 +25,8 @@ function CategoryButton({ title, style, onPress, color = "secondary" }) {
 const styles = StyleSheet.create({
   button: {
     borderRadius: 5,
-    margin:5,
+    marginVertical: 5,
+    marginRight:10,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
@@ -39,7 +40,7 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto_700Bold",
     fontSize: 15,
     color: colors.white,
-    paddingVertical:15,
+    paddingVertical:10,
     paddingHorizontal:8,
   },
 });

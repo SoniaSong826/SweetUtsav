@@ -32,9 +32,8 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     alignItems: "center",
     flexDirection: "row",
-    marginVertical: 10,
+    marginTop: 8,
     padding: 10,
-    height: 42,
     width: "100%",
   },
   icon: {

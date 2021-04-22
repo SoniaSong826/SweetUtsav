@@ -8,8 +8,6 @@ import {
   SafeAreaView,
   ImageBackground,
 } from "react-native";
-import { useFonts, Roboto_500Medium } from "@expo-google-fonts/roboto";
-import colors from "../config/colors";
 import AppButton from "../components/AppButton";
 
 function WelcomeScreen(props) {
@@ -53,7 +51,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     position: "absolute",
-    bottom: 60,
+    bottom: 90,
     alignItems: "center",
   },
 

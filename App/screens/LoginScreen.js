@@ -17,7 +17,7 @@ function LoginScreen(props) {
   return (
     <ImageBackground
       style={styles.backGround}
-      source={require("../assets/white_background.jpg")}
+      source={require("../assets/lightGreen_background.jpg")}
     >
       <TopBar title="Hello! My Sweetie!" cartVisiable={false}></TopBar>
 
@@ -39,6 +39,8 @@ function LoginScreen(props) {
             placeholder="Email"
             textContentType="emailAddress"
           ></AppFormField>
+        </View>
+        <View style={styles.container}>
           <AppFormField
             name="password"
             style={styles.inputBox}
@@ -52,7 +54,7 @@ function LoginScreen(props) {
             textContentType="password"
           ></AppFormField>
         </View>
-        <SubmitButton title="Sign in"></SubmitButton>
+        <SubmitButton style ={styles.button} title="Sign in"></SubmitButton>
       </AppForm>
     </ImageBackground>
   );
@@ -66,11 +68,15 @@ const styles = StyleSheet.create({
     marginTop: 60,
   },
   container: {
-    padding: 10,
+    paddingHorizontal: 5,
+    paddingTop: 5,
   },
   inputBox: {
     width: "80%",
   },
+  button:{
+    paddingTop:15,
+  }
 });
 
 export default LoginScreen;

@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
     flex:1,
     alignItems: "flex-start",
     marginHorizontal:10,
+    marginTop:10,
   },
   text: {
     color: colors.black,
@@ -32,7 +33,6 @@ const styles = StyleSheet.create({
   },
   field: {
     flex:1,
-    height:20,
   },
 });
 export default AppFormFieldWithTitle;

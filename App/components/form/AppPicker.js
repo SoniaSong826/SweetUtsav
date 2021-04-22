@@ -35,12 +35,15 @@ function AppPicker({
               style={styles.icon}
             />
           )}
-          <AppText style={styles.text}>
-            {selectedItem ? selectedItem.label : placeholder}
-          </AppText>
+          {selectedItem ? (
+            <AppText style={styles.text}>{selectedItem.label}</AppText>
+          ) : (
+            <AppText style={styles.placeholder}>{placeholder}</AppText>
+          )}
+    
           <MaterialCommunityIcons
             name="chevron-down"
-            size={20}
+            size={16}
             color={colors.lightGray}
           />
         </View>
@@ -71,11 +74,10 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     borderColor: colors.lightGray,
     borderWidth: 1,
-    borderRadius: 10,
+    borderRadius: 7,
     flexDirection: "row",
-    marginVertical: 10,
+    marginTop: 8,
     padding: 10,
-    height: 42,
     width: "100%",
   },
   icon: {
@@ -83,9 +85,15 @@ const styles = StyleSheet.create({
   },
   text: {
     flex: 1,
-    fontSize: 14,
     fontFamily: "Roboto_400Regular",
     color: colors.black,
+    fontSize: 14,
+  },
+  placeholder: {
+    flex: 1,
+    fontFamily: "Roboto_400Regular",
+    color: colors.lightGray,
+    fontSize: 14,
   },
   safeArea: {
     marginTop: Constants.statusBarHeight,

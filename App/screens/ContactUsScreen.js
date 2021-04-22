@@ -6,37 +6,56 @@ import {
   View,
   StyleSheet,
 } from "react-native";
+import * as Yup from "yup";
 import colors from "../config/colors";
 import TopBar from "../components/TopBar";
 import AppText from "../components/AppText";
-import AppButton from "../components/AppButton";
+import {
+  AppForm,
+  AppPicker,
+  SubmitButton,
+  AppFormFieldWithTitle,
+} from "../components/form";
+
+const validationSchema = Yup.object().shape({
+  lastName: Yup.string().required().min(1).label("LastName"),
+  firstName: Yup.string().required().min(1).label("FirstName"),
+  email: Yup.string().required().email().label("Email"),
+  subject: Yup.string().required().max(30).label("Subject"),
+  message: Yup.string().label("Message"),
+});
 
 function ContactUsScreen(props) {
   return (
     <ImageBackground
       style={styles.backGround}
-      source={require("../assets/white_background.jpg")}
+      source={require("../assets/lightGreen_background.jpg")}
     >
-      <TopBar
-        title="Contact Us"
-        cartVisiable={false}
-      ></TopBar>
-      <ScrollView>
-        <View style={styles.container}>
-          <AppText style={styles.text}>Your Name (required)</AppText>
-          <TextInput multiline={false} style={styles.textbox}></TextInput>
-          <AppText style={styles.text}>Your Email (required)</AppText>
-          <TextInput multiline={false} style={styles.textbox}></TextInput>
-          <AppText style={styles.text}>Subject (required)</AppText>
-          <TextInput multiline={false} style={styles.textbox}></TextInput>
-          <AppText style={styles.text}>Message</AppText>
-          <TextInput
-            multiline={true}
-            maxLength={1000}
-            style={styles.bigTextbox}
-          ></TextInput>
-          <AppButton style={styles.sendButton} title="Send" onPress={()=> console.log("send button clicked")}></AppButton>
-        </View>
+      <TopBar title="Contact Us" cartVisiable={false}></TopBar>
+      <ScrollView contentContainerStyle={styles.form}>
+        <AppForm
+          initialValues={{
+            lastName: "",
+            firstName: "",
+            email: "",
+            subject: "",
+            message: "",
+          }}
+          onSubmit={(values) => console.log(values)}
+          validationSchema={validationSchema}
+        >
+          <AppFormFieldWithTitle
+            autoFocus
+            name="firstName"
+            title="First Name"
+          />
+          <AppFormFieldWithTitle name="lastName" title="Last Name" />
+          <AppFormFieldWithTitle name="email" title="Email" />
+          <AppFormFieldWithTitle name="subject" title="Subject" />
+          <AppFormFieldWithTitle name="message" title="Message" multiline />
+
+          <SubmitButton style={styles.button} title="Submit" />
+        </AppForm>
       </ScrollView>
     </ImageBackground>
   );
@@ -46,32 +65,12 @@ const styles = StyleSheet.create({
   backGround: {
     flex: 1,
   },
-  container: { alignItems: "center", paddingTop: 5 },
-  textbox: {
-    width: "90%",
-    borderColor: colors.lightGray,
-    borderWidth: 1,
-    height: 30,
-    borderRadius: 5,
-    textAlignVertical: "center",
+  form: {
+    paddingTop: 10,
+    alignItems: "center",
   },
-  text: {
-    width: "90%",
-    textAlign: "left",
-    color: colors.black,
-    fontSize: 15,
-    paddingVertical: 5,
+  button: {
+    paddingTop: 10,
   },
-  bigTextbox: {
-    width: "90%",
-    borderColor: colors.lightGray,
-    borderWidth: 1,
-    height: 300,
-    textAlignVertical: "top",
-    borderRadius: 5,
-  },
-  sendButton:{
-    marginTop:25,
-  }
 });
 export default ContactUsScreen;

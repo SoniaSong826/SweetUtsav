@@ -4,13 +4,14 @@ import {
   ImageBackground,
   View,
   TouchableWithoutFeedback,
+  KeyboardAvoidingView,
 } from "react-native";
+import AppLoading from "expo-app-loading";
 import * as Yup from "yup";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import AppText from "../components/AppText";
 import colors from "../config/colors";
 import Constants from "expo-constants";
-import AppLoading from "expo-app-loading";
 import { useFonts, Roboto_100Thin } from "@expo-google-fonts/roboto";
 
 import {
@@ -50,10 +51,11 @@ function SignUpScreen() {
   if (!fontsLoaded) {
     return <AppLoading />;
   }
+
   return (
     <ImageBackground
       style={styles.backGround}
-      source={require("../assets/white_background_2.jpg")}
+      source={require("../assets/lightOrange_background.jpg")}
     >
       <View style={styles.bar}>
         <AppText style={styles.title}>One Step to Go...</AppText>
@@ -69,72 +71,80 @@ function SignUpScreen() {
           </TouchableWithoutFeedback>
         </View>
       </View>
-      <ScrollView
-        contentContainerStyle={{ alignItems: "center" }}
-        style={styles.container}
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : undefined}
       >
-        <View style={styles.circle}>
-          <AppText style={styles.addSign}>+</AppText>
-        </View>
-        <AppText style={styles.photoText}>Add a Photo</AppText>
-        <AppForm
-          style={styles.form}
-          initialValues={{
-            lastName: "",
-            firstName: "",
-            email: "",
-            password: "",
-            passwordConfirmation: "",
-            address: "",
-            city: "",
-            mobileNumber: "",
-            postcode: "",
-            state: null,
-          }}
-          onSubmit={(values) => console.log(values)}
-          validationSchema={validationSchema}
+        <ScrollView
+          contentContainerStyle={{ alignItems: "center" }}
+          style={styles.container}
         >
-          <View style={styles.rowContainer}>
-            <AppFormFieldWithTitle name="firstName" title="First Name" />
-            <AppFormFieldWithTitle name="lastName" title="Last Name" />
+          <View style={styles.circle}>
+            <AppText style={styles.addSign}>+</AppText>
           </View>
-          <AppFormFieldWithTitle name="email" title="Email" />
-          <AppFormFieldWithTitle
-            name="password"
-            keyboardType="visible-password"
-            secureTextEntry={true}
-            title="Password"
-            textContentType="password"
-            placeholder="At least eight characters"
-          />
+          <AppText style={styles.photoText}>Add a Photo</AppText>
+          <AppForm
+            style={styles.form}
+            initialValues={{
+              lastName: "",
+              firstName: "",
+              email: "",
+              password: "",
+              passwordConfirmation: "",
+              address: "",
+              city: "",
+              mobileNumber: "",
+              postcode: "",
+              state: null,
+            }}
+            onSubmit={(values) => console.log(values)}
+            validationSchema={validationSchema}
+          >
+            <View style={styles.rowContainer}>
+              <AppFormFieldWithTitle name="firstName" title="First Name" />
+              <AppFormFieldWithTitle name="lastName" title="Last Name" />
+            </View>
+            <AppFormFieldWithTitle name="email" title="Email" />
+            <AppFormFieldWithTitle
+              name="password"
+              keyboardType="visible-password"
+              secureTextEntry={true}
+              title="Password"
+              textContentType="password"
+              placeholder="At least eight characters"
+            />
 
-          <AppFormFieldWithTitle
-            name="passwordConfirmation"
-            keyboardType="visible-password"
-            secureTextEntry={true}
-            title="Confirm Password"
-            textContentType="password"
-            placeholder="Please repeat your password"
-          />
-          <AppFormFieldWithTitle name="address" title="Address" />
-          <View style={styles.rowContainer}>
-            <AppFormFieldWithTitle name="city" title="City" />
-            <View style={styles.pickerContainer}>
-              <AppText style={styles.stateText}>State</AppText>
-              <AppPicker items={states} name="state" placeholder="Select" />
+            <AppFormFieldWithTitle
+              name="passwordConfirmation"
+              keyboardType="visible-password"
+              secureTextEntry={true}
+              title="Confirm Password"
+              textContentType="password"
+              placeholder="Please repeat your password"
+            />
+            <AppFormFieldWithTitle name="address" title="Address" />
+            <View style={styles.rowContainer}>
+              <AppFormFieldWithTitle name="city" title="City" />
+              <View style={styles.pickerContainer}>
+                <AppText style={styles.stateText}>State</AppText>
+                <AppPicker items={states} name="state" placeholder="Select" />
+              </View>
+
+              <AppFormFieldWithTitle
+                keyboardType="numeric"
+                name="postcode"
+                title="Postcode"
+              />
             </View>
 
             <AppFormFieldWithTitle
+              name="mobileNumber"
+              title="Mobile Number"
               keyboardType="numeric"
-              name="postcode"
-              title="Postcode"
             />
-          </View>
-
-          <AppFormFieldWithTitle name="mobileNumber" title="Mobile Number" />
-          <SubmitButton style={styles.button} title="Sign Up Now!" />
-        </AppForm>
-      </ScrollView>
+            <SubmitButton style={styles.button} title="Sign Up Now!" />
+          </AppForm>
+        </ScrollView>
+      </KeyboardAvoidingView>
     </ImageBackground>
   );
 }
@@ -171,6 +181,7 @@ const styles = StyleSheet.create({
   circle: {
     marginTop: 20,
     width: 120,
+    backgroundColor: colors.white,
     height: 120,
     borderRadius: 60,
     borderColor: colors.lightGray,
@@ -194,6 +205,7 @@ const styles = StyleSheet.create({
   pickerContainer: {
     flex: 1,
     alignItems: "flex-start",
+    marginTop: 10,
     marginHorizontal: 10,
   },
   stateText: {
@@ -201,7 +213,8 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   button: {
-    paddingBottom: 50,
+    paddingTop: 20,
+    paddingBottom: 80,
   },
 });
 export default SignUpScreen;

@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     paddingTop: Constants.statusBarHeight,
     paddingBottom: 8,
     flexDirection: "row",
-    backgroundColor: colors.darkSecondary,
+    backgroundColor: colors.secondary,
     alignItems: "flex-end",
     justifyContent: "center",
   },

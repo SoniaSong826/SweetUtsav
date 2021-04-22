@@ -10,10 +10,14 @@ import {
 import colors from "../config/colors";
 import AppText from "../components/AppText";
 import TopBar from "../components/TopBar";
-import { AmountInput } from "react-native-amount-input";
 import AppButton from "../components/AppButton";
 import Menu from "../components/Menu";
-import { Colors } from "react-native/Libraries/NewAppScreen";
+
+import {
+  useFonts,
+  Roboto_700Bold,
+  Roboto_400Regular,
+} from "@expo-google-fonts/roboto";
 import AppPicker from "../components/form/AppPicker";
 import AppTextInput from "../components/AppTextInput";
 
@@ -23,11 +27,13 @@ const categories = [
 ];
 
 function ItemDetailsScreen({ itemName }) {
+  useFonts({ Roboto_700Bold, Roboto_400Regular });
+
   const [category, setCategory] = useState(categories[0]);
   return (
     <ImageBackground
       style={styles.backGround}
-      source={require("../assets/white_background.jpg")}
+      source={require("../assets/white_green_background.jpg")}
     >
       <TopBar title={itemName}></TopBar>
       <ScrollView contentContainerStyle={styles.scrollView}>

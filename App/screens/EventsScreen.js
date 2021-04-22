@@ -20,7 +20,7 @@ function EventsScreen() {
   return (
     <ImageBackground
       style={styles.backGround}
-      source={require("../assets/white_background.jpg")}
+      source={require("../assets/lightGreen_background.jpg")}
     >
       <TopBar
         title="Events"
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   banner: {
     width: windowWidth * 0.9,
     height: 140,
-    borderRadius: 10,
+    borderRadius: 7,
     marginVertical: 25,
   },
   textEmphasis:{

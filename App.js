@@ -21,17 +21,15 @@ import SignUpScreen from "./App/screens/SignUpScreen";
 export default function App() {
   return (
     //<ItemDetailsScreen itemName={"Balushahi"}></ItemDetailsScreen>
-    <AllProductsScreen/>
+    //<AllProductsScreen/>
     //<WelcomeScreen />
-    //<FunctionMenu/>
-    //<PostSlides/>
     //<MainPageScreen/>
     //<CategoriesScreen/>
     //<ContactUsScreen/>
     //<LoginScreen></LoginScreen>
     //<EventsScreen></EventsScreen>
     //<LocationScreen></LocationScreen>
-    //<CartScreen></CartScreen>
+    <CartScreen></CartScreen>
     //<SignUpScreen></SignUpScreen>
 
     //<View>

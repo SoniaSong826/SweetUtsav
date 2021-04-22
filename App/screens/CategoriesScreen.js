@@ -97,16 +97,16 @@ const styles = StyleSheet.create({
   },
   backGround: {
     flex: 1,
-    alignItems:"center"
+    alignItems: "center",
   },
   topBarConatiner: {
-    position:"absolute",
-    width:"90%",
+    position: "absolute",
+    width: "90%",
     alignItems: "flex-start",
     paddingTop: Constants.statusBarHeight,
   },
   container: {
-    paddingTop: 35,
+    paddingTop:30,
     justifyContent: "center",
     alignItems: "center",
     alignContent: "space-around",
@@ -114,8 +114,8 @@ const styles = StyleSheet.create({
   postRow: {
     flexDirection: "row",
     justifyContent: "space-between",
-    width: windowWidth-50,
-    marginHorizontal:25,
+    width: windowWidth - 50,
+    marginHorizontal: 25,
     alignItems: "center",
     alignContent: "center",
   },
@@ -127,8 +127,8 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 3, height: 3 },
   },
   post: {
-    width: windowWidth/2.5,
-    height:windowWidth/1.7,
+    width: windowWidth / 2.5,
+    height: windowWidth / 1.7,
     borderRadius: 8,
   },
   logoRow: {
@@ -143,7 +143,8 @@ const styles = StyleSheet.create({
   title: {
     color: colors.white,
     fontSize: 25,
-    marginTop:Constants.statusBarHeight,
+    paddingTop: Constants.statusBarHeight,
+
   },
 });
 export default CategoriesScreen;

@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     width: windowWidth,
     paddingHorizontal: 20,
     flexDirection: "row",
-    marginVertical: 8,
+    marginVertical: 10,
     justifyContent: "flex-start",
   },
   image: {
