@@ -82,7 +82,7 @@ const sweetLocation = [
 function LocationScreen(props) {
   return (
     <ImageBackground style={styles.backGround}
-    source={require("../assets/lightGreen_background.jpg")}>
+    source={require("../assets/white_green_background.jpg")}>
       <TopBar
         title="Locations"
         cartVisiable = {false}

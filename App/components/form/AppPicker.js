@@ -20,6 +20,7 @@ function AppPicker({
   items,
   placeholder,
   onSelectItem,
+  PickerItemComponent=PickerItem,
   selectedItem,
 }) {
   const [modalVisible, setModalVisible] = useState(false);
@@ -40,7 +41,7 @@ function AppPicker({
           ) : (
             <AppText style={styles.placeholder}>{placeholder}</AppText>
           )}
-    
+
           <MaterialCommunityIcons
             name="chevron-down"
             size={16}
@@ -55,13 +56,13 @@ function AppPicker({
             data={items}
             keyExtractor={(item) => item.value.toString()}
             renderItem={({ item }) => (
-              <PickerItem
+              <PickerItemComponent
                 label={item.label}
                 onPress={() => {
                   setModalVisible(false);
                   onSelectItem(item);
                 }}
-              ></PickerItem>
+              ></PickerItemComponent>
             )}
           ></FlatList>
         </View>

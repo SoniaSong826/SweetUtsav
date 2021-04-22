@@ -20,7 +20,7 @@ function EventsScreen() {
   return (
     <ImageBackground
       style={styles.backGround}
-      source={require("../assets/lightGreen_background.jpg")}
+      source={require("../assets/white_green_background.jpg")}
     >
       <TopBar
         title="Events"
