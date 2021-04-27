@@ -80,7 +80,7 @@ const initialMenu = [
   },
 ];
 
-function Menu(props) {
+function Menu({navigation}) {
   const [menu, setMenu] = useState(initialMenu);
   const [refreshing, setRefreshing] = useState(false);
   const handleDelete = (product) => {
@@ -97,7 +97,7 @@ function Menu(props) {
           title={item.title}
           price={item.price}
           image={item.image}
-          onPress={() => console.log("message selected")}
+          onPress={navigation.navigate("ItemDetails",item)}
         ></Card>
       )}
       columnWrapperStyle

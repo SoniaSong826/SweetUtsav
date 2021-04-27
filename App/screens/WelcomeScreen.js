@@ -2,15 +2,13 @@ import React from "react";
 //adb shell input keyevent 82
 import {
   StyleSheet,
-  Text,
   View,
   Image,
-  SafeAreaView,
   ImageBackground,
 } from "react-native";
 import AppButton from "../components/AppButton";
 
-function WelcomeScreen(props) {
+function WelcomeScreen({navigation}) {
   return (
     <ImageBackground
       style={styles.backGround}
@@ -25,12 +23,12 @@ function WelcomeScreen(props) {
       <View style={styles.buttonContainer}>
         <AppButton
           title="Register"
-          onPress={() => console.log("Register button clicked")}
+          onPress={() => navigation.navigate("SignUp")}
         ></AppButton>
         <AppButton
           title="Sign In"
           color="darkGray"
-          onPress={() => console.log("Sign In button clicked")}
+          onPress={() => navigation.navigate("Login")}
         ></AppButton>
       </View>
     </ImageBackground>

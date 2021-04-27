@@ -1,7 +1,9 @@
 import React from "react";
 import { View, StyleSheet, ImageBackground, Image } from "react-native";
 import TopBar from "../components/TopBar";
+import AppLoading from "expo-app-loading";
 import * as Yup from "yup";
+import { useFonts, Roboto_700Bold, Roboto_400Regular } from "@expo-google-fonts/roboto";
 import {
   AppForm,
   AppFormField,
@@ -10,6 +12,16 @@ import {
 } from "../components/form/index";
 
 function LoginScreen(props) {
+  let [fontsLoaded] = useFonts({
+    Roboto_700Bold,
+    Roboto_400Regular,
+  });
+
+  if (!fontsLoaded) {
+    console.log("font loaded");
+    return <AppLoading />;
+  }
+
   const validationSchema = Yup.object().shape({
     email: Yup.string().required().email().label("Email"),
     password: Yup.string().required().min(8).label("Password"),
@@ -19,8 +31,6 @@ function LoginScreen(props) {
       style={styles.backGround}
       source={require("../assets/lightGreen_background.jpg")}
     >
-      <TopBar title="Hello! My Sweetie!" cartVisiable={false}></TopBar>
-
       <Image style={styles.logo} source={require("../assets/icon.png")}></Image>
       <AppForm
         initialValues={{ email: "", password: "" }}

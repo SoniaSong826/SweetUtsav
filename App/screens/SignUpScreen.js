@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   ImageBackground,
   View,
-  TouchableWithoutFeedback,
   KeyboardAvoidingView,
 } from "react-native";
 import AppLoading from "expo-app-loading";
@@ -12,7 +11,6 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import AppText from "../components/AppText";
 import colors from "../config/colors";
 import Constants from "expo-constants";
-import { useFonts, Roboto_100Thin } from "@expo-google-fonts/roboto";
 
 import {
   AppForm,
@@ -21,6 +19,7 @@ import {
   AppFormFieldWithTitle,
 } from "../components/form";
 import { ScrollView } from "react-native-gesture-handler";
+import ImageInput from "../components/ImageInput";
 
 const validationSchema = Yup.object().shape({
   lastName: Yup.string().required().min(1).label("LastName"),
@@ -45,32 +44,12 @@ const states = [
   { label: "WA", value: 6 }, //	Western Australia
 ];
 function SignUpScreen() {
-  let [fontsLoaded] = useFonts({
-    Roboto_100Thin,
-  });
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  }
 
   return (
     <ImageBackground
       style={styles.backGround}
       source={require("../assets/lightOrange_background.jpg")}
     >
-      <View style={styles.bar}>
-        <AppText style={styles.title}>One Step to Go...</AppText>
-        <View style={styles.twoButtons}>
-          <TouchableWithoutFeedback
-            onPress={() => console.log("left icon clicked")}
-          >
-            <MaterialCommunityIcons
-              name="arrow-left"
-              size={35}
-              color={colors.white}
-            ></MaterialCommunityIcons>
-          </TouchableWithoutFeedback>
-        </View>
-      </View>
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : undefined}
       >
@@ -78,10 +57,7 @@ function SignUpScreen() {
           contentContainerStyle={{ alignItems: "center" }}
           style={styles.container}
         >
-          <View style={styles.circle}>
-            <AppText style={styles.addSign}>+</AppText>
-          </View>
-          <AppText style={styles.photoText}>Add a Photo</AppText>
+          <ImageInput></ImageInput>
           <AppForm
             style={styles.form}
             initialValues={{
@@ -153,29 +129,9 @@ const styles = StyleSheet.create({
   backGround: {
     flex: 1,
   },
-  bar: {
-    height: Constants.statusBarHeight + 40,
-    paddingTop: Constants.statusBarHeight,
-    paddingBottom: 8,
-    flexDirection: "row",
-    backgroundColor: colors.primary,
-    alignItems: "flex-end",
-    justifyContent: "center",
-  },
-  twoButtons: {
-    paddingHorizontal: 15,
-    flexDirection: "row",
-    width: "100%",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  title: {
-    position: "absolute",
-    color: colors.white,
-    fontSize: 22,
-    paddingBottom: 12,
-  },
   container: {
+    width:"100%",
+    paddingVertical:20,
     paddingHorizontal: 10,
   },
   circle: {
@@ -192,11 +148,6 @@ const styles = StyleSheet.create({
   addSign: {
     fontSize: 70,
     fontFamily: "Roboto_100Thin",
-  },
-  photoText: {
-    fontSize: 16,
-    marginTop: 7,
-    marginBottom: 20,
   },
   rowContainer: {
     flexDirection: "row",

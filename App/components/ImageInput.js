@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   View,
   StyleSheet,
@@ -11,16 +11,6 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
 
 function ImageInput({ imageURI, onChangeImage }) {
-  useEffect =
-    (() => {
-      requestPermission();
-    },
-    []);
-
-  const requestPermission = async () => {
-    const { granded } = ImagePicker.requestCameraPermissionsAsync();
-    if (!granted) alert("You need to enable premission to access the library.");
-  };
 
   const handlePress = () => {
     if (!imageURI) selectImage();
@@ -30,6 +20,14 @@ function ImageInput({ imageURI, onChangeImage }) {
         { text: "No" },
       ]);
   };
+  const requestPermission = async () => {
+    const { granted } = ImagePicker.requestCameraPermissionsAsync();
+    if (!granted) alert("You need to enable premission to access the library.");
+  };
+  useEffect(() => {
+    requestPermission();
+  }, []);
+
   const selectImage = async () => {
     try {
       const result = await ImagePicker.launchImageLibraryAsync({
@@ -47,7 +45,7 @@ function ImageInput({ imageURI, onChangeImage }) {
       <View style={styles.container}>
         {!imageURI && (
           <MaterialCommunityIcons
-            name="carema"
+            name="camera"
             size={40}
             color={colors.lightGray}
           ></MaterialCommunityIcons>

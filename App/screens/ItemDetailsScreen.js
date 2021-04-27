@@ -26,7 +26,8 @@ const categories = [
   { label: "1kg", value: 2 },
 ];
 
-function ItemDetailsScreen({ itemName }) {
+function ItemDetailsScreen({ itemName, route }) {
+    const listing = route.params;
   useFonts({ Roboto_700Bold, Roboto_400Regular });
 
   const [category, setCategory] = useState(categories[0]);
@@ -39,12 +40,12 @@ function ItemDetailsScreen({ itemName }) {
       <ScrollView contentContainerStyle={styles.scrollView}>
         <Image
           style={styles.image}
-          source={require("../assets/FoodExample/DrySweets/Balushahi-S411A-170x185.jpg")}
+          source={listing.image}
         ></Image>
         <View style={styles.textButtonContainer}>
           <View style={styles.textsContainer}>
-            <AppText style={styles.itemName}>Balushahi</AppText>
-            <AppText style={styles.itemPrice}>$15.50 – $30.95</AppText>
+            <AppText style={styles.itemName}>{listing.title}</AppText>
+            <AppText style={styles.itemPrice}>{listing.price}</AppText>
           </View>
         </View>
 

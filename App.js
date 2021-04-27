@@ -1,7 +1,13 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import React, { useEffect } from "react";
 import * as ImagePicker from "expo-image-picker";
+import {
+  useFonts,
+  Roboto_700Bold,
+  Roboto_400Regular,
+  Roboto_100Thin,
+} from "@expo-google-fonts/roboto";
+import AppLoading from "expo-app-loading";
 import * as Permissions from "expo-permissions";
 import { StyleSheet, Text, View } from "react-native";
 import WelcomeScreen from "./App/screens/WelcomeScreen";
@@ -22,31 +28,26 @@ import AppTextInput from "./App/components/AppTextInput";
 import SignUpScreen from "./App/screens/SignUpScreen";
 import AppButton from "./App/components/AppButton";
 import ImageInput from "./App/components/ImageInput";
+import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import AuthNavigator from "./App/navigation/AuthNavigator";
+import navigationTheme from "./App/navigation/navigationTheme";
 
 export default function App() {
-  const [imageURI, setImageURI] = useState();
-  const requestPermission = async () => {
-    const { granded } = ImagePicker.requestCameraPermissionsAsync();
-    Permissions.askAsync(Permissions.MEDIA_LIBRARY);
-  };
-  if (!granted) {
-    alert("You need to enable premission to access the library.");
-  }
-  useEffect =
-    (() => {
-      requestPermission();
-    },
-    []);
+  let [fontsLoaded] = useFonts({
+    Roboto_100Thin,
+    Roboto_700Bold,
+    Roboto_400Regular,
+  });
 
-  const selectImage = async () => {
-    try {
-      const result = await ImagePicker.launchImageLibraryAsync();
-      if (!result.cancelled) setImageURI(result.uri);
-    } catch (error) {
-      console.log("error when read the image");
-    }
-  };
+  if (!fontsLoaded) {
+    console.log("font loaded");
+    return <AppLoading />;
+  }
   return (
+    <NavigationContainer theme={navigationTheme}>
+      <AuthNavigator></AuthNavigator>
+    </NavigationContainer>
     //<ItemDetailsScreen itemName={"Balushahi"}></ItemDetailsScreen>
     //<AllProductsScreen/>
     //<WelcomeScreen />
@@ -61,12 +62,5 @@ export default function App() {
     //<View>
     //  <AppTextInput icon = "apps" placeholder="abc"></AppTextInput>
     //</View>
-
-    <View>
-      <ImageInput
-        imageURI={imageURI}
-        onChangeImage={(uri) => setImageURI(uri)}
-      ></ImageInput>
-    </View>
   );
 }

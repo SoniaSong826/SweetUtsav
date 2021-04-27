@@ -20,6 +20,7 @@ function TopBar({
   leftIcon = "arrow-left",
   cartVisiable = true,
   color = colors.darkSecondary,
+  navigation
 }) {
   let [fontsLoaded] = useFonts({
     Roboto_500Medium,
