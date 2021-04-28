@@ -31,7 +31,6 @@ function ContactUsScreen(props) {
       style={styles.backGround}
       source={require("../assets/lightGreen_background.jpg")}
     >
-      <TopBar title="Contact Us" cartVisiable={false}></TopBar>
       <ScrollView contentContainerStyle={styles.form}>
         <AppForm
           initialValues={{

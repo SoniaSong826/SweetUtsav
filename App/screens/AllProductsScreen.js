@@ -14,6 +14,7 @@ import Menu from "../components/Menu";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Formik } from "formik";
 import CategoryButton from "../components/CategoryButton";
+import CartButton from "../components/CartButton";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -33,7 +34,7 @@ function AllProductsScreen(props) {
       style={styles.backGround}
       source={require("../assets/lightGreen_background.jpg")}
     >
-      <TopBar title="All Products"></TopBar>
+      <CartButton style={styles.cartButton}></CartButton>
       <Formik
         initialValues={{ keywords: "" }}
         onSubmit={(values) => console.log(values)}
@@ -49,13 +50,15 @@ function AllProductsScreen(props) {
                 placeholder="Search Here"
                 onChangeText={handleChange("keywords")}
               ></TextInput>
-              <TouchableOpacity style={styles.squareButton} onPress={handleSubmit}>
+              <TouchableOpacity
+                style={styles.squareButton}
+                onPress={handleSubmit}
+              >
                 <MaterialCommunityIcons
                   name="magnify"
                   size={35}
                   color={colors.white}
                   style={styles.icon}
-                  
                 />
               </TouchableOpacity>
             </View>
@@ -82,7 +85,10 @@ const styles = StyleSheet.create({
   backGround: {
     flex: 1,
     alignItems: "center",
-   
+  },
+  cartButton: {
+    position: "absolute",
+    padding: 3,
   },
   flatlist: {
     width: windowWidth,
@@ -114,8 +120,8 @@ const styles = StyleSheet.create({
     height: 35,
     width: 35,
     marginLeft: 5,
-    justifyContent:"center",
-    alignItems:"center",
+    justifyContent: "center",
+    alignItems: "center",
     borderRadius: 5,
     shadowOffset: { width: 1, height: 1 },
     shadowColor: colors.darkGray,

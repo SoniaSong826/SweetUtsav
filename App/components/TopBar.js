@@ -8,27 +8,23 @@ import {
   TouchableWithoutFeedback,
   StatusBar,
 } from "react-native";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import navigationTheme from "../navigation/navigationTheme";
 import colors from "../config/colors";
 import AppLoading from "expo-app-loading";
 import { useFonts, Roboto_500Medium } from "@expo-google-fonts/roboto";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import AppText from "./AppText";
 import Constants from "expo-constants";
+import CartNavigator from "../navigation/CartNavigator";
 
 function TopBar({
   title,
   leftIcon = "arrow-left",
   cartVisiable = true,
   color = colors.darkSecondary,
-  navigation
+  navigation,
 }) {
-  let [fontsLoaded] = useFonts({
-    Roboto_500Medium,
-  });
-
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  }
   if (cartVisiable) {
     return (
       <View style={styles.bar}>
@@ -46,7 +42,7 @@ function TopBar({
           </TouchableWithoutFeedback>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => console.log("Cart button clicked")}
+            onPress={() => navigation.navigate("My Cart")}
           >
             <Text style={styles.cartText}>My Cart</Text>
           </TouchableOpacity>
@@ -76,7 +72,7 @@ function TopBar({
 
 const styles = StyleSheet.create({
   bar: {
-    height: Constants.statusBarHeight + 40,
+    height: Constants.statusBarHeight + 45,
     paddingTop: Constants.statusBarHeight,
     paddingBottom: 8,
     flexDirection: "row",
@@ -86,11 +82,11 @@ const styles = StyleSheet.create({
   },
   twoButtons: {
     paddingLeft: 15,
-    paddingRight:5,
+    paddingRight: 5,
     flexDirection: "row",
     width: "100%",
     justifyContent: "space-between",
-    alignItems:"center"
+    alignItems: "center",
   },
   title: {
     position: "absolute",

@@ -23,19 +23,7 @@ function CategoriesScreen(props) {
       style={styles.backGround}
       source={require("../assets/green_background.jpg")}
     >
-      <AppText style={styles.title}>Categories</AppText>
-      <View style={styles.topBarConatiner}>
-          <TouchableWithoutFeedback
-            onPress={() => console.log("left icon clicked")}
-          >
-            <MaterialCommunityIcons
-              name="arrow-left"
-              size={35}
-              color={colors.white}
-            ></MaterialCommunityIcons>
-          </TouchableWithoutFeedback>
-      </View>
-      <ScrollView>
+      
         <View style={styles.container}>
           <View style={styles.postRow}>
             <TouchableOpacity
@@ -84,29 +72,18 @@ function CategoriesScreen(props) {
             </TouchableOpacity>
           </View>
         </View>
-      </ScrollView>
     </ImageBackground>
   );
 }
 const styles = StyleSheet.create({
-  twoButtons: {
-    paddingHorizontal: 15,
-    flexDirection: "row",
-    width: "100%",
-    alignItems: "center",
-  },
   backGround: {
     flex: 1,
+    
     alignItems: "center",
-  },
-  topBarConatiner: {
-    position: "absolute",
-    width: "90%",
-    alignItems: "flex-start",
-    paddingTop: Constants.statusBarHeight,
+    justifyContent:"center",
   },
   container: {
-    paddingTop:30,
+    paddingTop: 30,
     justifyContent: "center",
     alignItems: "center",
     alignContent: "space-around",
@@ -144,7 +121,6 @@ const styles = StyleSheet.create({
     color: colors.white,
     fontSize: 25,
     paddingTop: Constants.statusBarHeight,
-
   },
 });
 export default CategoriesScreen;

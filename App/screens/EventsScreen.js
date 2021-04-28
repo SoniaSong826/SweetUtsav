@@ -22,10 +22,6 @@ function EventsScreen() {
       style={styles.backGround}
       source={require("../assets/white_green_background.jpg")}
     >
-      <TopBar
-        title="Events"
-        cartVisiable={false}
-      ></TopBar>
       <ScrollView>
         <View style={styles.container}>
           <View style={styles.bannerContainer}>

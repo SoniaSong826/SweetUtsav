@@ -6,6 +6,7 @@ import {
   Roboto_700Bold,
   Roboto_400Regular,
   Roboto_100Thin,
+  Roboto_500Medium,
 } from "@expo-google-fonts/roboto";
 import AppLoading from "expo-app-loading";
 import * as Permissions from "expo-permissions";
@@ -28,25 +29,26 @@ import AppTextInput from "./App/components/AppTextInput";
 import SignUpScreen from "./App/screens/SignUpScreen";
 import AppButton from "./App/components/AppButton";
 import ImageInput from "./App/components/ImageInput";
-import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import AuthNavigator from "./App/navigation/AuthNavigator";
+import MenuNavigator from "./App/navigation/MenuNavigator";
 import navigationTheme from "./App/navigation/navigationTheme";
+
 
 export default function App() {
   let [fontsLoaded] = useFonts({
     Roboto_100Thin,
+    Roboto_500Medium,
     Roboto_700Bold,
     Roboto_400Regular,
   });
 
   if (!fontsLoaded) {
-    console.log("font loaded");
     return <AppLoading />;
   }
   return (
     <NavigationContainer theme={navigationTheme}>
-      <AuthNavigator></AuthNavigator>
+      <MenuNavigator></MenuNavigator>
     </NavigationContainer>
     //<ItemDetailsScreen itemName={"Balushahi"}></ItemDetailsScreen>
     //<AllProductsScreen/>

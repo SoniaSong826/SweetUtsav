@@ -15,12 +15,12 @@ function FunctionIcon({ title, style, iconName, onPress, color = "primary" }) {
     return <AppLoading />;
   }
   return (
-    <View style={styles.iconContainer} onPress={onPress}>
+    <View style={styles.iconContainer}>
       <TouchableOpacity
         style={StyleSheet.flatten([
           { backgroundColor: colors[color] },
           styles.iconCircle,
-        ])}
+        ])} onPress={onPress}
       >
         <MaterialCommunityIcons
           style={styles.icon}

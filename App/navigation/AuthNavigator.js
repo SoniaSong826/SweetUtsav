@@ -3,12 +3,6 @@ import React from "react";
 import LoginScreen from "../screens/LoginScreen";
 import SignUpScreen from "../screens/SignUpScreen";
 import WelcomeScreen from "../screens/WelcomeScreen";
-import AppLoading from "expo-app-loading";
-import {
-  useFonts,
-  Roboto_700Bold,
-  Roboto_400Regular,
-} from "@expo-google-fonts/roboto";
 import colors from "../config/colors";
 
 const Stack = createStackNavigator();

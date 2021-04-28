@@ -97,7 +97,7 @@ function Menu({navigation}) {
           title={item.title}
           price={item.price}
           image={item.image}
-          onPress={navigation.navigate("ItemDetails",item)}
+          onPress={()=>navigation.navigate("Item Details", item)}
         ></Card>
       )}
       columnWrapperStyle

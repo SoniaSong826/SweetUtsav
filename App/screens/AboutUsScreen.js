@@ -21,7 +21,6 @@ function AboutUsScreen() {
       style={styles.backGround}
       source={require("../assets/lightGreen_background.jpg")}
     >
-      <TopBar title="About Us" cartVisiable={false}></TopBar>
       <ScrollView>
         <View style={styles.container}>
           <View style={styles.bannerContainer}>

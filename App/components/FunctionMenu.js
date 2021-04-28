@@ -3,31 +3,31 @@ import { StyleSheet, View } from "react-native";
 import FunctionIcon from "./FunctionIcon";
 import colors from "../config/colors";
 
-function FunctionMenu(props) {
+function FunctionMenu({navigation}) {
   return (
     <View style={styles.container}>
       <View style={styles.menuColumn}>
         <View style={styles.menuRow}>
           <FunctionIcon
             title="Order Now"
-            iconName = "cupcake"
+            iconName="cupcake"
             color="red"
-            onPress={() => console.log("Order Now button clicked")}
+            onPress={() => navigation.navigate("Order Now")}
           ></FunctionIcon>
           <FunctionIcon
             title="Categories"
             iconName="apps"
-            onPress={() => console.log("Categories button clicked")}
+            onPress={() => navigation.navigate("Categories")}
           ></FunctionIcon>
           <FunctionIcon
             title="My Account"
             iconName="account"
-            onPress={() => console.log("My Account button clicked")}
+            onPress={() => navigation.navigate("My Account")}
           ></FunctionIcon>
           <FunctionIcon
             title="Locations"
             iconName="map-marker-multiple"
-            onPress={() => console.log("Location button clicked")}
+            onPress={() => navigation.navigate("Locations")}
           ></FunctionIcon>
         </View>
         <View style={styles.menuRow}>
@@ -35,25 +35,25 @@ function FunctionMenu(props) {
             title="Events"
             iconName="party-popper"
             color="secondary"
-            onPress={() => console.log("Events button clicked")}
+            onPress={() => navigation.navigate("Events")}
           ></FunctionIcon>
           <FunctionIcon
             title="Policies"
             iconName="format-list-bulleted-square"
             color="secondary"
-            onPress={() => console.log("Policies button clicked")}
+            onPress={() => navigation.navigate("Policies")}
           ></FunctionIcon>
           <FunctionIcon
             title="Contact Us"
             iconName="face-agent"
             color="secondary"
-            onPress={() => console.log("Contact Us button clicked")}
+            onPress={() => navigation.navigate("Contact Us")}
           ></FunctionIcon>
           <FunctionIcon
             title="Follow Us"
             iconName="at"
             color="secondary"
-            onPress={() => console.log("Follow Us button clicked")}
+            onPress={() => navigation.navigate("Follow Us")}
           ></FunctionIcon>
         </View>
       </View>

@@ -48,20 +48,7 @@ function CartScreen(props) {
       style={styles.backGround}
       source={require("../assets/lightOrange_background.jpg")}
     >
-      <View style={styles.bar}>
-        <AppText style={styles.title}>My Cart</AppText>
-        <View style={styles.twoButtons}>
-          <TouchableWithoutFeedback
-            onPress={() => console.log("left icon clicked")}
-          >
-            <MaterialCommunityIcons
-              name="arrow-left"
-              size={35}
-              color={colors.white}
-            ></MaterialCommunityIcons>
-          </TouchableWithoutFeedback>
-        </View>
-      </View>
+    
       <FlatList
         data={cart}
         style={styles.flatList}

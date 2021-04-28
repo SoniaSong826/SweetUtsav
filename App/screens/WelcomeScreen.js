@@ -1,14 +1,9 @@
 import React from "react";
 //adb shell input keyevent 82
-import {
-  StyleSheet,
-  View,
-  Image,
-  ImageBackground,
-} from "react-native";
+import { StyleSheet, View, Image, ImageBackground } from "react-native";
 import AppButton from "../components/AppButton";
 
-function WelcomeScreen({navigation}) {
+function WelcomeScreen({ navigation }) {
   return (
     <ImageBackground
       style={styles.backGround}
@@ -52,6 +47,5 @@ const styles = StyleSheet.create({
     bottom: 90,
     alignItems: "center",
   },
-
 });
 export default WelcomeScreen;

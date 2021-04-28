@@ -83,10 +83,6 @@ function LocationScreen(props) {
   return (
     <ImageBackground style={styles.backGround}
     source={require("../assets/white_green_background.jpg")}>
-      <TopBar
-        title="Locations"
-        cartVisiable = {false}
-      ></TopBar>
         <FlatList
           data={sweetLocation}
           keyExtractor={(sweetLocation) => sweetLocation.id.toString()}

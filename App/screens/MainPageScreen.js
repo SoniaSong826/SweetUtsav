@@ -6,17 +6,21 @@ import PostSlides from "../components/PostSlides";
 import useLocation from "../hooks/useLocation";
 import FunctionMenu from "../components/FunctionMenu";
 
-function MainPage() {
+function MainPageScreen({ navigation }) {
   const location = useLocation();
   console.log(location);
-  
+
   return (
     <ImageBackground
       style={styles.backGround}
       source={require("../assets/lightGreen_background.jpg")}
     >
-      <TopBar leftIcon="map-marker" title={"Sweet UTSAV"}></TopBar>
-      <FunctionMenu style={styles.functionMenu}></FunctionMenu>
+      <TopBar
+        navigation={navigation}
+        leftIcon="map-marker"
+        title={"Sweet UTSAV"}
+      ></TopBar>
+      <FunctionMenu navigation={navigation}></FunctionMenu>
       <PostSlides></PostSlides>
       <Menu></Menu>
     </ImageBackground>
@@ -30,4 +34,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MainPage;
+export default MainPageScreen;
