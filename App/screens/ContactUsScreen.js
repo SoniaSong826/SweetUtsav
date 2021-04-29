@@ -7,9 +7,6 @@ import {
   StyleSheet,
 } from "react-native";
 import * as Yup from "yup";
-import colors from "../config/colors";
-import TopBar from "../components/TopBar";
-import AppText from "../components/AppText";
 import {
   AppForm,
   AppPicker,

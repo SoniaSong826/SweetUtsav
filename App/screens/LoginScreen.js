@@ -1,6 +1,5 @@
 import React from "react";
 import { View, StyleSheet, ImageBackground, Image } from "react-native";
-import TopBar from "../components/TopBar";
 import AppLoading from "expo-app-loading";
 import * as Yup from "yup";
 import { useFonts, Roboto_700Bold, Roboto_400Regular } from "@expo-google-fonts/roboto";

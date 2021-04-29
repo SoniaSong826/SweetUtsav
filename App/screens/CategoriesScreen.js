@@ -7,7 +7,6 @@ import {
   ScrollView,
   Dimensions,
   TouchableOpacity,
-  TouchableWithoutFeedback,
 } from "react-native";
 import AppText from "../components/AppText";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -23,7 +22,7 @@ function CategoriesScreen(props) {
       style={styles.backGround}
       source={require("../assets/green_background.jpg")}
     >
-      
+      <ScrollView>
         <View style={styles.container}>
           <View style={styles.postRow}>
             <TouchableOpacity
@@ -72,21 +71,16 @@ function CategoriesScreen(props) {
             </TouchableOpacity>
           </View>
         </View>
+      </ScrollView>
     </ImageBackground>
   );
 }
 const styles = StyleSheet.create({
   backGround: {
     flex: 1,
-    
-    alignItems: "center",
-    justifyContent:"center",
   },
   container: {
-    paddingTop: 30,
-    justifyContent: "center",
-    alignItems: "center",
-    alignContent: "space-around",
+    paddingVertical: 30,
   },
   postRow: {
     flexDirection: "row",

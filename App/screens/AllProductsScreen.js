@@ -9,15 +9,12 @@ import {
   TouchableOpacity,
 } from "react-native";
 import colors from "../config/colors";
-import TopBar from "../components/TopBar";
 import Menu from "../components/Menu";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Formik } from "formik";
 import CategoryButton from "../components/CategoryButton";
-import CartButton from "../components/CartButton";
 
 const windowWidth = Dimensions.get("window").width;
-const windowHeight = Dimensions.get("window").height;
 
 const categories = [
   { id: 1, title: "All Products", color: "primary" },
@@ -34,7 +31,6 @@ function AllProductsScreen(props) {
       style={styles.backGround}
       source={require("../assets/lightGreen_background.jpg")}
     >
-      <CartButton style={styles.cartButton}></CartButton>
       <Formik
         initialValues={{ keywords: "" }}
         onSubmit={(values) => console.log(values)}
@@ -67,7 +63,7 @@ function AllProductsScreen(props) {
       </Formik>
       <View style={{ height: 50 }}>
         <FlatList
-          style={styles.flatlist}
+          contentContainerStyle={styles.flatlist}
           data={categories}
           keyExtractor={(category) => category.id.toString()}
           renderItem={({ item }) => (
@@ -76,8 +72,9 @@ function AllProductsScreen(props) {
           horizontal={true}
         ></FlatList>
       </View>
-
-      <Menu></Menu>
+      <View style={styles.menu}>
+        <Menu></Menu>
+      </View>
     </ImageBackground>
   );
 }
@@ -85,10 +82,6 @@ const styles = StyleSheet.create({
   backGround: {
     flex: 1,
     alignItems: "center",
-  },
-  cartButton: {
-    position: "absolute",
-    padding: 3,
   },
   flatlist: {
     width: windowWidth,
@@ -128,6 +121,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 2,
     elevation: 1,
+  },
+  menu: {
+    width: windowWidth,
   },
 });
 

@@ -27,7 +27,7 @@ function CartItem({ title, price, amount, option, image, renderRightAction }) {
 }
 const styles = StyleSheet.create({
   card: {
-    width: windowWidth - 30,
+    width: windowWidth - 10,
     backgroundColor: colors.white,
     marginTop: 10,
     paddingHorizontal: 12,
@@ -49,18 +49,18 @@ const styles = StyleSheet.create({
   title: {
     flexWrap: "nowrap",
     color: colors.black,
-    fontSize: 18,
+    fontSize: 16,
     marginBottom:3,
   },
   text: {
     color: colors.black,
     fontFamily: "Roboto_400Regular",
-    fontSize: 14,
+    fontSize: 12,
     flexWrap: "nowrap",
   },
   image: {
-    width: 105,
-    height: 105,
+    width: 90,
+    height: 90,
     marginBottom: 10,
   },
   price: {

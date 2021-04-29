@@ -1,24 +1,22 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity, Text } from "react-native";
 import colors from "../config/colors";
+import { useNavigation, CommonActions } from "@react-navigation/native";
 
-function CartButton({ navigation }) {
-  
-    return (
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate("My Cart")}
-      >
-        <Text style={styles.cartText}>My Cart</Text>
-      </TouchableOpacity>
-    );
-  }
+function CartButton({ onPress }) {
+  return (
+    <TouchableOpacity style={styles.button} onPress={onPress}>
+      <Text style={styles.cartText}>My Cart</Text>
+    </TouchableOpacity>
+  );
+}
 
 const styles = StyleSheet.create({
   button: {
     height: 35,
     width: 95,
     borderRadius: 8,
+    marginRight: 8,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-evenly",

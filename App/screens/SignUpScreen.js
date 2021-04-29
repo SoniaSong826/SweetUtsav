@@ -43,8 +43,9 @@ const states = [
   { label: "VIC", value: 5 }, // Victoria
   { label: "WA", value: 6 }, //	Western Australia
 ];
-function SignUpScreen() {
 
+function SignUpScreen() {
+ const [state, setState] = useState(states[0]);
   return (
     <ImageBackground
       style={styles.backGround}
@@ -57,7 +58,7 @@ function SignUpScreen() {
           contentContainerStyle={{ alignItems: "center" }}
           style={styles.container}
         >
-          <ImageInput></ImageInput>
+          <ImageInput style={styles.photoText}></ImageInput>
           <AppForm
             style={styles.form}
             initialValues={{
@@ -102,7 +103,14 @@ function SignUpScreen() {
               <AppFormFieldWithTitle name="city" title="City" />
               <View style={styles.pickerContainer}>
                 <AppText style={styles.stateText}>State</AppText>
-                <AppPicker items={states} name="state" placeholder="Select" />
+                <AppPicker
+                  items={states}
+                  name="state"
+                  placeholder="Select"
+                  items={states}
+                  selectedItem={state}
+                  onSelectItem={(item) => setState(item)}
+                />
               </View>
 
               <AppFormFieldWithTitle
@@ -131,7 +139,6 @@ const styles = StyleSheet.create({
   },
   container: {
     width:"100%",
-    paddingVertical:20,
     paddingHorizontal: 10,
   },
   circle: {
@@ -148,6 +155,11 @@ const styles = StyleSheet.create({
   addSign: {
     fontSize: 70,
     fontFamily: "Roboto_100Thin",
+  },
+  photoText: {
+    fontSize: 16,
+    marginTop: 7,
+
   },
   rowContainer: {
     flexDirection: "row",

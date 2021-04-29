@@ -13,7 +13,6 @@ import AppText from "../components/AppText";
 import ListItemDeleteAction from "../components/ListItemDeleteAction";
 import AppButton from "../components/AppButton";
 import Constants from "expo-constants";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;

@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import colors from "../config/colors";
 import AppText from "../components/AppText";
-import TopBar from "../components/TopBar";
+
 import { contact,events } from "../assets/Info.json";
 const windowScale = Dimensions.get("window").scale;
 const windowWidth = Dimensions.get("window").width;

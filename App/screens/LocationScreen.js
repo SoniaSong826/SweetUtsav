@@ -2,7 +2,7 @@ import React from "react";
 import { FlatList, ScrollView, View, StyleSheet, Dimensions, ImageBackground } from "react-native";
 import ListItemSeparator from "../components/ListItemSeparator";
 import LocationItem from "../components/LocationItem";
-import TopBar from "../components/TopBar";
+
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const windowWidth = Dimensions.get('window').width;
@@ -37,7 +37,7 @@ const sweetLocation = [
     id: 3,
     title: "Tarneit",
     address1: "22 Lavinia Dr",
-    address2: "Tarneit VIC 3029",
+    address2: "Tarneit, VIC, 3029",
     tel: "(03) 8742 4445",
     mobile: "0482 400 001",
     image: require("../assets/icon_with_background.png"),

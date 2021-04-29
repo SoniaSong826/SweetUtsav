@@ -16,7 +16,7 @@ import { useFonts, Roboto_500Medium } from "@expo-google-fonts/roboto";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import AppText from "./AppText";
 import Constants from "expo-constants";
-import CartNavigator from "../navigation/CartNavigator";
+
 
 function TopBar({
   title,

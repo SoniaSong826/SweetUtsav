@@ -80,7 +80,7 @@ const initialMenu = [
   },
 ];
 
-function Menu({navigation}) {
+function Menu({ navigation }) {
   const [menu, setMenu] = useState(initialMenu);
   const [refreshing, setRefreshing] = useState(false);
   const handleDelete = (product) => {
@@ -97,13 +97,13 @@ function Menu({navigation}) {
           title={item.title}
           price={item.price}
           image={item.image}
-          onPress={()=>navigation.navigate("Item Details", item)}
+          onPress={() => navigation.navigate("Item Details", item)}
         ></Card>
       )}
-      columnWrapperStyle
+      columnWrapperStyle={{ justifyContent: "space-between" }}
       numColumns={3}
-      contentContainerStyle={styles.content}
       horizontal={false}
+      contentContainerStyle={styles.content}
       refreshing={refreshing}
       onRefresh={() => {
         setMenu([
@@ -127,9 +127,7 @@ function Menu({navigation}) {
 const styles = StyleSheet.create({
   content: {
     flexGrow: 1,
-    paddingVertical: 5,
-    alignItems: "stretch",
-    justifyContent: "space-between",
+    paddingHorizontal: 10,
   },
 });
 export default Menu;

@@ -5,15 +5,14 @@ import {
   Image,
   TouchableHighlight,
   Text,
+  Dimensions,
 } from "react-native";
 import AppLoading from "expo-app-loading";
 import colors from "../config/colors";
 import AppText from "./AppText";
-import {
-  useFonts,
-  Roboto_700Bold,
-} from "@expo-google-fonts/roboto";
+import { useFonts, Roboto_700Bold } from "@expo-google-fonts/roboto";
 
+const windowWidth = Dimensions.get("window").width;
 function Card({ title, price, image, onPress }) {
   let [fontsLoaded] = useFonts({
     Roboto_700Bold,
@@ -43,11 +42,11 @@ function Card({ title, price, image, onPress }) {
 const styles = StyleSheet.create({
   container: {
     marginVertical: 5,
-    marginHorizontal: 5,
+    marginHorizontal: 2,
     borderRadius: 6,
   },
   card: {
-    width: 120,
+    width: windowWidth/3.3,
     height: 170,
     borderRadius: 5,
     backgroundColor: colors.white,
@@ -59,19 +58,18 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 2,
     elevation: 2,
-    //overflow:"hidden",
   },
   title: {
     flexWrap: "nowrap",
     marginBottom: 7,
-    fontFamily: "Roboto_700Bold",
-    fontSize: 14,
+    fontFamily: "Roboto_500Medium",
+    fontSize: 13,
     color: colors.black,
   },
   price: {
     color: colors.secondary,
     fontFamily: "Roboto_700Bold",
-    fontSize: 14,
+    fontSize: 13,
   },
   image: {
     width: 105,
