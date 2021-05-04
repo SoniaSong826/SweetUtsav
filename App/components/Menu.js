@@ -80,7 +80,7 @@ const initialMenu = [
   },
 ];
 
-function Menu({ navigation }) {
+function Menu({ navigation, route }) {
   const [menu, setMenu] = useState(initialMenu);
   const [refreshing, setRefreshing] = useState(false);
   const handleDelete = (product) => {
@@ -97,7 +97,7 @@ function Menu({ navigation }) {
           title={item.title}
           price={item.price}
           image={item.image}
-          onPress={() => navigation.navigate("Item Details", item)}
+          onPress={() => navigation.navigate("Item Details", { item })}
         ></Card>
       )}
       columnWrapperStyle={{ justifyContent: "space-between" }}

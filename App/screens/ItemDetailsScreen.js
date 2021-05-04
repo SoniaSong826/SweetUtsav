@@ -27,7 +27,8 @@ const categories = [
 ];
 
 function ItemDetailsScreen({ itemName, route }) {
-    const listing = route.params;
+  console.log(route.params["item"]);
+  const listing = route.params["item"];
   useFonts({ Roboto_700Bold, Roboto_400Regular });
 
   const [category, setCategory] = useState(categories[0]);
@@ -36,12 +37,8 @@ function ItemDetailsScreen({ itemName, route }) {
       style={styles.backGround}
       source={require("../assets/white_green_background.jpg")}
     >
-      <TopBar title={itemName}></TopBar>
       <ScrollView contentContainerStyle={styles.scrollView}>
-        <Image
-          style={styles.image}
-          source={listing.image}
-        ></Image>
+        <Image style={styles.image} source={listing.image}></Image>
         <View style={styles.textButtonContainer}>
           <View style={styles.textsContainer}>
             <AppText style={styles.itemName}>{listing.title}</AppText>

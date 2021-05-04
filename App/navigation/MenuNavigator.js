@@ -10,34 +10,36 @@ import LocationScreen from "../screens/LocationScreen";
 import EventsScreen from "../screens/EventsScreen";
 import ContactUsScreen from "../screens/ContactUsScreen";
 import AboutUsScreen from "../screens/AboutUsScreen";
+import MyAccountScreen from "../screens/MyAccountScreen";
 import CartScreen from "../screens/CartScreen";
 import PoliciesScreen from "../screens/PoliciesScreen";
 import CartButton from "../components/CartButton";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import LocationSelecter from "../components/LocationSelecter";
 import LocationSelecterView from "../components/LocationSelecterView";
+import ItemDetailsScreen from "../screens/ItemDetailsScreen";
 
 const Stack = createStackNavigator();
 
 const MenuNavigator = () => (
-  <Stack.Navigator>
+  <Stack.Navigator
+    screenOptions={{
+      headerStyle: {
+        backgroundColor: colors.secondary,
+      },
+      headerTitleStyle: {
+        fontFamily: "Roboto_700Bold",
+        fontSize: 22,
+      },
+      headerTintColor: colors.white,
+    }}
+  >
     <Stack.Screen
       name="Home"
       component={MainPageScreen}
       options={({ navigation }) => ({
         headerLeftContainerStyle: { alignItems: "center" },
-        title: "Sweet UTSAV",
-        headerStyle: {
-          backgroundColor: colors.secondary,
-        },
-        headerTintColor: colors.white,
-        headerTitleStyle: {
-          fontFamily: "Roboto_700Bold",
-          fontSize: 22,
-        },
-        headerLeft: () => (
-          <LocationSelecterView></LocationSelecterView>
-        ),
+        title: "Home",
+        headerTitle: "Sweet UTSAV",
+        headerLeft: () => <LocationSelecterView></LocationSelecterView>,
         headerRight: () => (
           <CartButton
             onPress={() => navigation.navigate("My Cart")}
@@ -52,17 +54,6 @@ const MenuNavigator = () => (
       options={({ navigation }) => ({
         headerBackTitle: "Home",
         title: "All Products",
-        headerStyle: {
-          backgroundColor: colors.secondary,
-        },
-        headerBackTitleStyle: {
-          fontFamily: "Roboto_400Regular",
-        },
-        headerTintColor: colors.white,
-        headerTitleStyle: {
-          fontFamily: "Roboto_700Bold",
-          fontSize: 22,
-        },
         headerRight: () => (
           <CartButton
             onPress={() => navigation.navigate("My Cart")}
@@ -79,11 +70,6 @@ const MenuNavigator = () => (
         headerStyle: {
           backgroundColor: colors.primary,
         },
-        headerTintColor: colors.white,
-        headerTitleStyle: {
-          fontFamily: "Roboto_700Bold",
-          fontSize: 22,
-        },
       }}
     />
     <Stack.Screen
@@ -92,27 +78,16 @@ const MenuNavigator = () => (
       options={{
         headerBackTitle: "Home",
         title: "Categories",
-        headerStyle: {
-          backgroundColor: colors.secondary,
-        },
-        headerBackTitleStyle: {
-          fontFamily: "Roboto_400Regular",
-        },
-        headerTintColor: colors.white,
-        headerTitleStyle: {
-          fontFamily: "Roboto_700Bold",
-          fontSize: 22,
-        },
       }}
     />
     <Stack.Screen
       name="My Account"
-      component={SignUpScreen}
+      component={MyAccountScreen}
       options={{
         headerBackTitle: "Home",
         title: "My Account",
         headerStyle: {
-          backgroundColor: colors.primary,
+          backgroundColor: colors.secondary,
         },
         headerBackTitleStyle: {
           fontFamily: "Roboto_400Regular",
@@ -130,17 +105,6 @@ const MenuNavigator = () => (
       options={{
         headerBackTitle: "Home",
         title: "Locations",
-        headerStyle: {
-          backgroundColor: colors.secondary,
-        },
-        headerBackTitleStyle: {
-          fontFamily: "Roboto_400Regular",
-        },
-        headerTintColor: colors.white,
-        headerTitleStyle: {
-          fontFamily: "Roboto_700Bold",
-          fontSize: 22,
-        },
       }}
     />
     <Stack.Screen
@@ -149,17 +113,6 @@ const MenuNavigator = () => (
       options={{
         headerBackTitle: "Home",
         title: "Events",
-        headerStyle: {
-          backgroundColor: colors.secondary,
-        },
-        headerBackTitleStyle: {
-          fontFamily: "Roboto_400Regular",
-        },
-        headerTintColor: colors.white,
-        headerTitleStyle: {
-          fontFamily: "Roboto_700Bold",
-          fontSize: 22,
-        },
       }}
     />
     <Stack.Screen
@@ -168,17 +121,6 @@ const MenuNavigator = () => (
       options={{
         headerBackTitle: "Home",
         title: "Policies",
-        headerStyle: {
-          backgroundColor: colors.secondary,
-        },
-        headerBackTitleStyle: {
-          fontFamily: "Roboto_400Regular",
-        },
-        headerTintColor: colors.white,
-        headerTitleStyle: {
-          fontFamily: "Roboto_700Bold",
-          fontSize: 22,
-        },
       }}
     />
     <Stack.Screen
@@ -187,17 +129,6 @@ const MenuNavigator = () => (
       options={{
         headerBackTitle: "Home",
         title: "Contact Us",
-        headerStyle: {
-          backgroundColor: colors.secondary,
-        },
-        headerBackTitleStyle: {
-          fontFamily: "Roboto_400Regular",
-        },
-        headerTintColor: colors.white,
-        headerTitleStyle: {
-          fontFamily: "Roboto_700Bold",
-          fontSize: 22,
-        },
       }}
     />
     <Stack.Screen
@@ -206,18 +137,12 @@ const MenuNavigator = () => (
       options={{
         headerBackTitle: "Home",
         title: "Follow Us",
-        headerStyle: {
-          backgroundColor: colors.secondary,
-        },
-        headerBackTitleStyle: {
-          fontFamily: "Roboto_400Regular",
-        },
-        headerTintColor: colors.white,
-        headerTitleStyle: {
-          fontFamily: "Roboto_700Bold",
-          fontSize: 22,
-        },
       }}
+    />
+    <Stack.Screen
+      name="Item Details"
+      component={ItemDetailsScreen}
+      options={({ route }) => ({ title: route.params["item"].title })}
     />
   </Stack.Navigator>
 );

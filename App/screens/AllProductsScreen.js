@@ -25,7 +25,7 @@ const categories = [
   { id: 6, title: "Platters", color: "secondary" },
 ];
 
-function AllProductsScreen(props) {
+function AllProductsScreen({navigation}) {
   return (
     <ImageBackground
       style={styles.backGround}
@@ -73,7 +73,7 @@ function AllProductsScreen(props) {
         ></FlatList>
       </View>
       <View style={styles.menu}>
-        <Menu></Menu>
+        <Menu navigation={navigation}></Menu>
       </View>
     </ImageBackground>
   );

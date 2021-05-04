@@ -11,4 +11,6 @@ export default {
   darkGray: "#595959",
   lightGray: "#c6c6c6",
   danger: "#FF5252",
+  DoggerBlue:"#1e90ff",
+
 };

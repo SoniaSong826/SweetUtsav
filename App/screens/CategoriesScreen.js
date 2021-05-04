@@ -16,7 +16,7 @@ import Constants from "expo-constants";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-function CategoriesScreen(props) {
+function CategoriesScreen({navigation}) {
   return (
     <ImageBackground
       style={styles.backGround}
@@ -27,7 +27,7 @@ function CategoriesScreen(props) {
           <View style={styles.postRow}>
             <TouchableOpacity
               style={styles.postView}
-              onPress={() => console.log("dry clicked")}
+              onPress={() => navigation.navigate("Order Now")}
             >
               <Image
                 style={styles.post}
@@ -36,7 +36,7 @@ function CategoriesScreen(props) {
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.postView}
-              onPress={() => console.log("fridge clicked")}
+              onPress={() => navigation.navigate("Order Now")}
             >
               <Image
                 style={styles.post}
@@ -53,7 +53,7 @@ function CategoriesScreen(props) {
           <View style={styles.postRow}>
             <TouchableOpacity
               style={styles.postView}
-              onPress={() => console.log("platers clicked")}
+              onPress={() => navigation.navigate("Order Now")}
             >
               <Image
                 style={styles.post}
@@ -62,7 +62,7 @@ function CategoriesScreen(props) {
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.postView}
-              onPress={() => console.log("snacks clicked")}
+              onPress={() => navigation.navigate("Order Now")}
             >
               <Image
                 style={styles.post}

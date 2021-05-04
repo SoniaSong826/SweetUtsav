@@ -16,8 +16,8 @@ function MainPageScreen({ navigation }) {
       source={require("../assets/lightGreen_background.jpg")}
     >
       <FunctionMenu navigation={navigation}></FunctionMenu>
-      <PostSlides/>
-      <Menu></Menu>
+      <PostSlides />
+      <Menu navigation={navigation}></Menu>
     </ImageBackground>
   );
 }
