@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { View, StyleSheet, ImageBackground, ScrollView } from "react-native";
 
 import Menu from "../components/Menu";
+import MenuWoo from '../components/MenuWoo';
 import PostSlides from "../components/PostSlides";
 import useLocation from "../hooks/useLocation";
 import FunctionMenu from "../components/FunctionMenu";
@@ -17,7 +18,7 @@ function MainPageScreen({ navigation }) {
     >
       <FunctionMenu navigation={navigation}></FunctionMenu>
       <PostSlides />
-      <Menu navigation={navigation}></Menu>
+      <MenuWoo/>
     </ImageBackground>
   );
 }

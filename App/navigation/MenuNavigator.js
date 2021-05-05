@@ -22,12 +22,15 @@ const Stack = createStackNavigator();
 const MenuNavigator = () => (
   <Stack.Navigator
     screenOptions={{
+      headerTitleAlign: "center",
+      headerBackTitle: "Back",
       headerStyle: {
         backgroundColor: colors.secondary,
       },
       headerTitleStyle: {
         fontFamily: "Roboto_700Bold",
         fontSize: 22,
+        alignSelf: "center",
       },
       headerTintColor: colors.white,
     }}
@@ -52,7 +55,6 @@ const MenuNavigator = () => (
       name="Order Now"
       component={AllProductsScreen}
       options={({ navigation }) => ({
-        headerBackTitle: "Home",
         title: "All Products",
         headerRight: () => (
           <CartButton
@@ -76,7 +78,6 @@ const MenuNavigator = () => (
       name="Categories"
       component={CategoriesScreen}
       options={{
-        headerBackTitle: "Home",
         title: "Categories",
       }}
     />
@@ -84,7 +85,6 @@ const MenuNavigator = () => (
       name="My Account"
       component={MyAccountScreen}
       options={{
-        headerBackTitle: "Home",
         title: "My Account",
         headerStyle: {
           backgroundColor: colors.secondary,
@@ -103,7 +103,6 @@ const MenuNavigator = () => (
       name="Locations"
       component={LocationScreen}
       options={{
-        headerBackTitle: "Home",
         title: "Locations",
       }}
     />
@@ -111,7 +110,6 @@ const MenuNavigator = () => (
       name="Events"
       component={EventsScreen}
       options={{
-        headerBackTitle: "Home",
         title: "Events",
       }}
     />
@@ -119,7 +117,6 @@ const MenuNavigator = () => (
       name="Policies"
       component={PoliciesScreen}
       options={{
-        headerBackTitle: "Home",
         title: "Policies",
       }}
     />
@@ -127,7 +124,6 @@ const MenuNavigator = () => (
       name="Contact Us"
       component={ContactUsScreen}
       options={{
-        headerBackTitle: "Home",
         title: "Contact Us",
       }}
     />
@@ -135,7 +131,6 @@ const MenuNavigator = () => (
       name="Follow Us"
       component={AboutUsScreen}
       options={{
-        headerBackTitle: "Home",
         title: "Follow Us",
       }}
     />

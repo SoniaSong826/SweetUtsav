@@ -1,9 +1,29 @@
 import React, { useState } from "react";
-import { View, StyleSheet, FlatList, Dimensions } from "react-native";
+import { StyleSheet, FlatList } from "react-native";
 import Card from "./Card";
+import routes from "../navigation/route";
+import WooCommerceAPI from "react-native-woocommerce-api";
 
-const windowWidth = Dimensions.get("window").width;
-const windowHeight = Dimensions.get("window").height;
+const wooAPI = new WooCommerceAPI({
+  url: "https://melbourne.sweetutsav.com.au/", // Your store URL
+  ssl: true,
+  consumerKey: "ck_c051b081b4f1dcecabddabfe83682fcc4ea49b72", // Your consumer secret
+  consumerSecret: "cs_c4a1ee8a76a58cbb53b75a9704fc1806056c58b0", // Your consumer secret
+  wpAPI: true, // Enable the WP REST API integration
+  version: "wc/v3", // WooCommerce WP REST API version
+  queryStringAuth: true,
+});
+
+wooAPI
+  .get("products/")
+  .then((data) => {
+    this.setState({ responsedata: data }, () => {
+      this.setState({ loading: false });
+    });
+  })
+  .catch((error) => {
+    console.log(error);
+  });
 
 const initialMenu = [
   {
@@ -89,39 +109,41 @@ function Menu({ navigation, route }) {
   };
 
   return (
-    <FlatList
-      data={menu}
-      keyExtractor={(menu) => menu.id.toString()}
-      renderItem={({ item }) => (
-        <Card
-          title={item.title}
-          price={item.price}
-          image={item.image}
-          onPress={() => navigation.navigate("Item Details", { item })}
-        ></Card>
-      )}
-      columnWrapperStyle={{ justifyContent: "space-between" }}
-      numColumns={3}
-      horizontal={false}
-      contentContainerStyle={styles.content}
-      refreshing={refreshing}
-      onRefresh={() => {
-        setMenu([
-          {
-            id: 3,
-            title: "Champakali",
-            price: "$2.95",
-            image: require("../assets/FoodExample/FridgeSweets/Kaman-Dhokla-N523A-170x185.jpg"),
-          },
-          {
-            id: 4,
-            title: "Gift Box–B42 Mix",
-            price: "$39.95",
-            image: require("../assets/FoodExample/GiftBox/sweetbox3.jpg"),
-          },
-        ]);
-      }}
-    ></FlatList>
+      <FlatList
+        data={menu}
+        keyExtractor={(menu) => menu.id.toString()}
+        renderItem={({ item }) => (
+          <Card
+            title={item.title}
+            price={item.price}
+            image={item.image}
+            onPress={() =>
+              navigation.navigate(routes.LISTING_DETAILS, { item })
+            }
+          ></Card>
+        )}
+        columnWrapperStyle={{ justifyContent: "space-between" }}
+        numColumns={3}
+        horizontal={false}
+        contentContainerStyle={styles.content}
+        refreshing={refreshing}
+        onRefresh={() => {
+          setMenu([
+            {
+              id: 3,
+              title: "Champakali",
+              price: "$2.95",
+              image: require("../assets/FoodExample/FridgeSweets/Kaman-Dhokla-N523A-170x185.jpg"),
+            },
+            {
+              id: 4,
+              title: "Gift Box–B42 Mix",
+              price: "$39.95",
+              image: require("../assets/FoodExample/GiftBox/sweetbox3.jpg"),
+            },
+          ]);
+        }}
+      ></FlatList>
   );
 }
 const styles = StyleSheet.create({

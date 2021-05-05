@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import colors from "../config/colors";
-import Menu from "../components/Menu";
+import MenuWoo from "../components/MenuWoo";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Formik } from "formik";
 import CategoryButton from "../components/CategoryButton";
@@ -73,7 +73,7 @@ function AllProductsScreen({navigation}) {
         ></FlatList>
       </View>
       <View style={styles.menu}>
-        <Menu navigation={navigation}></Menu>
+        <MenuWoo/>
       </View>
     </ImageBackground>
   );

@@ -1,23 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Image,
   View,
   StyleSheet,
   ImageBackground,
-  Text,
   ScrollView,
 } from "react-native";
+import listingsApi from "../api/listings";
 import colors from "../config/colors";
 import AppText from "../components/AppText";
-import TopBar from "../components/TopBar";
 import AppButton from "../components/AppButton";
 import Menu from "../components/Menu";
 
-import {
-  useFonts,
-  Roboto_700Bold,
-  Roboto_400Regular,
-} from "@expo-google-fonts/roboto";
 import AppPicker from "../components/form/AppPicker";
 import AppTextInput from "../components/AppTextInput";
 
@@ -26,10 +20,17 @@ const categories = [
   { label: "1kg", value: 2 },
 ];
 
-function ItemDetailsScreen({ itemName, route }) {
-  console.log(route.params["item"]);
+function ItemDetailsScreen({ route }) {
   const listing = route.params["item"];
-  useFonts({ Roboto_700Bold, Roboto_400Regular });
+  const [listings, setListings] = useState([]);
+
+  useEffect(() => {
+    loadListings()
+  }, []);
+  const loadListings = async () => {
+    const response = await listingsApi.getListings();
+    setListings(response.data);
+  };
 
   const [category, setCategory] = useState(categories[0]);
   return (

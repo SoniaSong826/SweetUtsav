@@ -9,7 +9,6 @@ import {
 } from "react-native";
 import AppLoading from "expo-app-loading";
 import colors from "../config/colors";
-import AppText from "./AppText";
 import { useFonts, Roboto_700Bold } from "@expo-google-fonts/roboto";
 
 const windowWidth = Dimensions.get("window").width;
@@ -33,7 +32,7 @@ function Card({ title, price, image, onPress }) {
           {title}
         </Text>
         <Text numberOfLines={1} style={styles.price}>
-          {price}
+          ${price}
         </Text>
       </View>
     </TouchableHighlight>

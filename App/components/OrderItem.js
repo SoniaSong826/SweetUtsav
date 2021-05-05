@@ -3,11 +3,9 @@ import React from "react";
 import { View, StyleSheet, Image, Dimensions } from "react-native";
 import colors from "../config/colors";
 import AppText from "./AppText";
-import Swipeable from "react-native-gesture-handler/Swipeable";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 const windowWidth = Dimensions.get("window").width;
-const windowHeight = Dimensions.get("window").height;
 
 function OrderItem({ title, price, dateTime, image, onPress }) {
   return (
