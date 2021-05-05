@@ -17,7 +17,6 @@ function LoginScreen(props) {
   });
 
   if (!fontsLoaded) {
-    console.log("font loaded");
     return <AppLoading />;
   }
 

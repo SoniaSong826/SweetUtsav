@@ -13,7 +13,6 @@ function AppText({ children, style }) {
       });
       
   if (!fontsLoaded) {
-    console.log("font loaded")
     return <AppLoading />;
   }
   return <Text style={[styles.text, style]}>{children}</Text>;

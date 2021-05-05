@@ -61,7 +61,6 @@ export default class MenuWoo extends Component {
     } else {
       url = `${base_url}/wp-json/wc/v3/products?per_page=20&page=${page}&consumer_key=${c_key}&consumer_secret=${c_secret}`;
     }
-    console.log(url);
     this.setState({ loading: true });
     setTimeout(() => {
       fetch(url)
@@ -107,7 +106,6 @@ export default class MenuWoo extends Component {
     );
   };
   handleSearch = (value) => {
-    // console.log(value)
     this.setState(
       {
         searchValue: value,

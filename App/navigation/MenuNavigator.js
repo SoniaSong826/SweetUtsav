@@ -137,7 +137,7 @@ const MenuNavigator = () => (
     <Stack.Screen
       name="Item Details"
       component={ItemDetailsScreen}
-      options={({ route }) => ({ title: route.params["item"].title })}
+      options={({ route }) => ({ title: route.params["item"].name })}
     />
   </Stack.Navigator>
 );

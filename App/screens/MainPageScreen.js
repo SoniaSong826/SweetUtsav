@@ -18,7 +18,7 @@ function MainPageScreen({ navigation }) {
     >
       <FunctionMenu navigation={navigation}></FunctionMenu>
       <PostSlides />
-      <MenuWoo/>
+      <MenuWoo navigation ={navigation}/>
     </ImageBackground>
   );
 }

@@ -15,17 +15,32 @@ import Menu from "../components/Menu";
 import AppPicker from "../components/form/AppPicker";
 import AppTextInput from "../components/AppTextInput";
 
-const categories = [
-  { label: "500g", value: 1 },
-  { label: "1kg", value: 2 },
-];
+// const categories = [];
+// const attributes = route.params["item"].attributes.options;
+// attributes.forEach((currentValue, index) =>
+//   categories.concat({ label: currentValue, value: index })
+// );
+
+// const categories = [
+//   { label: "500g", value: 1 },
+//   { label: "1kg", value: 2 },
+// ];
 
 function ItemDetailsScreen({ route }) {
   const listing = route.params["item"];
   const [listings, setListings] = useState([]);
+  const categories = [];
+  const attributes = listing.attributes[0].options;
 
+  for (var i in attributes) {
+    const label = JSON.stringify(attributes[i]);
+    categories.push({
+      label: label.substring(1, label.length - 1),
+      value: i,
+    });
+  }
   useEffect(() => {
-    loadListings()
+    loadListings();
   }, []);
   const loadListings = async () => {
     const response = await listingsApi.getListings();
@@ -39,14 +54,23 @@ function ItemDetailsScreen({ route }) {
       source={require("../assets/white_green_background.jpg")}
     >
       <ScrollView contentContainerStyle={styles.scrollView}>
-        <Image style={styles.image} source={listing.image}></Image>
+        {listing.images.length != 0 ? (
+          <Image
+            style={styles.image}
+            source={{ uri: listing.images[0].src }}
+          ></Image>
+        ) : (
+          <Image
+            style={styles.image}
+            source={require("../assets/icon_default.jpg")}
+          ></Image>
+        )}
         <View style={styles.textButtonContainer}>
           <View style={styles.textsContainer}>
-            <AppText style={styles.itemName}>{listing.title}</AppText>
+            <AppText style={styles.itemName}>{listing.name}</AppText>
             <AppText style={styles.itemPrice}>{listing.price}</AppText>
           </View>
         </View>
-
         <View style={styles.selectionsContainer}>
           <View style={styles.weightOption}>
             <AppText style={styles.boldBigtext}>Choose an option:</AppText>
@@ -82,12 +106,10 @@ function ItemDetailsScreen({ route }) {
         <View style={styles.underlineTextbox}>
           <AppText style={styles.primaryTitle}>Additional Information</AppText>
         </View>
-
         <AppText style={styles.boldtext}>Option: 1Kg, 500g</AppText>
         <View style={styles.underlineTextbox}>
           <AppText style={styles.primaryTitle}>Reviews</AppText>
         </View>
-
         <AppText style={styles.boldtext}>John Smith </AppText>
         <AppText style={styles.regulartext}>
           Great taste! My children like it!
@@ -107,7 +129,8 @@ const styles = StyleSheet.create({
   },
   image: {
     marginVertical: 15,
-    width: 200,
+    width: 250,
+    height: 250,
   },
   scrollView: {
     width: "100%",
