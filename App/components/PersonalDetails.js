@@ -3,7 +3,7 @@ import { Image, StyleSheet, View,TouchableOpacity } from "react-native";
 import AppText from "../components/AppText";
 import colors from "../config/colors";
 
-const defaultPhoto = require("../assets/icon_with_background.png");
+const defaultPhoto = require("../assets/icon.png");
 function MyAccountScreen({ photo = defaultPhoto, firstName, lastName, email }) {
   return (
     <View style={styles.container}>

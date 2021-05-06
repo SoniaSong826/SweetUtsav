@@ -13,10 +13,10 @@ export default class PostSlides extends Component {
     super(props);
     this.state = {
       images: [
-        require(postFolder + "collageslide1.jpg"),
-        require(postFolder + "collageslide2.jpg"),
-        require(postFolder + "collageslide3.jpg"),
-        require(postFolder + "collageslide4.jpg"),
+        {uri: "https://melbourne.sweetutsav.com.au/wp-content/uploads/2020/07/collagebannerslide1.jpg"},
+        {uri: "https://melbourne.sweetutsav.com.au/wp-content/uploads/2020/07/collageslide2.jpg"},
+        {uri: "https://melbourne.sweetutsav.com.au/wp-content/uploads/2020/07/collageslider3.jpg"},
+        {uri: "https://melbourne.sweetutsav.com.au/wp-content/uploads/2020/07/collageslide4.jpg"},
       ],
     };
   }

@@ -138,12 +138,28 @@ const MenuNavigator = () => (
     <Stack.Screen
       name="Item Details"
       component={ItemDetailsScreen}
-      options={({ route }) => ({ title: route.params["item"].name })}
+      options={({ route }) => ({
+        title: route.params["item"].name,
+        headerRight: () => (
+          <CartButton
+            onPress={() => navigation.navigate("My Cart")}
+            title="My Cart"
+          />
+        ),
+      })}
     />
     <Stack.Screen
       name="Category Products"
       component={CategoryProductScreen}
-      options={({ route }) => ({ title: route.params["categoryName"] })}
+      options={({ route }) => ({
+        title: route.params["categoryName"],
+        headerRight: () => (
+          <CartButton
+            onPress={() => navigation.navigate("My Cart")}
+            title="My Cart"
+          />
+        ),
+      })}
     />
   </Stack.Navigator>
 );

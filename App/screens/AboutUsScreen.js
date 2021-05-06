@@ -26,7 +26,10 @@ function AboutUsScreen() {
           <View style={styles.bannerContainer}>
             <Image
               style={styles.banner}
-              source={require("../assets/aboutus-banner.png")}
+              source={{
+                uri:
+                  "https://melbourne.sweetutsav.com.au/wp-content/uploads/2020/10/aboutus-banner.jpg",
+              }}
             ></Image>
           </View>
           <AppText style={styles.text}>{aboutUs}</AppText>

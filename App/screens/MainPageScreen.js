@@ -17,7 +17,7 @@ function MainPageScreen({ navigation }) {
     >
       <FunctionMenu navigation={navigation}></FunctionMenu>
       <PostSlides />
-      <MenuWoo categoryVisible={false} category={95} navigation={navigation} />
+      <MenuWoo searchBarVisible={false} categoryVisible={false} category={95} navigation={navigation} />
     </ImageBackground>
   );
 }

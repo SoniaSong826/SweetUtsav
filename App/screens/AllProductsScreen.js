@@ -23,37 +23,8 @@ function AllProductsScreen({ navigation }) {
       style={styles.backGround}
       source={require("../assets/lightGreen_background.jpg")}
     >
-      <Formik
-        initialValues={{ keywords: "" }}
-        onSubmit={(values) => console.log(values)}
-      >
-        {({ handleChange, handleSubmit }) => (
-          <>
-            <View style={styles.searchContainer}>
-              <TextInput
-                style={styles.inputBox}
-                name="keywords"
-                autoCapitalize="none"
-                autoCorrect={false}
-                placeholder="Search Here"
-                onChangeText={handleChange("keywords")}
-              ></TextInput>
-              <TouchableOpacity
-                style={styles.squareButton}
-                onPress={handleSubmit}
-              >
-                <MaterialCommunityIcons
-                  name="magnify"
-                  size={35}
-                  color={colors.white}
-                  style={styles.icon}
-                />
-              </TouchableOpacity>
-            </View>
-          </>
-        )}
-      </Formik>
       <MenuWoo
+        searchBarVisible={true}
         categoryVisible={true}
         category={95}
         navigation={navigation}

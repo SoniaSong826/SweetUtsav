@@ -27,7 +27,10 @@ function EventsScreen() {
           <View style={styles.bannerContainer}>
             <Image
               style={styles.banner}
-              source={require("../assets/Eventbanner.jpg")}
+              source={{
+                uri:
+                  "https://melbourne.sweetutsav.com.au/wp-content/uploads/2020/07/banner2-1.jpg",
+              }}
             ></Image>
           </View>
           <AppText style={styles.text}>{events}</AppText>

@@ -38,7 +38,8 @@ const WooCommerceApp = new WooCommerceAPI({
 export default class MenuWoo extends Component {
   constructor(props) {
     super(props);
-    (this.categoryVisible = props.categoryVisible),
+    ((this.categoryVisible = props.categoryVisible),
+    (this.searchBarVisible = props.searchBarVisible)),
       (this.state = {
         data: [],
         loading: true,
@@ -177,39 +178,41 @@ export default class MenuWoo extends Component {
     const { navigation } = this.props;
     return (
       <>
-        <Formik
-          initialValues={{ keywords: "" }}
-          onSubmit={(values) => {
-            this.handleSearch(values.keywords);
-          }}
-        >
-          {({ handleChange, handleSubmit, values }) => (
-            <>
-              <View style={styles.searchContainer}>
-                <TextInput
-                  style={styles.inputBox}
-                  label="keywords"
-                  autoCapitalize="none"
-                  autoCorrect={false}
-                  value={values.keywords}
-                  placeholder="Search Here"
-                  onChangeText={handleChange("keywords")}
-                ></TextInput>
-                <TouchableOpacity
-                  style={styles.squareButton}
-                  onPress={handleSubmit}
-                >
-                  <MaterialCommunityIcons
-                    name="magnify"
-                    size={35}
-                    color={colors.white}
-                    style={styles.icon}
-                  />
-                </TouchableOpacity>
-              </View>
-            </>
-          )}
-        </Formik>
+        {this.searchBarVisible ? (
+          <Formik
+            initialValues={{ keywords: "" }}
+            onSubmit={(values) => {
+              this.handleSearch(values.keywords);
+            }}
+          >
+            {({ handleChange, handleSubmit, values }) => (
+              <>
+                <View style={styles.searchContainer}>
+                  <TextInput
+                    style={styles.inputBox}
+                    label="keywords"
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    value={values.keywords}
+                    placeholder="Search Here"
+                    onChangeText={handleChange("keywords")}
+                  ></TextInput>
+                  <TouchableOpacity
+                    style={styles.squareButton}
+                    onPress={handleSubmit}
+                  >
+                    <MaterialCommunityIcons
+                      name="magnify"
+                      size={35}
+                      color={colors.white}
+                      style={styles.icon}
+                    />
+                  </TouchableOpacity>
+                </View>
+              </>
+            )}
+          </Formik>
+        ) : null}
         {this.categoryVisible ? (
           <View style={{ height: 50 }}>
             <FlatList
