@@ -16,6 +16,7 @@ import PoliciesScreen from "../screens/PoliciesScreen";
 import CartButton from "../components/CartButton";
 import LocationSelecterView from "../components/LocationSelecterView";
 import ItemDetailsScreen from "../screens/ItemDetailsScreen";
+import CategoryProductScreen from "../screens/CategoryProductScreen";
 
 const Stack = createStackNavigator();
 
@@ -138,6 +139,11 @@ const MenuNavigator = () => (
       name="Item Details"
       component={ItemDetailsScreen}
       options={({ route }) => ({ title: route.params["item"].name })}
+    />
+    <Stack.Screen
+      name="Category Products"
+      component={CategoryProductScreen}
+      options={({ route }) => ({ title: route.params["categoryName"] })}
     />
   </Stack.Navigator>
 );

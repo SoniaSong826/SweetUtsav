@@ -17,45 +17,17 @@ import CategoryButton from "../components/CategoryButton";
 
 const windowWidth = Dimensions.get("window").width;
 
-function AllProductsScreen({ navigation }) {
+
+function CategoryProductScreen({ route , navigation }) {
+  const { categoryID, otherParam } = route.params;
   return (
     <ImageBackground
       style={styles.backGround}
       source={require("../assets/lightGreen_background.jpg")}
     >
-      <Formik
-        initialValues={{ keywords: "" }}
-        onSubmit={(values) => console.log(values)}
-      >
-        {({ handleChange, handleSubmit }) => (
-          <>
-            <View style={styles.searchContainer}>
-              <TextInput
-                style={styles.inputBox}
-                name="keywords"
-                autoCapitalize="none"
-                autoCorrect={false}
-                placeholder="Search Here"
-                onChangeText={handleChange("keywords")}
-              ></TextInput>
-              <TouchableOpacity
-                style={styles.squareButton}
-                onPress={handleSubmit}
-              >
-                <MaterialCommunityIcons
-                  name="magnify"
-                  size={35}
-                  color={colors.white}
-                  style={styles.icon}
-                />
-              </TouchableOpacity>
-            </View>
-          </>
-        )}
-      </Formik>
       <MenuWoo
-        categoryVisible={true}
-        category={95}
+        categoryVisible={false}
+        category={parseInt(JSON.stringify(categoryID))}
         navigation={navigation}
       ></MenuWoo>
     </ImageBackground>
@@ -106,4 +78,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AllProductsScreen;
+export default CategoryProductScreen;

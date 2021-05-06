@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
   },
   card: {
-    width: windowWidth/3.3,
+    width: windowWidth / 3.3,
     height: 170,
     borderRadius: 5,
     backgroundColor: colors.white,
@@ -61,6 +61,7 @@ const styles = StyleSheet.create({
   title: {
     flexWrap: "nowrap",
     marginBottom: 7,
+    paddingHorizontal: 1,
     fontFamily: "Roboto_500Medium",
     fontSize: 13,
     color: colors.black,
@@ -68,7 +69,7 @@ const styles = StyleSheet.create({
   price: {
     color: colors.secondary,
     fontFamily: "Roboto_700Bold",
-    fontSize: 13,
+    fontSize: 14,
   },
   image: {
     width: 105,

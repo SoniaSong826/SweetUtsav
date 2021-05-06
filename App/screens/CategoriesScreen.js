@@ -16,7 +16,7 @@ import Constants from "expo-constants";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-function CategoriesScreen({navigation}) {
+function CategoriesScreen({ navigation }) {
   return (
     <ImageBackground
       style={styles.backGround}
@@ -27,20 +27,36 @@ function CategoriesScreen({navigation}) {
           <View style={styles.postRow}>
             <TouchableOpacity
               style={styles.postView}
-              onPress={() => navigation.navigate("Order Now")}
+              onPress={() =>
+                navigation.navigate("Category Products", {
+                  categoryID: 78,
+                  categoryName: "Dry Sweets",
+                })
+              }
             >
               <Image
                 style={styles.post}
-                source={require("../assets/Categories/dry.png")}
+                source={{
+                  uri:
+                    "https://melbourne.sweetutsav.com.au/wp-content/uploads/2021/05/dry.png",
+                }}
               ></Image>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.postView}
-              onPress={() => navigation.navigate("Order Now")}
+              onPress={() =>
+                navigation.navigate("Category Products", {
+                  categoryID: 77,
+                  categoryName: "Fridge Sweets",
+                })
+              }
             >
               <Image
                 style={styles.post}
-                source={require("../assets/Categories/fridge.png")}
+                source={{
+                  uri:
+                    "https://melbourne.sweetutsav.com.au/wp-content/uploads/2021/05/fridge.png",
+                }}
               ></Image>
             </TouchableOpacity>
           </View>
@@ -53,20 +69,36 @@ function CategoriesScreen({navigation}) {
           <View style={styles.postRow}>
             <TouchableOpacity
               style={styles.postView}
-              onPress={() => navigation.navigate("Order Now")}
+              onPress={() =>
+                navigation.navigate("Category Products", {
+                  categoryID: 100,
+                  categoryName: "Platters",
+                })
+              }
             >
               <Image
                 style={styles.post}
-                source={require("../assets/Categories/platers.png")}
+                source={{
+                  uri:
+                    "https://melbourne.sweetutsav.com.au/wp-content/uploads/2021/05/platers.png",
+                }}
               ></Image>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.postView}
-              onPress={() => navigation.navigate("Order Now")}
+              onPress={() =>
+                navigation.navigate("Category Products", {
+                  categoryID: 79,
+                  categoryName: "Snakes",
+                })
+              }
             >
               <Image
                 style={styles.post}
-                source={require("../assets/Categories/snacks.png")}
+                source={{
+                  uri:
+                    "https://melbourne.sweetutsav.com.au/wp-content/uploads/2021/05/snacks.png",
+                }}
               ></Image>
             </TouchableOpacity>
           </View>

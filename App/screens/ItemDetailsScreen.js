@@ -15,16 +15,6 @@ import Menu from "../components/Menu";
 import AppPicker from "../components/form/AppPicker";
 import AppTextInput from "../components/AppTextInput";
 
-// const categories = [];
-// const attributes = route.params["item"].attributes.options;
-// attributes.forEach((currentValue, index) =>
-//   categories.concat({ label: currentValue, value: index })
-// );
-
-// const categories = [
-//   { label: "500g", value: 1 },
-//   { label: "1kg", value: 2 },
-// ];
 
 function ItemDetailsScreen({ route }) {
   const listing = route.params["item"];

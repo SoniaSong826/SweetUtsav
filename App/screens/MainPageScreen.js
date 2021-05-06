@@ -9,7 +9,6 @@ import FunctionMenu from "../components/FunctionMenu";
 
 function MainPageScreen({ navigation }) {
   const location = useLocation();
-  console.log(location);
 
   return (
     <ImageBackground
@@ -18,7 +17,7 @@ function MainPageScreen({ navigation }) {
     >
       <FunctionMenu navigation={navigation}></FunctionMenu>
       <PostSlides />
-      <MenuWoo navigation ={navigation}/>
+      <MenuWoo categoryVisible={false} category={95} navigation={navigation} />
     </ImageBackground>
   );
 }

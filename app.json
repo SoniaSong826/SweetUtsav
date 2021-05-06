@@ -4,7 +4,7 @@
     "slug": "sweetutsav",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./App/assets/icon_with_background.png",
+    "icon": "./App/assets/icon.png",
     "splash": {
       "image": "./App/assets/splash.png",
       "resizeMode": "contain",
