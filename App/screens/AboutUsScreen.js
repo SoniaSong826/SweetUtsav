@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Image,
   Dimensions,
+  Linking,
 } from "react-native";
 import colors from "../config/colors";
 import AppText from "../components/AppText";
@@ -34,30 +35,48 @@ function AboutUsScreen() {
           </View>
           <AppText style={styles.text}>{aboutUs}</AppText>
           <View style={styles.socialIconContainer}>
-            <TouchableOpacity onPress={() => console.log("facebook clicked")}>
+            <TouchableOpacity
+              onPress={() =>
+                Linking.openURL(
+                  "https://www.facebook.com/Sweetutsav.melbourne/"
+                )
+              }
+            >
               <Image
                 style={styles.icon}
                 source={require("../assets/SocialMediaIcon/Facebook.png")}
               ></Image>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => console.log("facebook clicked")}>
+            <TouchableOpacity
+              onPress={() => Linking.openURL("https://twitter.com/UtsavSweet/")}
+            >
               <Image
                 style={styles.icon}
                 source={require("../assets/SocialMediaIcon/Twitter.png")}
               ></Image>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => console.log("facebook clicked")}>
+            <TouchableOpacity
+              onPress={() =>
+                Linking.openURL("https://www.instagram.com/sweetutsav1/?hl=en")
+              }
+            >
               <Image
                 style={styles.icon}
                 source={require("../assets/SocialMediaIcon/Instagram.png")}
               ></Image>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => console.log("facebook clicked")}>
+            <TouchableOpacity
+              onPress={() =>
+                Linking.openURL(
+                  "https://www.linkedin.com/company/sweet-utsav-melbourne/"
+                )
+              }
+            >
               <Image
                 source={require("../assets/SocialMediaIcon/LinkedIn.png")}
               ></Image>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => console.log("facebook clicked")}>
+            <TouchableOpacity onPress={() => console.log("Youtube clicked")}>
               <Image
                 style={styles.icon}
                 source={require("../assets/SocialMediaIcon/Youtube.png")}
@@ -94,7 +113,7 @@ const styles = StyleSheet.create({
   },
   socialIconContainer: {
     paddingTop: 45,
-    paddingBottom:80,
+    paddingBottom: 80,
     flexDirection: "row",
   },
   icon: {

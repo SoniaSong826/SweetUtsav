@@ -1,24 +1,11 @@
-import React, { useState, useEffect } from "react";
-import {
-  View,
-  StyleSheet,
-  ImageBackground,
-  TextInput,
-  FlatList,
-  Dimensions,
-  TouchableOpacity,
-  Text,
-} from "react-native";
+import React from "react";
+import { StyleSheet, ImageBackground, Dimensions } from "react-native";
 import colors from "../config/colors";
 import MenuWoo from "../components/MenuWoo";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { Formik } from "formik";
-import CategoryButton from "../components/CategoryButton";
 
 const windowWidth = Dimensions.get("window").width;
 
-
-function CategoryProductScreen({ route , navigation }) {
+function CategoryProductScreen({ route, navigation }) {
   const { categoryID, otherParam } = route.params;
   return (
     <ImageBackground

@@ -8,8 +8,6 @@ import {
   Dimensions,
   TouchableOpacity,
 } from "react-native";
-import AppText from "../components/AppText";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../config/colors";
 import Constants from "expo-constants";
 

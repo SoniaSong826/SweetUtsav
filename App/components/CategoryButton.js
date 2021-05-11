@@ -4,7 +4,13 @@ import colors from "../config/colors";
 import AppLoading from "expo-app-loading";
 import { useFonts, Roboto_700Bold } from "@expo-google-fonts/roboto";
 
-function CategoryButton({ title, style, onPress, color = "secondary" }) {
+function CategoryButton({
+  title,
+  style,
+  onPress,
+  onPressText,
+  color = "secondary",
+}) {
   let [fontsLoaded] = useFonts({
     Roboto_700Bold,
   });
@@ -17,7 +23,9 @@ function CategoryButton({ title, style, onPress, color = "secondary" }) {
       style={[styles.button, { backgroundColor: colors[color] }, style]}
       onPress={onPress}
     >
-      <Text style={styles.text}>{title}</Text>
+      <Text style={styles.text} onPress={onPressText}>
+        {title}
+      </Text>
     </TouchableOpacity>
   );
 }
@@ -26,7 +34,7 @@ const styles = StyleSheet.create({
   button: {
     borderRadius: 5,
     marginVertical: 5,
-    marginRight:10,
+    marginRight: 10,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
@@ -40,8 +48,8 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto_700Bold",
     fontSize: 15,
     color: colors.white,
-    paddingVertical:10,
-    paddingHorizontal:8,
+    paddingVertical: 10,
+    paddingHorizontal: 8,
   },
 });
 

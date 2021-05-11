@@ -1,7 +1,5 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import React, { useState } from "react";
-import LoginScreen from "../screens/LoginScreen";
-import SignUpScreen from "../screens/SignUpScreen";
+import React from "react";
 import colors from "../config/colors";
 import MainPageScreen from "../screens/MainPageScreen";
 import AllProductsScreen from "../screens/AllProductsScreen";

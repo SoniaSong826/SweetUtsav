@@ -43,6 +43,7 @@ export default class MenuWoo extends Component {
       (this.state = {
         data: [],
         loading: true,
+        selectedItem: 95,
         page: 1,
         refreshing: false,
         searchValue: "",
@@ -68,20 +69,9 @@ export default class MenuWoo extends Component {
   }
 
   async componentDidMount() {
-    await this.getCredentials();
-
     this.fetchProductList();
   }
 
-  getCredentials = async () => {
-    const credentials = await SecureStore.getItemAsync("credentials");
-    const credentialsJson = JSON.parse(credentials);
-    this.setState({
-      base_url: credentialsJson.base_url,
-      c_key: credentialsJson.c_key,
-      c_secret: credentialsJson.c_secret,
-    });
-  };
 
   fetchProductList = () => {
     const {
@@ -160,6 +150,10 @@ export default class MenuWoo extends Component {
     );
   };
 
+  onPressHandler(id) {
+    this.setState({ selectedItem: id });
+  }
+
   handleCategory = (value) => {
     this.setState(
       {
@@ -223,8 +217,14 @@ export default class MenuWoo extends Component {
                 <CategoryButton
                   title={item.title}
                   key={item.id}
-                  color={item.color}
-                  onPress={() => this.handleCategory(item.id)}
+                  color={
+                    this.state.selectedItem === item.id
+                      ? "primary"
+                      : "secondary"
+                  }
+                  onPress={() => {
+                    this.onPressHandler(item.id), this.handleCategory(item.id);
+                  }}
                 />
               )}
               horizontal={true}

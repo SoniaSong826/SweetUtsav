@@ -1,12 +1,8 @@
 import React from "react";
-import { FlatList, ScrollView, View, StyleSheet, Dimensions, ImageBackground } from "react-native";
+import { FlatList, StyleSheet, ImageBackground } from "react-native";
 import ListItemSeparator from "../components/ListItemSeparator";
 import LocationItem from "../components/LocationItem";
 
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
 const telIcon = "phone";
 const mobileIcon ="cellphone";
 

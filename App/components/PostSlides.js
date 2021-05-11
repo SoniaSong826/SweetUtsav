@@ -3,10 +3,8 @@ import { View, StyleSheet, Dimensions } from "react-native";
 import colors from "../config/colors";
 import { SliderBox } from "react-native-image-slider-box";
 
-const postFolder = "../assets/Posts/";
 
 const windowWidth = Dimensions.get("window").width;
-const windowHeight = Dimensions.get("window").height;
 
 export default class PostSlides extends Component {
   constructor(props) {

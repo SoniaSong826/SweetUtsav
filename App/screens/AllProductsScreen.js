@@ -11,9 +11,7 @@ import {
 } from "react-native";
 import colors from "../config/colors";
 import MenuWoo from "../components/MenuWoo";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { Formik } from "formik";
-import CategoryButton from "../components/CategoryButton";
+
 
 const windowWidth = Dimensions.get("window").width;
 
