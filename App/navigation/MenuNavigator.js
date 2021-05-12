@@ -136,7 +136,7 @@ const MenuNavigator = () => (
     <Stack.Screen
       name="Item Details"
       component={ItemDetailsScreen}
-      options={({ route }) => ({
+      options={({ route, navigation }) => ({
         title: route.params["item"].name,
         headerRight: () => (
           <CartButton

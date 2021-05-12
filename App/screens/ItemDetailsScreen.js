@@ -14,8 +14,34 @@ import AppButton from "../components/AppButton";
 import MenuWoo from "../components/MenuWoo";
 import AppPicker from "../components/form/AppPicker";
 import AppTextInput from "../components/AppTextInput";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import WooCommerceAPI from "react-native-woocommerce-api";
 import Reviews from "../components/Reviews";
+
+function onClickAddCart(data, amount, category) {
+  const itemcart = {
+    food: data,
+    quantity: amount == "" ? 1 : amount,
+    option: category,
+  };
+
+  AsyncStorage.getItem("cart")
+    .then((datacart) => {
+      if (datacart !== null) {
+        const cart = JSON.parse(datacart);
+        cart.push(itemcart);
+        AsyncStorage.setItem("cart", JSON.stringify(cart));
+      } else {
+        const cart = [];
+        cart.push(itemcart);
+        AsyncStorage.setItem("cart", JSON.stringify(cart));
+      }
+      alert("Product Added");
+    })
+    .catch((err) => {
+      alert(err);
+    });
+}
 
 function ItemDetailsScreen({ route, navigation }) {
   const listing = route.params["item"];
@@ -48,6 +74,7 @@ function ItemDetailsScreen({ route, navigation }) {
       value: i,
     });
   }
+
   useEffect(() => {
     loadListings();
   }, []);
@@ -57,6 +84,7 @@ function ItemDetailsScreen({ route, navigation }) {
   };
 
   const [category, setCategory] = useState(categories[0]);
+  const [amount, onChangeAmount] = useState(1);
   return (
     <ImageBackground
       style={styles.backGround}
@@ -96,18 +124,21 @@ function ItemDetailsScreen({ route, navigation }) {
             <AppTextInput
               icon="magnify-plus"
               placeholder="1"
+              value={amount}
               keyboardType={"numeric"}
+              onChangeText={onChangeAmount}
             />
           </View>
         </View>
         <AppButton
           title="Add to Cart"
-          onPress={() => console.log("Add to Cart button clicked")}
+          onPress={() => onClickAddCart(listing, amount, category)}
         ></AppButton>
         <View style={styles.underlineTextbox}>
           <AppText style={styles.primaryTitle}>Description</AppText>
         </View>
-        {listing.description == "" ? (
+        {listing.description.trim().replace("<p>", "").replace("</p>", "") ==
+        "" ? (
           <AppText style={styles.regulartext}>
             No Description for this Product
           </AppText>
@@ -176,7 +207,7 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingHorizontal: "5%",
     flexDirection: "row",
-    alignItems: "center",
+    alignItems: "flex-start",
     justifyContent: "space-between",
   },
   boldBigtext: {

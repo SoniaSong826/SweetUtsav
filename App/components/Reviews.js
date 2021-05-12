@@ -4,9 +4,6 @@ import {
   StyleSheet,
   Text,
   View,
-  TextInput,
-  TouchableOpacity,
-  Dimensions,
 } from "react-native";
 import ReviewCard from "./ReviewCard";
 import WooCommerceAPI from "react-native-woocommerce-api";
