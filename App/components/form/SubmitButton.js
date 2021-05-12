@@ -1,11 +1,20 @@
 import React from "react";
-import { View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import AppButton from "../AppButton";
 import { useFormikContext } from "formik";
 
-function SubmitButton({ title }) {
+function SubmitButton({ title, style, ...otherProps }) {
   const { handleSubmit } = useFormikContext();
-  return <AppButton title={title} onPress={handleSubmit}></AppButton>;
+  return (
+    <View style={styles.button}>
+      <AppButton title={title} onPress={handleSubmit}></AppButton>
+    </View>
+  );
 }
-
+const styles = StyleSheet.create({
+  button: {
+    alignItems: "center",
+    paddingTop: 10,
+  },
+});
 export default SubmitButton;

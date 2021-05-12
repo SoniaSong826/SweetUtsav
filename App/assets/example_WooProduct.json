@@ -143,3 +143,60 @@ Object {
   "virtual": false,
   "weight": "",
 }
+/////////////////////////////////////////////////////////////////////////////
+Array [
+  Object {
+    "_links": Object {
+      "collection": Array [
+        Object {
+          "href": "https://melbourne.sweetutsav.com.au/wp-json/wc/v2/products/10985/reviews",
+        },
+      ],
+      "self": Array [
+        Object {
+          "href": "https://melbourne.sweetutsav.com.au/wp-json/wc/v2/products/10985/reviews/1000",
+        },
+      ],
+      "up": Array [
+        Object {
+          "href": "https://melbourne.sweetutsav.com.au/wp-json/wc/v2/products/10985",
+        },
+      ],
+    },
+    "date_created": "2021-05-11T16:05:44",
+    "date_created_gmt": "2021-05-11T06:05:44",
+    "email": "brian@nikeeworld.com",
+    "id": 1000,
+    "name": "brian2021",
+    "rating": 0,
+    "review": "Great taste! My children like it!",
+    "verified": false,
+  },
+  Object {
+    "_links": Object {
+      "collection": Array [
+        Object {
+          "href": "https://melbourne.sweetutsav.com.au/wp-json/wc/v2/products/10985/reviews",
+        },
+      ],
+      "self": Array [
+        Object {
+          "href": "https://melbourne.sweetutsav.com.au/wp-json/wc/v2/products/10985/reviews/1001",
+        },
+      ],
+      "up": Array [
+        Object {
+          "href": "https://melbourne.sweetutsav.com.au/wp-json/wc/v2/products/10985",
+        },
+      ],
+    },
+    "date_created": "2021-05-11T16:06:48",
+    "date_created_gmt": "2021-05-11T06:06:48",
+    "email": "brian@nikeeworld.com",
+    "id": 1001,
+    "name": "brian2021",
+    "rating": 0,
+    "review": "Great taste! My children like it very much!",
+    "verified": false,
+  },
+]

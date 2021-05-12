@@ -5,22 +5,41 @@ import {
   StyleSheet,
   ImageBackground,
   ScrollView,
+  Dimensions,
 } from "react-native";
 import listingsApi from "../api/listings";
 import colors from "../config/colors";
 import AppText from "../components/AppText";
 import AppButton from "../components/AppButton";
-import Menu from "../components/Menu";
-
+import MenuWoo from "../components/MenuWoo";
 import AppPicker from "../components/form/AppPicker";
 import AppTextInput from "../components/AppTextInput";
+import WooCommerceAPI from "react-native-woocommerce-api";
+import Reviews from "../components/Reviews";
 
-
-function ItemDetailsScreen({ route }) {
+function ItemDetailsScreen({ route, navigation }) {
   const listing = route.params["item"];
   const [listings, setListings] = useState([]);
   const categories = [];
   const attributes = listing.attributes[0].options;
+
+  const WooCommerceApp = new WooCommerceAPI({
+    url: "https://melbourne.sweetutsav.com.au/", // Your store URL
+    ssl: true,
+    consumerKey: "ck_c051b081b4f1dcecabddabfe83682fcc4ea49b72", // Your consumer secret
+    consumerSecret: "cs_c4a1ee8a76a58cbb53b75a9704fc1806056c58b0", // Your consumer secret
+    wpAPI: true, // Enable the WP REST API integration
+    version: "wc/v2", // WooCommerce WP REST API version
+    queryStringAuth: true,
+  });
+
+  WooCommerceApp.get("products/10985/reviews")
+    .then((newData) => {
+      console.log(newData);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 
   for (var i in attributes) {
     const label = JSON.stringify(attributes[i]);
@@ -58,7 +77,7 @@ function ItemDetailsScreen({ route }) {
         <View style={styles.textButtonContainer}>
           <View style={styles.textsContainer}>
             <AppText style={styles.itemName}>{listing.name}</AppText>
-            <AppText style={styles.itemPrice}>{listing.price}</AppText>
+            <AppText style={styles.itemPrice}>$ {listing.price}</AppText>
           </View>
         </View>
         <View style={styles.selectionsContainer}>
@@ -88,27 +107,34 @@ function ItemDetailsScreen({ route }) {
         <View style={styles.underlineTextbox}>
           <AppText style={styles.primaryTitle}>Description</AppText>
         </View>
-        <AppText style={styles.regulartext}>
-          A popular sweet from the Indian subcontinent, balushahi is similar to
-          a glazed doughnut. Incredibly rich in taste, this sweet is all time
-          favorite.
-        </AppText>
+        {listing.description == "" ? (
+          <AppText style={styles.regulartext}>
+            No Description for this Product
+          </AppText>
+        ) : (
+          <AppText style={styles.regulartext}>
+            {listing.description.trim().replace("<p>", "").replace("</p>", "")}
+          </AppText>
+        )}
         <View style={styles.underlineTextbox}>
           <AppText style={styles.primaryTitle}>Additional Information</AppText>
         </View>
-        <AppText style={styles.boldtext}>Option: 1Kg, 500g</AppText>
+        <AppText style={styles.boldtext}>
+          Option: {attributes.toString()}
+        </AppText>
         <View style={styles.underlineTextbox}>
           <AppText style={styles.primaryTitle}>Reviews</AppText>
         </View>
-        <AppText style={styles.boldtext}>John Smith </AppText>
-        <AppText style={styles.regulartext}>
-          Great taste! My children like it!
-        </AppText>
-        <AppText style={styles.regulartext}>6 Apr 2021</AppText>
+        <Reviews productID={listing.id}></Reviews>
         <View style={styles.underlineTextbox}>
           <AppText style={styles.secondaryTitle}>Related Products</AppText>
         </View>
-        <Menu></Menu>
+        <MenuWoo
+          searchBarVisible={false}
+          categoryVisible={false}
+          category={listing.categories[listing.categories.length - 1].id}
+          navigation={navigation}
+        />
       </ScrollView>
     </ImageBackground>
   );
@@ -117,15 +143,15 @@ const styles = StyleSheet.create({
   backGround: {
     flex: 1,
   },
+
   image: {
     marginVertical: 15,
-    width: 250,
+    width: "70%",
+    alignItems: "center",
     height: 250,
   },
   scrollView: {
-    width: "100%",
     alignItems: "center",
-    justifyContent: "center",
   },
   textsContainer: {
     justifyContent: "center",
@@ -163,6 +189,7 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto_700Bold",
     width: "90%",
     lineHeight: 20,
+    fontSize: 15,
     color: colors.black,
   },
   weightOption: {
@@ -170,9 +197,10 @@ const styles = StyleSheet.create({
   },
   amountOption: {
     width: 165,
+    marginBottom: 10,
   },
   primaryTitle: {
-    marginTop: 8,
+    marginTop: 20,
     fontSize: 20,
     textAlign: "left",
     color: colors.primary,
@@ -181,7 +209,7 @@ const styles = StyleSheet.create({
     width: "90%",
     borderColor: colors.lightGray,
     paddingBottom: 2,
-    marginBottom: 5,
+    marginBottom: 8,
     borderBottomWidth: 1,
   },
   secondaryTitle: {
@@ -191,7 +219,7 @@ const styles = StyleSheet.create({
     color: colors.secondary,
   },
   regulartext: {
-    textAlign: "left",
+    textAlign: "auto",
     lineHeight: 20,
     fontSize: 15,
     width: "90%",

@@ -45,8 +45,10 @@ function ContactUsScreen(props) {
               subject: userInfo.subject,
               body:
                 userInfo.message +
-                "\n" +"\n"+
-                userInfo.firstName +" "+
+                "\n" +
+                "\n" +
+                userInfo.firstName +
+                " " +
                 userInfo.lastName,
             }).catch(console.error);
           }}
@@ -61,7 +63,7 @@ function ContactUsScreen(props) {
           <AppFormFieldWithTitle name="lastName" title="Last Name" />
           <AppFormFieldWithTitle name="subject" title="Subject" />
           <AppFormFieldWithTitle name="message" title="Message" multiline />
-          <SubmitButton title="Submit" />
+          <SubmitButton style= {styles.button} title="Submit" />
         </AppForm>
       </ScrollView>
     </ImageBackground>
@@ -77,10 +79,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-  },
-  button: {
-    alignItems: "center",
-    paddingTop: 10,
   },
 });
 export default ContactUsScreen;

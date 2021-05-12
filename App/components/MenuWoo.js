@@ -242,7 +242,7 @@ export default class MenuWoo extends Component {
                 price={item.price}
                 image={require("../assets/icon_default.jpg")}
                 onPress={() =>
-                  navigation.navigate(routes.LISTING_DETAILS, { item })
+                  navigation.push(routes.LISTING_DETAILS, { item })
                 }
               ></Card>
             ) : (
@@ -251,7 +251,7 @@ export default class MenuWoo extends Component {
                 price={item.price}
                 image={{ uri: item.images[0].src }}
                 onPress={() =>
-                  navigation.navigate(routes.LISTING_DETAILS, { item })
+                  navigation.push(routes.LISTING_DETAILS, { item })
                 }
               ></Card>
             )
