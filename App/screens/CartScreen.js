@@ -12,11 +12,12 @@ import {
 } from "react-native";
 import colors from "../config/colors";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import AppText from "../components/AppText";
+import routes from "../navigation/route";
 import ListItemDeleteAction from "../components/ListItemDeleteAction";
 import AppButton from "../components/AppButton";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Swipeable from "react-native-gesture-handler/Swipeable";
+import CartItem from "../components/CartItem";
 
 const width = Dimensions.get("window").width;
 
@@ -39,7 +40,6 @@ export default class CartScreen extends Component {
     AsyncStorage.getItem("cart")
       .then((cart) => {
         if (cart !== null) {
-          // We have data!!
           const cartfood = JSON.parse(cart);
           this.setState({ dataCart: cartfood });
         }
@@ -68,6 +68,7 @@ export default class CartScreen extends Component {
     AsyncStorage.setItem("cart", JSON.stringify(dataCar));
   }
   render() {
+    const { navigation } = this.props;
     return (
       <ImageBackground
         style={styles.backGround}
@@ -76,124 +77,32 @@ export default class CartScreen extends Component {
         <ScrollView contentContainerStyle={styles.container}>
           {this.state.dataCart.map((item, i) => {
             return (
-              <Swipeable
-                renderRightActions={() => (
-                  <ListItemDeleteAction onPress={() => this.handleDelete(i)} />
-                )}
-              >
-                <View style={styles.card}>
-                  <Image
-                    style={styles.image}
-                    source={{ uri: item.food.images[0].src }}
-                  />
-                  <View>
-                    <AppText style={styles.title}>{item.food.name}</AppText>
-                    <AppText style={styles.price}>
-                      ${" "}
-                      {Math.round(item.food.price * item.quantity * 100) / 100}
-                    </AppText>
-                  </View>
-                  <View style={{ flexDirection: "row", alignItems: "center" }}>
-                    <TouchableOpacity
-                      onPress={() => this.onChangeQual(i, false)}
-                    >
-                      <MaterialCommunityIcons
-                        name="minus-circle"
-                        size={30}
-                        color={colors.primary}
-                      />
-                    </TouchableOpacity>
-                    <AppText style={styles.text}>{item.quantity}</AppText>
-                    <TouchableOpacity
-                      onPress={() => this.onChangeQual(i, true)}
-                    >
-                      <MaterialCommunityIcons
-                        name="plus-circle"
-                        size={30}
-                        color={colors.primary}
-                      />
-                    </TouchableOpacity>
-                  </View>
-                </View>
-              </Swipeable>
+              <CartItem
+                title={item.food.name}
+                price={item.food.price}
+                amount={item.quantity}
+                option={item.option}
+                image={item.food.images[0].src}
+                renderRightAction={() => this.handleDelete(i)}
+                minusAction={() => this.onChangeQual(i, false)}
+                plusAction={() => this.onChangeQual(i, true)}
+              ></CartItem>
             );
           })}
           <AppButton style={styles.button} title="Check Out"></AppButton>
         </ScrollView>
-
-        {/* <FlatList
-        data={dataCart}
-        style={styles.flatList}
-        keyExtractor={(dataCart) => dataCart.id.toString()}
-        renderItem={({ item }) => (
-          <View style={styles.content}>
-            <CartItem
-              title={item.title}
-              price={item.price}
-              amount={item.amount}
-              option={item.option}
-              image={item.image}
-              renderRightAction={() => (
-                <ListItemDeleteAction onPress={() => handleDelete(item)} />
-              )}
-            ></CartItem>
-          </View>
-        )}
-        contentContainerStyle={{ alignItems: "center" }}
-      ></FlatList>
-      <AppText style={styles.total}>Total：$35.48</AppText>
-      <AppButton style={styles.button} title="Check Out"></AppButton> */}
       </ImageBackground>
     );
   }
 }
 const styles = StyleSheet.create({
-  card: {
-    width: width - 10,
-    backgroundColor: colors.white,
-    marginTop: 10,
-    paddingHorizontal: 12,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingVertical: 8,
-    borderRadius: 7,
-  },
-  container: {
-    width: width,
-    alignItems: "center",
-  },
-  image: {
-    width: 90,
-    height: 90,
-    marginBottom: 10,
-  },
-  price: {
-    fontSize: 20,
-  },
-  itemDetailsContainer: {
-    flexDirection: "row",
-  },
-  textContainer: {
-    marginLeft: 20,
-    justifyContent: "center",
-    alignContent: "center",
-  },
-  title: {
-    flexWrap: "nowrap",
-    color: colors.black,
-    fontSize: 16,
-    marginBottom: 3,
-  },
-  text: {
-    color: colors.black,
-    fontFamily: "Roboto_400Regular",
-    fontSize: 15,
-    marginHorizontal: 5,
-  },
   backGround: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
   },
+  container:{
+    width:width,
+    alignItems:"center"
+  }
 });

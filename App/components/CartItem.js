@@ -1,33 +1,73 @@
 import { color } from "ansi-styles";
 import React from "react";
-import { View, StyleSheet, Image, Dimensions } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Image,
+  Dimensions,
+  renderRightAction,
+  TouchableOpacity,
+} from "react-native";
 import colors from "../config/colors";
+import ListItemDeleteAction from './ListItemDeleteAction';
 import AppText from "./AppText";
 import Swipeable from "react-native-gesture-handler/Swipeable";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-function CartItem({ title, price, amount, option, image, renderRightAction }) {
+function CartItem({
+  title,
+  price,
+  amount,
+  option,
+  image,
+  onPress,
+  renderRightAction,
+  minusAction,
+  plusAction,
+}) {
   return (
-    <Swipeable renderRightActions={renderRightAction}>
-      <View style={styles.card}>
-        <View style={styles.itemDetailsContainer}>
-          <Image style={styles.image} source={image} />
-          <View style={styles.textContainer}>
+    <View>
+      <Swipeable
+        renderRightActions={() => (
+          <ListItemDeleteAction onPress={renderRightAction} />
+        )}
+      >
+        <View style={styles.card} onPress={onPress}>
+          <Image style={styles.image} source={{ uri: image }} />
+          <View>
             <AppText style={styles.title}>{title}</AppText>
-            <AppText style={styles.text}>{"Amount: " + amount}</AppText>
-            <AppText style={styles.text}>{"Option: " + option}</AppText>
+            <AppText style={styles.price}>
+              $ {Math.round(price * amount * 100) / 100}
+            </AppText>
+          </View>
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <TouchableOpacity onPress={minusAction}>
+              <MaterialCommunityIcons
+                name="minus-circle"
+                size={30}
+                color={colors.primary}
+              />
+            </TouchableOpacity>
+            <AppText style={styles.text}>{amount}</AppText>
+            <TouchableOpacity onPress={plusAction}>
+              <MaterialCommunityIcons
+                name="plus-circle"
+                size={30}
+                color={colors.primary}
+              />
+            </TouchableOpacity>
           </View>
         </View>
-          <AppText style={styles.price}>{price}</AppText>
-      </View>
-    </Swipeable>
+      </Swipeable>
+    </View>
   );
 }
 const styles = StyleSheet.create({
   card: {
-    width: windowWidth - 10,
+    width: windowWidth - 20,
     backgroundColor: colors.white,
     marginTop: 10,
     paddingHorizontal: 12,
@@ -35,8 +75,20 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     paddingVertical: 8,
-    borderRadius:7,
-
+    shadowOffset: { width: 1, height: 1 },
+    shadowColor: colors.black,
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+    elevation: 2,
+    borderRadius: 7,
+  },
+  image: {
+    width: 90,
+    height: 90,
+    marginBottom: 10,
+  },
+  price: {
+    fontSize: 20,
   },
   itemDetailsContainer: {
     flexDirection: "row",
@@ -50,21 +102,13 @@ const styles = StyleSheet.create({
     flexWrap: "nowrap",
     color: colors.black,
     fontSize: 16,
-    marginBottom:3,
+    marginBottom: 3,
   },
   text: {
     color: colors.black,
     fontFamily: "Roboto_400Regular",
-    fontSize: 12,
-    flexWrap: "nowrap",
-  },
-  image: {
-    width: 90,
-    height: 90,
-    marginBottom: 10,
-  },
-  price: {
-    fontSize: 20,
+    fontSize: 15,
+    marginHorizontal: 5,
   },
 });
 

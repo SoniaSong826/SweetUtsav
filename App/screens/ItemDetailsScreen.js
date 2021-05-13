@@ -30,13 +30,13 @@ function onClickAddCart(data, amount, category) {
       if (datacart !== null) {
         const cart = JSON.parse(datacart);
         cart.push(itemcart);
+        console.log(cart);
         AsyncStorage.setItem("cart", JSON.stringify(cart));
       } else {
         const cart = [];
         cart.push(itemcart);
         AsyncStorage.setItem("cart", JSON.stringify(cart));
       }
-      alert("Product Added");
     })
     .catch((err) => {
       alert(err);
