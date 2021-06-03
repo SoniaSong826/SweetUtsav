@@ -7,19 +7,15 @@ import { useFormikContext } from "formik";
 import colors from "../../config/colors";
 import AppFormField from "./AppFormField";
 
-function AppFormFieldWithTitle({ title, name, ...otherProps }) {
-  const {
-    setFieldTouched,
-    setFieldValue,
-    errors,
-    touched,
-    values,
-  } = useFormikContext();
+function AppFormFieldWithTitle({ style, title, name, ...otherProps }) {
+  const { setFieldTouched, setFieldValue, errors, touched, values } =
+    useFormikContext();
   return (
     <>
       <View style={styles.container}>
         <AppText style={styles.text}>{title}</AppText>
         <AppTextInput
+          style={style}
           onBlur={() => setFieldTouched(name)}
           onChangeText={(text) => setFieldValue(name, text)}
           value={values[name]}
@@ -36,7 +32,6 @@ function AppFormFieldWithTitle({ title, name, ...otherProps }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     alignItems: "flex-start",
     marginHorizontal: 10,
     marginTop: 10,
@@ -45,8 +40,6 @@ const styles = StyleSheet.create({
     color: colors.black,
     fontSize: 15,
   },
-  field: {
-    flex: 1,
-  },
+  field: {},
 });
 export default AppFormFieldWithTitle;

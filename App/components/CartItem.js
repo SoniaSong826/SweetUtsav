@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import colors from "../config/colors";
-import ListItemDeleteAction from './ListItemDeleteAction';
+import ListItemDeleteAction from "./ListItemDeleteAction";
 import AppText from "./AppText";
 import Swipeable from "react-native-gesture-handler/Swipeable";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -29,47 +29,48 @@ function CartItem({
   plusAction,
 }) {
   return (
-    <View>
-      <Swipeable
-        renderRightActions={() => (
-          <ListItemDeleteAction onPress={renderRightAction} />
-        )}
-      >
-        <View style={styles.card} onPress={onPress}>
+    <Swipeable
+      renderRightActions={() => (
+        <ListItemDeleteAction onPress={renderRightAction} />
+      )}
+    >
+      <View style={styles.card} onPress={onPress}>
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
           <Image style={styles.image} source={{ uri: image }} />
-          <View>
+          <View style={styles.textContainer}>
             <AppText style={styles.title}>{title}</AppText>
             <AppText style={styles.price}>
               $ {Math.round(price * amount * 100) / 100}
             </AppText>
           </View>
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <TouchableOpacity onPress={minusAction}>
-              <MaterialCommunityIcons
-                name="minus-circle"
-                size={30}
-                color={colors.primary}
-              />
-            </TouchableOpacity>
-            <AppText style={styles.text}>{amount}</AppText>
-            <TouchableOpacity onPress={plusAction}>
-              <MaterialCommunityIcons
-                name="plus-circle"
-                size={30}
-                color={colors.primary}
-              />
-            </TouchableOpacity>
-          </View>
         </View>
-      </Swipeable>
-    </View>
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <TouchableOpacity onPress={minusAction}>
+            <MaterialCommunityIcons
+              name="minus-circle"
+              size={30}
+              color={colors.primary}
+            />
+          </TouchableOpacity>
+          <AppText style={styles.text}>{amount}</AppText>
+          <TouchableOpacity onPress={plusAction}>
+            <MaterialCommunityIcons
+              name="plus-circle"
+              size={30}
+              color={colors.primary}
+            />
+          </TouchableOpacity>
+        </View>
+      </View>
+    </Swipeable>
   );
 }
 const styles = StyleSheet.create({
   card: {
     width: windowWidth - 20,
+    marginHorizontal: 10,
     backgroundColor: colors.white,
-    marginTop: 10,
+    marginVertical: 5,
     paddingHorizontal: 12,
     flexDirection: "row",
     justifyContent: "space-between",
@@ -99,7 +100,8 @@ const styles = StyleSheet.create({
     alignContent: "center",
   },
   title: {
-    flexWrap: "nowrap",
+    width:windowWidth*0.4,
+    flexWrap: "wrap",
     color: colors.black,
     fontSize: 16,
     marginBottom: 3,

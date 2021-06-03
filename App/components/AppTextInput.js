@@ -9,9 +9,9 @@ import {
 } from "@expo-google-fonts/roboto";
 import defaultStyles from "../config/styles";
 
-function AppTextInput({ icon, height, ...otherProps }) {
+function AppTextInput({ style,icon, height, ...otherProps }) {
   return (
-    <View style={[styles.container,{height:height}]}>
+    <View style={[styles.container,{height:height},style]}>
       {icon && (
         <MaterialCommunityIcons
           name={icon}

@@ -1,17 +1,16 @@
 import React from "react";
-import { Image, StyleSheet, View,TouchableOpacity } from "react-native";
+import { Image, StyleSheet, View, TouchableOpacity } from "react-native";
 import AppText from "../components/AppText";
 import colors from "../config/colors";
 
 const defaultPhoto = require("../assets/icon.png");
-function MyAccountScreen({ photo = defaultPhoto, firstName, lastName, email }) {
+
+
+function MyAccountScreen({ photo = defaultPhoto, name, email }) {
   return (
     <View style={styles.container}>
-      <Image source={photo} style={styles.photo}></Image>
-      <AppText style={styles.name}>
-        {firstName} {lastName}
-      </AppText>
-      <AppText style={styles.email}>{email}</AppText>
+      <Image source={{ uri: photo }} style={styles.photo}></Image>
+      <AppText style={styles.name}>{name}</AppText>
       <TouchableOpacity
         style={styles.customBtnBG}
         onPress={() => navigation.navigate("Edit Profile")}
@@ -40,11 +39,6 @@ const styles = StyleSheet.create({
   name: {
     marginVertical: 5,
     fontSize: 25,
-    color: colors.darkSecondary,
-  },
-  email: {
-    fontFamily: "Roboto_400Regular",
-    fontSize: 15,
     color: colors.darkSecondary,
   },
   customBtnText: {

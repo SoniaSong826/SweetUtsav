@@ -22,7 +22,8 @@ import mainContext from "../context/Context";
 import AppButton from "../components/AppButton";
 import colors from "../config/colors";
 
-function LoginScreen(props) {
+
+function LoginScreen({ navigation }) {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const { userProfile, loggingIn, doLogin, error } = useContext(mainContext);
@@ -92,9 +93,18 @@ function LoginScreen(props) {
               </View>
               <AppButton
                 style={styles.button}
+                color="darkGray"
+                icon="wordpress"
+                icon_size={35}
                 onPress={() => doLogin(email, password)}
                 disabled={loggingIn}
-                title="Login to Wordpress"
+                title="Login"
+              ></AppButton>
+              <AppButton
+                icon="wordpress"
+                icon_size={35}
+                onPress={() => navigation.navigate("SignUp")}
+                title="Register"
               ></AppButton>
             </AppForm>
           </View>
@@ -108,17 +118,20 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   logo: {
-    width: 150,
-    height: 150,
+    width: 180,
+    height: 180,
     marginBottom: 30,
   },
   error: {
+    width: "90%",
     backgroundColor: "#f8d7da",
     padding: 10,
     borderRadius: 5,
+    borderWidth: 1,
     borderColor: colors.danger,
   },
   errortext: {
+    fontFamily: "Roboto_400Regular",
     color: colors.danger,
   },
   container: {

@@ -5,7 +5,6 @@ import {
   StyleSheet,
   ImageBackground,
   ScrollView,
-  Dimensions,
 } from "react-native";
 import listingsApi from "../api/listings";
 import colors from "../config/colors";
@@ -20,26 +19,41 @@ import Reviews from "../components/Reviews";
 
 function onClickAddCart(data, amount, category) {
   const itemcart = {
-    food: data,
+    id: data.id,
+    name: data.name,
     quantity: amount == "" ? 1 : amount,
     option: category,
+    price: data.price,
+    image: data.images[0].src,
   };
 
   AsyncStorage.getItem("cart")
     .then((datacart) => {
-      if (datacart !== null) {
+      if (datacart !== "[]") {
         const cart = JSON.parse(datacart);
-        cart.push(itemcart);
-        console.log(cart);
-        AsyncStorage.setItem("cart", JSON.stringify(cart));
+        for (let i in cart) {
+          if (
+            cart[i].id === itemcart.id &&
+            cart[i].option !== itemcart.option
+          ) {
+            cart[i].quantity = cart[i].quantity + amount;
+            AsyncStorage.setItem("cart", JSON.stringify(cart));
+            return;
+          } else {
+            cart.push(itemcart);
+            AsyncStorage.setItem("cart", JSON.stringify(cart));
+          }
+        }
+        
       } else {
         const cart = [];
+
         cart.push(itemcart);
         AsyncStorage.setItem("cart", JSON.stringify(cart));
       }
     })
     .catch((err) => {
-      alert(err);
+      console.log(err);
     });
 }
 
@@ -50,18 +64,18 @@ function ItemDetailsScreen({ route, navigation }) {
   const attributes = listing.attributes[0].options;
 
   const WooCommerceApp = new WooCommerceAPI({
-    url: "https://melbourne.sweetutsav.com.au/", // Your store URL
+    url: "http://carolinesprings.sweetutsav.com.au/", // Your store URL
     ssl: true,
-    consumerKey: "ck_c051b081b4f1dcecabddabfe83682fcc4ea49b72", // Your consumer secret
-    consumerSecret: "cs_c4a1ee8a76a58cbb53b75a9704fc1806056c58b0", // Your consumer secret
+    consumerKey: "ck_6a971880cc3e358b3e892536128d515795bc1ca0", // Your consumer secret
+    consumerSecret: "cs_d0355515970cabedf9ac1ac351dab8bb15435066", // Your consumer secret
     wpAPI: true, // Enable the WP REST API integration
-    version: "wc/v2", // WooCommerce WP REST API version
+    version: "wc/v3", // WooCommerce WP REST API version
     queryStringAuth: true,
   });
 
   WooCommerceApp.get("products/10985/reviews")
     .then((newData) => {
-      console.log(newData);
+      //console.log(newData);
     })
     .catch((error) => {
       console.log(error);

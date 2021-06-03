@@ -27,16 +27,15 @@ function CategoriesScreen({ navigation }) {
               style={styles.postView}
               onPress={() =>
                 navigation.navigate("Category Products", {
-                  categoryID: 78,
-                  categoryName: "Dry Sweets",
+                  categoryID: 112,
+                  categoryName: "Savouries",
                 })
               }
             >
               <Image
                 style={styles.post}
                 source={{
-                  uri:
-                    "https://melbourne.sweetutsav.com.au/wp-content/uploads/2021/05/dry.png",
+                  uri: "http://carolinesprings.sweetutsav.com.au/wp-content/uploads/2021/06/savouries_link.jpg",
                 }}
               ></Image>
             </TouchableOpacity>
@@ -45,40 +44,32 @@ function CategoriesScreen({ navigation }) {
               onPress={() =>
                 navigation.navigate("Category Products", {
                   categoryID: 77,
-                  categoryName: "Fridge Sweets",
+                  categoryName: "Desserts",
                 })
               }
             >
               <Image
                 style={styles.post}
                 source={{
-                  uri:
-                    "https://melbourne.sweetutsav.com.au/wp-content/uploads/2021/05/fridge.png",
+                  uri: "http://carolinesprings.sweetutsav.com.au/wp-content/uploads/2021/06/desserts_link.jpg",
                 }}
               ></Image>
             </TouchableOpacity>
-          </View>
-          <View style={styles.logoRow}>
-            <Image
-              style={styles.logo}
-              source={require("../assets/icon.png")}
-            ></Image>
           </View>
           <View style={styles.postRow}>
             <TouchableOpacity
               style={styles.postView}
               onPress={() =>
                 navigation.navigate("Category Products", {
-                  categoryID: 100,
-                  categoryName: "Platters",
+                  categoryID: 78,
+                  categoryName: "Sweets",
                 })
               }
             >
               <Image
                 style={styles.post}
                 source={{
-                  uri:
-                    "https://melbourne.sweetutsav.com.au/wp-content/uploads/2021/05/platers.png",
+                  uri: "http://carolinesprings.sweetutsav.com.au/wp-content/uploads/2021/06/sweets_link.jpg",
                 }}
               ></Image>
             </TouchableOpacity>
@@ -94,8 +85,41 @@ function CategoriesScreen({ navigation }) {
               <Image
                 style={styles.post}
                 source={{
-                  uri:
-                    "https://melbourne.sweetutsav.com.au/wp-content/uploads/2021/05/snacks.png",
+                  uri: "http://carolinesprings.sweetutsav.com.au/wp-content/uploads/2021/06/snacks_link.jpg",
+                }}
+              ></Image>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.postRow}>
+            <TouchableOpacity
+              style={styles.postView}
+              onPress={() =>
+                navigation.navigate("Category Products", {
+                  categoryID: 80,
+                  categoryName: "Platters",
+                })
+              }
+            >
+              <Image
+                style={styles.post}
+                source={{
+                  uri: "http://carolinesprings.sweetutsav.com.au/wp-content/uploads/2021/06/giftplatters_link.jpg",
+                }}
+              ></Image>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.postView}
+              onPress={() =>
+                navigation.navigate("Category Products", {
+                  categoryID: 100,
+                  categoryName: "Gift Boxes",
+                })
+              }
+            >
+              <Image
+                style={styles.post}
+                source={{
+                  uri: "http://carolinesprings.sweetutsav.com.au/wp-content/uploads/2021/06/giftboxes_link.jpg",
                 }}
               ></Image>
             </TouchableOpacity>
@@ -118,6 +142,7 @@ const styles = StyleSheet.create({
     width: windowWidth - 50,
     marginHorizontal: 25,
     alignItems: "center",
+    marginBottom:15,
     alignContent: "center",
   },
   postView: {
@@ -131,20 +156,6 @@ const styles = StyleSheet.create({
     width: windowWidth / 2.5,
     height: windowWidth / 1.7,
     borderRadius: 8,
-  },
-  logoRow: {
-    marginVertical: 10,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  logo: {
-    width: 118,
-    height: 128,
-  },
-  title: {
-    color: colors.white,
-    fontSize: 25,
-    paddingTop: Constants.statusBarHeight,
   },
 });
 export default CategoriesScreen;

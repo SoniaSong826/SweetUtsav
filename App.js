@@ -1,22 +1,42 @@
-
 import { NavigationContainer } from "@react-navigation/native";
-import MenuNavigator from "./App/navigation/MenuNavigator";
 import navigationTheme from "./App/navigation/navigationTheme";
-
+import AppLoading from "expo-app-loading";
+import {
+  useFonts,
+  Roboto_700Bold,
+  Roboto_400Regular,
+  Roboto_100Thin,
+  Roboto_500Medium,
+} from "@expo-google-fonts/roboto";
 import React, { useEffect, useState, useMemo } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { loginUrl } from "./App/constants/const";
+import { loginUrl, store } from "./App/constants/const";
 import { ActivityIndicator } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import Login from "./App/screens/Login";
-import Home from "./App/screens/Home";
 import { createStackNavigator } from "@react-navigation/stack";
 import mainContext, { doSome } from "./App/context/Context";
 import colors from "./App/config/colors";
 import LoginScreen from "./App/screens/LoginScreen";
-import AuthNavigator from "./App/navigation/AuthNavigator";
+import MainPageScreen from "./App/screens/MainPageScreen";
+import AllProductsScreen from "./App/screens/AllProductsScreen";
+import CategoriesScreen from "./App/screens/CategoriesScreen";
+import LocationScreen from "./App/screens/LocationScreen";
+import EventsScreen from "./App/screens/EventsScreen";
+import ContactUsScreen from "./App/screens/ContactUsScreen";
+import AboutUsScreen from "./App/screens/AboutUsScreen";
+import MyAccountScreen from "./App/screens/MyAccountScreen";
+import CartScreen from "./App/screens/CartScreen";
+import PoliciesScreen from "./App/screens/PoliciesScreen";
+import CartButton from "./App/components/CartButton";
+import ItemDetailsScreen from "./App/screens/ItemDetailsScreen";
+import SignUpScreen from "./App/screens/SignUpScreen";
+import CategoryProductScreen from "./App/screens/CategoryProductScreen";
+import PlaceOrderScreen from "./App/screens/PlaceOrderScreen";
+import LogoTitle from "./App/components/LogoTitle";
+import CityScreen from "./App/screens/CityScreen";
+import LocationSelecter from "./App/components/LocationSelecter";
 
-export default function App() {
+export default function App({route}) {
   const [isLoading, setIsLoading] = useState(true);
   const [isLogged, setIsLogged] = useState(false);
   const [userToken, setUserToken] = useState(null);
@@ -24,6 +44,13 @@ export default function App() {
 
   const [loggingIn, setloggingIn] = useState(false);
   const [error, setError] = useState(null);
+
+  let [fontsLoaded] = useFonts({
+    Roboto_700Bold,
+    Roboto_100Thin,
+    Roboto_500Medium,
+    Roboto_400Regular,
+  });
 
   useEffect(() => {
     AsyncStorage.getItem("userProfile").then((value) => {
@@ -51,7 +78,6 @@ export default function App() {
   };
 
   const doLogin = async (email, password) => {
-    //console.log(email + '...' + password);
     setloggingIn(true);
     setError(null);
     let formData = new FormData();
@@ -64,7 +90,7 @@ export default function App() {
         body: formData,
       });
       let json = await response.json();
-      //console.log(json);
+      console.log(json);
       if (json.status != false) {
         setError(null);
         try {
@@ -74,6 +100,7 @@ export default function App() {
               isLoggedIn: json.status,
               authToken: json.token,
               id: json.data.id,
+              email:json.data.email,
               name: json.data.user_login,
               avatar: json.avatar,
             })
@@ -97,7 +124,6 @@ export default function App() {
       }
       setloggingIn(false);
     } catch (error) {
-      //console.error(error);
       setError("Error connecting to server");
       setloggingIn(false);
     }
@@ -125,13 +151,202 @@ export default function App() {
       </View>
     );
   }
+  const Stack = createStackNavigator();
 
-  return (
+  return !fontsLoaded ? (
+    <AppLoading />
+  ) : (
     <mainContext.Provider value={wContext}>
       <NavigationContainer theme={navigationTheme}>
-        <AuthNavigator></AuthNavigator>
+        <Stack.Navigator
+          initialRouteName="Login"
+          screenOptions={{
+            headerTitleAlign: "center",
+            headerBackTitle: "Back",
+            headerStyle: {
+              backgroundColor: colors.secondary,
+            },
+            headerTitleStyle: {
+              fontFamily: "Roboto_700Bold",
+              fontSize: 22,
+              alignSelf: "center",
+            },
+            headerTintColor: colors.white,
+          }}
+        >
+          {isLogged == false ? (
+            <>
+              <Stack.Screen
+                name="Login"
+                component={LoginScreen}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="SignUp"
+                component={SignUpScreen}
+                options={() => ({
+                  headerLeftContainerStyle: { alignItems: "center" },
+                  headerTitle: "One Step to Go...",
+                  headerStyle: {
+                    backgroundColor: colors.primary,
+                  },
+                })}
+              />
+            </>
+          ) : (
+            <>
+              <Stack.Screen
+                name="Home"
+                component={MainPageScreen}
+                options={({ navigation, route }) => ({
+                  headerLeftContainerStyle: { alignItems: "center" },
+                  title: "Home",
+                  headerTitle: (props) => <LogoTitle {...props} />,
+                  headerLeft: () => (
+                    <LocationSelecter
+                      onPress={() => navigation.navigate("Pick City")}
+                    ></LocationSelecter>
+                  ),
+                  headerRight: () => (
+                    <CartButton
+                      onPress={() => navigation.navigate("My Cart")}
+                      title="My Cart"
+                    />
+                  ),
+                })}
+              />
+              <Stack.Screen
+                name="Pick City"
+                component={CityScreen}
+                options={() => ({
+                  headerLeftContainerStyle: { alignItems: "center" },
+                  headerTitle: "Choose Your City",
+                })}
+              />
+              <Stack.Screen
+                name="Order Now"
+                component={AllProductsScreen}
+                options={({ navigation }) => ({
+                  title: "All Products",
+                  headerRight: () => (
+                    <CartButton
+                      onPress={() => navigation.navigate("My Cart")}
+                      title="My Cart"
+                    />
+                  ),
+                })}
+              />
+              <Stack.Screen
+                name="My Cart"
+                component={CartScreen}
+                options={{
+                  title: "My Cart",
+                  headerStyle: {
+                    backgroundColor: colors.primary,
+                  },
+                }}
+              />
+              <Stack.Screen
+                name="Categories"
+                component={CategoriesScreen}
+                options={{
+                  title: "Categories",
+                }}
+              />
+              <Stack.Screen
+                name="My Account"
+                component={MyAccountScreen}
+                options={{
+                  title: "My Account",
+                  headerStyle: {
+                    backgroundColor: colors.secondary,
+                  },
+                  headerBackTitleStyle: {
+                    fontFamily: "Roboto_400Regular",
+                  },
+                  headerTintColor: colors.white,
+                  headerTitleStyle: {
+                    fontFamily: "Roboto_700Bold",
+                    fontSize: 22,
+                  },
+                }}
+              />
+              <Stack.Screen
+                name="Locations"
+                component={LocationScreen}
+                options={{
+                  title: "Locations",
+                }}
+              />
+              <Stack.Screen
+                name="Events"
+                component={EventsScreen}
+                options={{
+                  title: "Events",
+                }}
+              />
+              <Stack.Screen
+                name="Policies"
+                component={PoliciesScreen}
+                options={{
+                  title: "Policies",
+                }}
+              />
+              <Stack.Screen
+                name="Contact Us"
+                component={ContactUsScreen}
+                options={{
+                  title: "Contact Us",
+                }}
+              />
+              <Stack.Screen
+                name="Follow Us"
+                component={AboutUsScreen}
+                options={{
+                  title: "Follow Us",
+                }}
+              />
+              <Stack.Screen
+                name="Item Details"
+                component={ItemDetailsScreen}
+                options={({ route, navigation }) => ({
+                  title: route.params["item"].name,
+                  headerRight: () => (
+                    <CartButton
+                      onPress={() => navigation.navigate("My Cart")}
+                      title="My Cart"
+                    />
+                  ),
+                })}
+              />
+              <Stack.Screen
+                name="Category Products"
+                component={CategoryProductScreen}
+                options={({ route }) => ({
+                  title: route.params["categoryName"],
+                  headerRight: () => (
+                    <CartButton
+                      onPress={() => navigation.navigate("My Cart")}
+                      title="My Cart"
+                    />
+                  ),
+                })}
+              />
+              <Stack.Screen
+                name="Place Order"
+                component={PlaceOrderScreen}
+                options={() => ({
+                  headerLeftContainerStyle: { alignItems: "center" },
+                  headerTitle: "One Step to Go...",
+                  headerStyle: {
+                    backgroundColor: colors.primary,
+                  },
+                })}
+              />
+            </>
+          )}
+        </Stack.Navigator>
       </NavigationContainer>
     </mainContext.Provider>
   );
 }
-

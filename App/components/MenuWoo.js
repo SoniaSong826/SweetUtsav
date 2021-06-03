@@ -17,21 +17,22 @@ import CategoryButton from "./CategoryButton";
 const windowWidth = Dimensions.get("window").width;
 
 const categories = [
-  { id: 95, title: "All Products", color: "primary" },
-  { id: 77, title: "Fridge Sweets", color: "secondary" },
-  { id: 78, title: "Dry Sweets", color: "secondary" },
+  { id: 95, title: "All Products", color: "primary" }, // check
+  { id: 77, title: "Desserts", color: "secondary" }, // old fridge sweets
+  { id: 78, title: "Sweets", color: "secondary" }, // old dry sweets
   { id: 79, title: "Snacks", color: "secondary" },
-  { id: 100, title: "Gift Boxes", color: "secondary" },
+  { id: 100, title: "Gift Boxes", color: "secondary" }, //unknow id
   { id: 80, title: "Platters", color: "secondary" },
+  { id: 112, title: "Savouries", color: "secondary" }, // new category
 ];
 
 const WooCommerceApp = new WooCommerceAPI({
-  url: "https://melbourne.sweetutsav.com.au/", // Your store URL
+  url: "http://carolinesprings.sweetutsav.com.au/", // Your store URL
   ssl: true,
-  consumerKey: "ck_c051b081b4f1dcecabddabfe83682fcc4ea49b72", // Your consumer secret
-  consumerSecret: "cs_c4a1ee8a76a58cbb53b75a9704fc1806056c58b0", // Your consumer secret
+  consumerKey: "ck_6a971880cc3e358b3e892536128d515795bc1ca0", // Your consumer secret
+  consumerSecret: "cs_d0355515970cabedf9ac1ac351dab8bb15435066", // Your consumer secret
   wpAPI: true, // Enable the WP REST API integration
-  version: "wc/v3", // WooCommerce WP REST API version
+  version: "wc/v2", // WooCommerce WP REST API version
   queryStringAuth: true,
 });
 
@@ -56,44 +57,29 @@ export default class MenuWoo extends Component {
     WooCommerceApp.get("products", {
       category: this.state.category,
       per_page: 30,
+      page:this.state.page,
       status: "publish",
     })
       .then((newData) => {
         this.setState({ data: newData }, () => {
           this.setState({ loading: false });
         });
+        console.log(newData);
       })
       .catch((error) => {
         console.log(error);
       });
   }
 
-  async componentDidMount() {
-    this.fetchProductList();
-  }
-
 
   fetchProductList = () => {
-    const {
-      base_url,
-      c_key,
-      c_secret,
-      page,
-      searchValue,
-      category,
-    } = this.state;
-    let url = null;
-    if (searchValue) {
-      console.log(url);
-      url = `${base_url}/wp-json/wc/v3/products?status=publish&per_page=30&search=${searchValue}&page=${page}&consumer_key=${c_key}&consumer_secret=${c_secret}`;
-    } else {
-      console.log(url);
-      url = `${base_url}/wp-json/wc/v3/products?status=publish&per_page=30&category=${category}&page=${page}&consumer_key=${c_key}&consumer_secret=${c_secret}`;
-    }
-    this.setState({ loading: true });
-    setTimeout(() => {
-      fetch(url)
-        .then((response) => response.json())
+    if (this.state.searchValue) {
+      WooCommerceApp.get("products", {
+        search: this.state.searchValue,
+        per_page: 30,
+        page: this.state.page,
+        status: "publish",
+      })
         .then((responseJson) => {
           this.setState({
             data: this.state.data.concat(responseJson),
@@ -101,6 +87,7 @@ export default class MenuWoo extends Component {
             loading: false,
             refreshing: false,
           });
+          console.log(responseJson);
         })
         .catch((error) => {
           this.setState({
@@ -109,7 +96,30 @@ export default class MenuWoo extends Component {
             refreshing: false,
           });
         });
-    }, 1500);
+    } else {
+      WooCommerceApp.get("products", {
+        category: this.state.category,
+        per_page: 30,
+        page: this.state.page,
+        status: "publish",
+      })
+        .then((responseJson) => {
+          this.setState({
+            data: this.state.data.concat(responseJson),
+            error: responseJson.code || null,
+            loading: false,
+            refreshing: false,
+          });
+          console.log(responseJson);
+        })
+        .catch((error) => {
+          this.setState({
+            error,
+            loading: false,
+            refreshing: false,
+          });
+        });
+    }
   };
   handleRefresh = () => {
     this.setState(
@@ -136,7 +146,6 @@ export default class MenuWoo extends Component {
     );
   };
   handleSearch = (value) => {
-    console.log("uuoh", value);
     this.setState(
       {
         searchValue: value,
@@ -236,7 +245,7 @@ export default class MenuWoo extends Component {
           data={this.state.data}
           keyExtractor={(item) => `${item.id}`}
           renderItem={({ item }) =>
-            item.images.length == 0 ? (
+            item.images == undefined || item.images.length == 0 ? (
               <Card
                 title={item.name}
                 price={item.price}
@@ -258,7 +267,7 @@ export default class MenuWoo extends Component {
           }
           columnWrapperStyle={{ justifyContent: "flex-start" }}
           numColumns={3}
-          onEndReached={this.state.data.length > 0 ? this.handleLoadMore : null}
+          onMomentumScrollEnd={this.handleLoadMore}
           refreshing={this.state.refreshing}
           onRefresh={this.handleRefresh}
           horizontal={false}

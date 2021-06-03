@@ -11,10 +11,18 @@ export default class PostSlides extends Component {
     super(props);
     this.state = {
       images: [
-        {uri: "https://melbourne.sweetutsav.com.au/wp-content/uploads/2020/07/collagebannerslide1.jpg"},
-        {uri: "https://melbourne.sweetutsav.com.au/wp-content/uploads/2020/07/collageslide2.jpg"},
-        {uri: "https://melbourne.sweetutsav.com.au/wp-content/uploads/2020/07/collageslider3.jpg"},
-        {uri: "https://melbourne.sweetutsav.com.au/wp-content/uploads/2020/07/collageslide4.jpg"},
+        {
+          uri: "http://carolinesprings.sweetutsav.com.au/wp-content/uploads/2020/07/collageslider3.jpg",
+        },
+        {
+          uri: "http://carolinesprings.sweetutsav.com.au/wp-content/uploads/2020/07/collageslide4.jpg",
+        },
+        {
+          uri: "http://carolinesprings.sweetutsav.com.au/wp-content/uploads/2020/07/collagebannerslide1.jpg",
+        },
+        {
+          uri: "http://carolinesprings.sweetutsav.com.au/wp-content/uploads/2020/07/collageslide2.jpg",
+        },
       ],
     };
   }

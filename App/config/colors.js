@@ -8,9 +8,8 @@ export default {
   red: "#ED3923",
   lightPrimary: "",
   lightSecondary: "",
-  darkGray: "#595959",
+  darkGray: "#949494",
   lightGray: "#c6c6c6",
   danger: "#FF5252",
-  DoggerBlue:"#1e90ff",
-
+  DoggerBlue: "#1e90ff",
 };
