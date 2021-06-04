@@ -139,7 +139,7 @@ export default class CartScreen extends Component {
             </AppText>
           </View>
           <AppButton
-            onPress={() => navigation.push("Place Order")}
+            onPress={() => navigation.navigate("Address")}
             title="Check Out"
           ></AppButton>
         </View>

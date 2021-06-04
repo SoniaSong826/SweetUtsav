@@ -31,10 +31,10 @@ import CartButton from "./App/components/CartButton";
 import ItemDetailsScreen from "./App/screens/ItemDetailsScreen";
 import SignUpScreen from "./App/screens/SignUpScreen";
 import CategoryProductScreen from "./App/screens/CategoryProductScreen";
-import PlaceOrderScreen from "./App/screens/PlaceOrderScreen";
 import LogoTitle from "./App/components/LogoTitle";
 import CityScreen from "./App/screens/CityScreen";
 import LocationSelecter from "./App/components/LocationSelecter";
+import AddressScreen from "./App/screens/AddressScreen";
 
 export default function App({route}) {
   const [isLoading, setIsLoading] = useState(true);
@@ -332,15 +332,16 @@ export default function App({route}) {
                   ),
                 })}
               />
+
               <Stack.Screen
-                name="Place Order"
-                component={PlaceOrderScreen}
+                name="Address"
+                component={AddressScreen}
                 options={() => ({
-                  headerLeftContainerStyle: { alignItems: "center" },
-                  headerTitle: "One Step to Go...",
                   headerStyle: {
                     backgroundColor: colors.primary,
                   },
+                  headerLeftContainerStyle: { alignItems: "center" },
+                  headerTitle: "Almost There",
                 })}
               />
             </>
