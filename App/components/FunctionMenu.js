@@ -3,7 +3,7 @@ import { StyleSheet, View } from "react-native";
 import FunctionIcon from "./FunctionIcon";
 import colors from "../config/colors";
 
-function FunctionMenu({navigation}) {
+function FunctionMenu({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.menuColumn}>
@@ -32,16 +32,16 @@ function FunctionMenu({navigation}) {
         </View>
         <View style={styles.menuRow}>
           <FunctionIcon
-            title="Events"
-            iconName="party-popper"
-            color="secondary"
-            onPress={() => navigation.navigate("Events")}
-          ></FunctionIcon>
-          <FunctionIcon
-            title="Policies"
+            title="About Us"
             iconName="format-list-bulleted-square"
             color="secondary"
             onPress={() => navigation.navigate("Policies")}
+          ></FunctionIcon>
+          <FunctionIcon
+            title="Join Us"
+            iconName="hand"
+            color="secondary"
+            onPress={() => navigation.navigate("Events")}
           ></FunctionIcon>
           <FunctionIcon
             title="Contact Us"
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     width: "90%",
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom:4,
+    marginBottom: 4,
   },
 });
 export default FunctionMenu;

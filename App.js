@@ -282,7 +282,7 @@ export default function App({route}) {
                 name="Events"
                 component={EventsScreen}
                 options={{
-                  title: "Events",
+                  title: "Join Us",
                 }}
               />
               <Stack.Screen

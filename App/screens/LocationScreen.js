@@ -9,7 +9,7 @@ const mobileIcon ="cellphone";
 const sweetLocation = [
   {
     id: 1,
-    title: "Melbourne",
+    title: "Melbourne Coperator",
     address1: "Suite1301/227, Collins Street",
     address2: "Melbourne, VIC, 3000",
     tel: "(03) 8080 9933",

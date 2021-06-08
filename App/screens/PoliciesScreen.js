@@ -386,7 +386,7 @@ export default class Panel extends Component {
             onPress={this.changeLayout3}
             style={styles.Btn}
           >
-            <Text style={styles.title}>Shipping and Delivery</Text>
+            <Text style={styles.title}>Terms and Conditions</Text>
             <MaterialCommunityIcons
               name="chevron-down"
               size={30}

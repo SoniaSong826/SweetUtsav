@@ -17,34 +17,33 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import WooCommerceAPI from "react-native-woocommerce-api";
 import Reviews from "../components/Reviews";
 
-function onClickAddCart(data, amount, category) {
+function onClickAddCart(data, price, amount, category) {
   const itemcart = {
     id: data.id,
     name: data.name,
     quantity: amount == "" ? 1 : amount,
     option: category,
-    price: data.price,
+    price: price,
     image: data.images[0].src,
   };
 
   AsyncStorage.getItem("cart")
     .then((datacart) => {
-      if (datacart !== "[]") {
+      if (datacart !== null) {
         const cart = JSON.parse(datacart);
+
         for (let i in cart) {
           if (
-            cart[i].id === itemcart.id &&
-            cart[i].option !== itemcart.option
+            cart[i].id == itemcart.id &&
+            cart[i].option.label == itemcart.option.label
           ) {
             cart[i].quantity = cart[i].quantity + amount;
             AsyncStorage.setItem("cart", JSON.stringify(cart));
             return;
-          } else {
-            cart.push(itemcart);
-            AsyncStorage.setItem("cart", JSON.stringify(cart));
           }
         }
-        
+        cart.push(itemcart);
+        AsyncStorage.setItem("cart", JSON.stringify(cart));
       } else {
         const cart = [];
 
@@ -60,38 +59,43 @@ function onClickAddCart(data, amount, category) {
 function ItemDetailsScreen({ route, navigation }) {
   const listing = route.params["item"];
   const [listings, setListings] = useState([]);
+  const [price, setPrice] = useState(listing.price);
   const categories = [];
   const attributes = listing.attributes[0].options;
-
-  const WooCommerceApp = new WooCommerceAPI({
+  const variations = listing.variations;
+  const pricelist = [];
+  let pricesLoaded = false;
+  const WooCommerceApp2 = new WooCommerceAPI({
     url: "http://carolinesprings.sweetutsav.com.au/", // Your store URL
     ssl: true,
     consumerKey: "ck_6a971880cc3e358b3e892536128d515795bc1ca0", // Your consumer secret
     consumerSecret: "cs_d0355515970cabedf9ac1ac351dab8bb15435066", // Your consumer secret
     wpAPI: true, // Enable the WP REST API integration
-    version: "wc/v3", // WooCommerce WP REST API version
+    version: "wc/v2", // WooCommerce WP REST API version
     queryStringAuth: true,
   });
-
-  WooCommerceApp.get("products/10985/reviews")
-    .then((newData) => {
-      //console.log(newData);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-
-  for (var i in attributes) {
-    const label = JSON.stringify(attributes[i]);
+  for (let i in attributes) {
     categories.push({
-      label: label.substring(1, label.length - 1),
       value: i,
+      label: attributes[i],
     });
   }
 
+  if (!pricesLoaded) {
+    for (let i in variations) {
+      WooCommerceApp2.get("products/" + variations[i], {
+        status: "publish",
+      }).then((newData) => {
+        pricelist.push({ price: newData.price });
+        pricelist.sort((a, b) => a.price - b.price);
+      });
+    }
+    pricesLoaded = true;
+  }
   useEffect(() => {
     loadListings();
   }, []);
+
   const loadListings = async () => {
     const response = await listingsApi.getListings();
     setListings(response.data);
@@ -119,7 +123,7 @@ function ItemDetailsScreen({ route, navigation }) {
         <View style={styles.textButtonContainer}>
           <View style={styles.textsContainer}>
             <AppText style={styles.itemName}>{listing.name}</AppText>
-            <AppText style={styles.itemPrice}>$ {listing.price}</AppText>
+            <AppText style={styles.itemPrice}>$ {price}</AppText>
           </View>
         </View>
         <View style={styles.selectionsContainer}>
@@ -130,7 +134,10 @@ function ItemDetailsScreen({ route, navigation }) {
               placeholder="Options"
               items={categories}
               selectedItem={category}
-              onSelectItem={(item) => setCategory(item)}
+              onSelectItem={(item) => {
+                setCategory(item);
+                setPrice(pricelist[item.value].price);
+              }}
             ></AppPicker>
           </View>
           <View style={styles.amountOption}>
@@ -146,7 +153,7 @@ function ItemDetailsScreen({ route, navigation }) {
         </View>
         <AppButton
           title="Add to Cart"
-          onPress={() => onClickAddCart(listing, amount, category)}
+          onPress={() => onClickAddCart(listing, price, amount, category)}
         ></AppButton>
         <View style={styles.underlineTextbox}>
           <AppText style={styles.primaryTitle}>Description</AppText>

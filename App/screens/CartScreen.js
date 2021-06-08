@@ -3,17 +3,12 @@ import {
   View,
   StyleSheet,
   ImageBackground,
-  Text,
-  TouchableOpacity,
   ScrollView,
-  FlatList,
-  Image,
   Dimensions,
 } from "react-native";
 import colors from "../config/colors";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import routes from "../navigation/route";
-import ListItemDeleteAction from "../components/ListItemDeleteAction";
+
 import AppButton from "../components/AppButton";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Swipeable from "react-native-gesture-handler/Swipeable";
@@ -21,6 +16,7 @@ import CartItem from "../components/CartItem";
 import AppText from "../components/AppText";
 
 const width = Dimensions.get("window").width;
+const height = Dimensions.get("window").height;
 
 export default class CartScreen extends Component {
   constructor(props) {
@@ -112,22 +108,22 @@ export default class CartScreen extends Component {
         style={styles.backGround}
         source={require("../assets/lightOrange_background.jpg")}
       >
-        <ScrollView contentContainerStyle={styles.container}>
-          {this.state.dataCart.map((item, i) => {
-            return (
-              <CartItem
-                title={item.name}
-                price={item.price}
-                amount={item.quantity}
-                option={item.option}
-                image={item.image}
-                renderRightAction={() => this.handleDelete(i)}
-                minusAction={() => this.onChangeQual(i, false)}
-                plusAction={() => this.onChangeQual(i, true)}
-              ></CartItem>
-            );
-          })}
-        </ScrollView>
+          <ScrollView contentContainerStyle={{ height:height}}>
+            {this.state.dataCart.map((item, i) => {
+              return (
+                <CartItem
+                  title={item.name}
+                  price={item.price}
+                  amount={item.quantity}
+                  option={item.option.label}
+                  image={item.image}
+                  renderRightAction={() => this.handleDelete(i)}
+                  minusAction={() => this.onChangeQual(i, false)}
+                  plusAction={() => this.onChangeQual(i, true)}
+                ></CartItem>
+              );
+            })}
+          </ScrollView>
 
         <View style={styles.buttomRound}>
           <View style={styles.textContainer}>
@@ -151,10 +147,6 @@ const styles = StyleSheet.create({
   backGround: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center",
-  },
-  container: {
-    flex: 1,
     alignItems: "center",
   },
   textContainer: {

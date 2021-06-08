@@ -39,6 +39,7 @@ function CartItem({
           <Image style={styles.image} source={{ uri: image }} />
           <View style={styles.textContainer}>
             <AppText style={styles.title}>{title}</AppText>
+            <AppText style={styles.optionText}>Option: {option}</AppText>
             <AppText style={styles.price}>
               $ {Math.round(price * amount * 100) / 100}
             </AppText>
@@ -53,6 +54,7 @@ function CartItem({
             />
           </TouchableOpacity>
           <AppText style={styles.text}>{amount}</AppText>
+
           <TouchableOpacity onPress={plusAction}>
             <MaterialCommunityIcons
               name="plus-circle"
@@ -100,7 +102,7 @@ const styles = StyleSheet.create({
     alignContent: "center",
   },
   title: {
-    width:windowWidth*0.4,
+    width: windowWidth * 0.4,
     flexWrap: "wrap",
     color: colors.black,
     fontSize: 16,
@@ -111,6 +113,12 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto_400Regular",
     fontSize: 15,
     marginHorizontal: 5,
+  },
+  optionText: {
+    color: colors.darkGray,
+    fontFamily: "Roboto_400Regular",
+    fontSize: 13,
+    marginVertical:3,
   },
 });
 

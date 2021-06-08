@@ -64,7 +64,6 @@ export default class MenuWoo extends Component {
         this.setState({ data: newData }, () => {
           this.setState({ loading: false });
         });
-        console.log(newData);
       })
       .catch((error) => {
         console.log(error);
@@ -87,7 +86,6 @@ export default class MenuWoo extends Component {
             loading: false,
             refreshing: false,
           });
-          console.log(responseJson);
         })
         .catch((error) => {
           this.setState({

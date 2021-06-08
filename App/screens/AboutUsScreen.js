@@ -28,8 +28,7 @@ function AboutUsScreen() {
             <Image
               style={styles.banner}
               source={{
-                uri:
-                  "https://melbourne.sweetutsav.com.au/wp-content/uploads/2020/10/aboutus-banner.jpg",
+                uri: "http://carolinesprings.sweetutsav.com.au/wp-content/uploads/2020/09/sweetsBANNER1110X179.jpg",
               }}
             ></Image>
           </View>
@@ -107,8 +106,8 @@ const styles = StyleSheet.create({
   },
   banner: {
     width: windowWidth * 0.9,
-    height: 140,
-    borderRadius: 10,
+    height: 60,
+    borderRadius: 5,
     marginVertical: 25,
   },
   socialIconContainer: {
