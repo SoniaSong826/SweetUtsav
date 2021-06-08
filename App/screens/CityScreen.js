@@ -10,7 +10,7 @@ import mainContext from "../context/Context";
 const sweetCities = [
   {
     id: 1,
-    title: "Coperator",
+    title: "Melbourne Coperator",
     acronym: "COP",
     img: require("../assets/CityLogo/Melbourne.jpg"),
   },
@@ -95,12 +95,6 @@ const styles = StyleSheet.create({
     fontSize: 22,
     paddingTop: 50,
     color: colors.primary,
-  },
-  modalView: {
-    width: "100%",
-    height: "100%",
-    alignItems: "center",
-    justifyContent: "center",
   },
   flatList: {
     alignItems: "center",

@@ -22,7 +22,8 @@ function FunctionMenu({ navigation }) {
           <FunctionIcon
             title="My Account"
             iconName="account"
-            onPress={() => navigation.navigate("My Account")}
+            // onPress={() => navigation.navigate("My Account")}
+            
           ></FunctionIcon>
           <FunctionIcon
             title="Locations"
@@ -32,7 +33,7 @@ function FunctionMenu({ navigation }) {
         </View>
         <View style={styles.menuRow}>
           <FunctionIcon
-            title="About Us"
+            title="Policies"
             iconName="format-list-bulleted-square"
             color="secondary"
             onPress={() => navigation.navigate("Policies")}
@@ -50,7 +51,7 @@ function FunctionMenu({ navigation }) {
             onPress={() => navigation.navigate("Contact Us")}
           ></FunctionIcon>
           <FunctionIcon
-            title="Follow Us"
+            title="About Us"
             iconName="at"
             color="secondary"
             onPress={() => navigation.navigate("Follow Us")}

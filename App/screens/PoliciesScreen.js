@@ -445,7 +445,7 @@ export default class Panel extends Component {
 const styles = StyleSheet.create({
   backGround: { flex: 1 },
   text: {
-    fontSize: 17,
+    fontSize: 15,
     color: colors.black,
     fontFamily: "Roboto_400Regular",
     padding: 10,
@@ -453,7 +453,7 @@ const styles = StyleSheet.create({
     lineHeight: 22,
   },
   boldText: {
-    fontSize: 20,
+    fontSize: 17,
     lineHeight: 22,
     color: colors.black,
     fontFamily: "Roboto_700Bold",
@@ -461,7 +461,7 @@ const styles = StyleSheet.create({
     textAlign: "justify",
   },
   boldOrangeText: {
-    fontSize: 17,
+    fontSize: 15,
     lineHeight: 22,
     color: colors.primary,
     fontFamily: "Roboto_700Bold",

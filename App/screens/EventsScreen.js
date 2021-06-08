@@ -22,7 +22,7 @@ function EventsScreen() {
   return (
     <ImageBackground
       style={styles.backGround}
-      source={require("../assets/white_green_background.jpg")}
+      source={require("../assets/lightGreen_background.jpg")}
     >
       <ScrollView contentContainerStyle={{ alignItems: "center" }}>
         <Image

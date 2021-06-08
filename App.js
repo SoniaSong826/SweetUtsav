@@ -303,7 +303,7 @@ export default function App({route}) {
                 name="Follow Us"
                 component={AboutUsScreen}
                 options={{
-                  title: "Follow Us",
+                  title: "About Us",
                 }}
               />
               <Stack.Screen

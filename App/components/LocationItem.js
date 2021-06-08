@@ -1,8 +1,17 @@
 import React from "react";
-import { StyleSheet, View, Image, Dimensions } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Image,
+  Dimensions,
+  TouchableOpacity,
+} from "react-native";
 import colors from "../config/colors";
 import AppText from "./AppText";
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import * as SMS from "expo-sms";
+import call from "react-native-phone-call";
+import email from "react-native-email";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -14,9 +23,13 @@ function LocationItem({
   address2,
   tel,
   mobile,
-  iconFirst,
-  iconSecond,
+  facebookLink,
+  emailLink,
 }) {
+  const telephone = {
+    number: tel,
+    prompt: false,
+  };
   return (
     <View style={styles.container}>
       <Image style={styles.image} source={image}></Image>
@@ -25,20 +38,58 @@ function LocationItem({
         <AppText style={styles.text}>{address1}</AppText>
         <AppText style={styles.text}>{address2}</AppText>
         <View style={styles.telContainer}>
-          <MaterialCommunityIcons
-            name={iconFirst}
-            size={15}
-            color={colors.black}
-          ></MaterialCommunityIcons>
-          <AppText style={styles.text}>{tel}</AppText>
+          <AppText style={styles.text}>Tel: {tel}</AppText>
         </View>
         <View style={styles.telContainer}>
-          <MaterialCommunityIcons
-            name={iconSecond}
-            size={15}
-            color={colors.black}
-          ></MaterialCommunityIcons>
-          <AppText style={styles.text}>{mobile}</AppText>
+          <AppText style={styles.text}>Mobile: {mobile}</AppText>
+        </View>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={styles.buttonBorder}
+            onPress={() => call(telephone).catch(console.error)}
+          >
+            <MaterialCommunityIcons
+              name={"phone"}
+              size={25}
+              color={colors.secondary}
+            ></MaterialCommunityIcons>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.buttonBorder}
+            onPress={() => SMS.sendSMSAsync([mobile], "")}
+          >
+            <MaterialCommunityIcons
+              name={"message"}
+              size={23}
+              color={colors.secondary}
+            ></MaterialCommunityIcons>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.buttonBorder}
+            onPress={() => Linking.openURL(facebookLink)}
+          >
+            <MaterialCommunityIcons
+              name={"facebook"}
+              size={25}
+              color={colors.secondary}
+            ></MaterialCommunityIcons>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.buttonBorder}
+            onPress={() => {
+              const to = [emailLink]; // string or array of email addresses
+              email(to, {
+                subject: "",
+                body: "",
+              }).catch(console.error);
+            }}
+          >
+            <MaterialCommunityIcons
+              name={"email"}
+              size={25}
+              color={colors.secondary}
+            ></MaterialCommunityIcons>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
@@ -51,6 +102,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     flexDirection: "row",
     marginVertical: 10,
+    alignItems: "center",
     justifyContent: "flex-start",
   },
   image: {
@@ -74,10 +126,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 2,
   },
-  telIcon: {
-    height: 14,
-    width: 14,
-    marginRight: 2,
+  buttonBorder: {
+    width:50,
+    borderColor:colors.secondary,
+    borderWidth:1,
+    alignItems:"center",
+    justifyContent:"center",
+    borderRadius:25,
+    margin:5,
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
   },
 });
 
