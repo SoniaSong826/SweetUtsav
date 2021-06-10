@@ -7,7 +7,7 @@ import LocationItem from "../components/LocationItem";
 const sweetLocation = [
   {
     id: 1,
-    title: "Melbourne Coperator",
+    title: "Melbourne Coperate",
     address1: "Suite1301/227, Collins Street",
     address2: "Melbourne, VIC, 3000",
     tel: "0380809933",

@@ -16,6 +16,7 @@ import { FlatList } from "react-native-gesture-handler";
 import PickerItem from "../PickerItem";
 
 function AppPicker({
+  name,
   icon,
   items,
   placeholder,
@@ -57,6 +58,7 @@ function AppPicker({
             keyExtractor={(item) => item.value.toString()}
             renderItem={({ item }) => (
               <PickerItemComponent
+                value={name}
                 label={item.label}
                 onPress={() => {
                   setModalVisible(false);

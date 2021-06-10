@@ -7385,6 +7385,11 @@ react-native-size-matters@^0.3.1:
   resolved "https://registry.yarnpkg.com/react-native-size-matters/-/react-native-size-matters-0.3.1.tgz#24d0cfc335a2c730f6d58bd7b43ea5a41be4b49f"
   integrity sha512-mKOfBLIBFBcs9br1rlZDvxD5+mAl8Gfr5CounwJtxI6Z82rGrMO+Kgl9EIg3RMVf3G855a85YVqHJL2f5EDRlw==
 
+react-native-smtp-mailer@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/react-native-smtp-mailer/-/react-native-smtp-mailer-1.2.4.tgz#86dae238f93ed98832fefc88636fdbc977a61688"
+  integrity sha512-HLgqevfRWxSUmy5lFFCff5/9URbg2mN/WXVuMIBSqGko7brcuRGk18svghqFVzP+RMFeYZrDABHW11rAmaQHog==
+
 react-native-snap-carousel@*, react-native-snap-carousel@^3.9.1:
   version "3.9.1"
   resolved "https://registry.yarnpkg.com/react-native-snap-carousel/-/react-native-snap-carousel-3.9.1.tgz#6fd9bd8839546c2c6043a41d2035afbc6fe0443e"

@@ -11,7 +11,11 @@ import * as Yup from "yup";
 import AppText from "../components/AppText";
 import colors from "../config/colors";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import RNSmtpMailer from "react-native-smtp-mailer";
 
+import {
+  MailButton,
+} from "../components/form";
 import {
   AppForm,
   AppPicker,
@@ -22,16 +26,15 @@ import { ScrollView } from "react-native-gesture-handler";
 import AppButton from "../components/AppButton";
 import { color } from "ansi-styles";
 
-const validationSchema = Yup.object().shape({
-  lastName: Yup.string().required().min(1).label("LastName"),
-  firstName: Yup.string().required().min(1).label("FirstName"),
-  email: Yup.string().required().email().label("Email"),
-  address: Yup.string().required().min(1).label("Address"),
-  city: Yup.string().required().min(1).label("City"),
-  mobileNumber: Yup.string().required().min(8).label("MobileNumber"),
-  state: Yup.object().required().label("State"),
-  postcode: Yup.number().required().min(4).max(4).label("Postcode"),
-});
+// const validationSchema = Yup.object().shape({
+//   lastName: Yup.string().required().min(1).label("LastName"),
+//   firstName: Yup.string().required().min(1).label("FirstName"),
+//   email: Yup.string().required().email().label("Email"),
+//   address: Yup.string().required().min(1).label("Address"),
+//   city: Yup.string().required().min(1).label("City"),
+//   mobileNumber: Yup.string().required().min(8).label("MobileNumber"),
+//   postcode: Yup.number().required().label("Postcode"),
+// });
 const states = [
   { label: "NSW", value: 1 }, // New South Wales
   { label: "QLD", value: 2 }, // Queensland
@@ -41,7 +44,7 @@ const states = [
   { label: "WA", value: 6 }, //	Western Australia
 ];
 
-function AddressScreen() {
+function AddressScreen({navigation}) {
   const [state, setState] = useState(states[0]);
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
@@ -75,80 +78,77 @@ function AddressScreen() {
       style={styles.backGround}
       source={require("../assets/lightOrange_background.jpg")}
     >
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : undefined}
+      <ScrollView
+        contentContainerStyle={{ alignItems: "center" }}
+        style={styles.container}
       >
-        <ScrollView
-          contentContainerStyle={{ alignItems: "center" }}
-          style={styles.container}
-        >
-          <AppText style={styles.text}>{pickUpTime}</AppText>
-          <View style={styles.rowContainer}>
-            <View>
-              <TouchableOpacity style={styles.button} onPress={showDatePicker}>
-                <View style={styles.iconwithtext}>
-                  <MaterialCommunityIcons
-                    name="calendar-month"
-                    size={25}
-                    color={colors.white}
-                  ></MaterialCommunityIcons>
-                  <AppText style={styles.icontext}>Pick Date</AppText>
-                </View>
-              </TouchableOpacity>
+        <AppText style={styles.text}>{pickUpTime}</AppText>
+        <View style={styles.rowContainer}>
+          <View>
+            <TouchableOpacity style={styles.button} onPress={showDatePicker}>
+              <View style={styles.iconwithtext}>
+                <MaterialCommunityIcons
+                  name="calendar-month"
+                  size={25}
+                  color={colors.white}
+                ></MaterialCommunityIcons>
+                <AppText style={styles.icontext}>Pick Date</AppText>
+              </View>
+            </TouchableOpacity>
 
-              <DateTimePickerModal
-                isVisible={isDatePickerVisible}
-                mode="date"
-                onConfirm={handleDateConfirm}
-                onCancel={hideDatePicker}
-              />
-            </View>
-
-            <View>
-              <TouchableOpacity style={styles.button} onPress={showTimePicker}>
-                <View style={styles.iconwithtext}>
-                  <MaterialCommunityIcons
-                    name="clock-time-four-outline"
-                    size={25}
-                    color={colors.white}
-                  ></MaterialCommunityIcons>
-                  <AppText style={styles.icontext}>Pick Time</AppText>
-                </View>
-              </TouchableOpacity>
-
-              <DateTimePickerModal
-                isVisible={isTimePickerVisible}
-                mode="time"
-                onConfirm={handleTimeConfirm}
-                onCancel={hideTimePicker}
-              />
-            </View>
+            <DateTimePickerModal
+              isVisible={isDatePickerVisible}
+              mode="date"
+              onConfirm={handleDateConfirm}
+              onCancel={hideDatePicker}
+            />
           </View>
-          <AppForm
-            style={styles.form}
-            initialValues={{
-              lastName: "",
-              firstName: "",
-              email: "",
-              address: "",
-              city: "",
-              mobileNumber: "",
-              postcode: "",
-              state: null,
-              message: "",
-            }}
-            onSubmit={(values) => console.log(values)}
-            validationSchema={validationSchema}
-          >
-            <View style={styles.rowContainer}>
-              <AppFormFieldWithTitle name="firstName" title="First Name" />
-              <AppFormFieldWithTitle name="lastName" title="Last Name" />
-            </View>
-            <AppFormFieldWithTitle name="email" title="Email" />
-            <AppFormFieldWithTitle name="address" title="Address" />
-            <View style={styles.rowContainer}>
-              <AppFormFieldWithTitle name="city" title="City" />
-              <View style={styles.pickerContainer}>
+
+          <View>
+            <TouchableOpacity style={styles.button} onPress={showTimePicker}>
+              <View style={styles.iconwithtext}>
+                <MaterialCommunityIcons
+                  name="clock-time-four-outline"
+                  size={25}
+                  color={colors.white}
+                ></MaterialCommunityIcons>
+                <AppText style={styles.icontext}>Pick Time</AppText>
+              </View>
+            </TouchableOpacity>
+
+            <DateTimePickerModal
+              isVisible={isTimePickerVisible}
+              mode="time"
+              onConfirm={handleTimeConfirm}
+              onCancel={hideTimePicker}
+            />
+          </View>
+        </View>
+        <AppForm
+          style={styles.form}
+          initialValues={{
+            lastName: "",
+            firstName: "",
+            email: "",
+            address: "",
+            city: "",
+            mobileNumber: "",
+            postcode: "",
+            state: "",
+            message: "",
+          }}
+          onSubmit={() => navigation.navigate("Email")}
+          // validationSchema={validationSchema}
+        >
+          <View style={styles.rowContainer}>
+            <AppFormFieldWithTitle name="firstName" title="First Name" />
+            <AppFormFieldWithTitle name="lastName" title="Last Name" />
+          </View>
+          <AppFormFieldWithTitle name="email" title="Email" />
+          <AppFormFieldWithTitle name="address" title="Address" />
+          <View style={styles.rowContainer}>
+            <AppFormFieldWithTitle name="city" title="City" />
+            {/* <View style={styles.pickerContainer}>
                 <AppText style={styles.stateText}>State</AppText>
                 <AppPicker
                   items={states}
@@ -158,25 +158,24 @@ function AddressScreen() {
                   selectedItem={state}
                   onSelectItem={(item) => setState(item)}
                 />
-              </View>
-
-              <AppFormFieldWithTitle
-                keyboardType="numeric"
-                name="postcode"
-                title="Postcode"
-              />
-            </View>
-
+              </View> */}
+            <AppFormFieldWithTitle name="state" title="State" />
             <AppFormFieldWithTitle
-              name="mobileNumber"
-              title="Mobile Number"
               keyboardType="numeric"
+              name="postcode"
+              title="Postcode"
             />
-            <AppFormFieldWithTitle name="message" title="Additional Message" />
-            <SubmitButton style={styles.submitButton} title="Place Order" />
-          </AppForm>
-        </ScrollView>
-      </KeyboardAvoidingView>
+          </View>
+
+          <AppFormFieldWithTitle
+            name="mobileNumber"
+            title="Mobile Number"
+            keyboardType="numeric"
+          />
+          <AppFormFieldWithTitle name="message" title="Additional Message" />
+          <SubmitButton style={styles.submitButton} title="Place Order" />
+        </AppForm>
+      </ScrollView>
     </ImageBackground>
   );
 }
@@ -254,7 +253,7 @@ const styles = StyleSheet.create({
   },
   text: {
     paddingHorizontal: 15,
-    paddingVertical:5,
+    paddingVertical: 5,
     borderRadius: 7,
     borderColor: colors.lightGray,
     borderWidth: 1,

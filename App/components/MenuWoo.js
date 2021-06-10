@@ -27,12 +27,12 @@ const categories = [
 ];
 
 const WooCommerceApp = new WooCommerceAPI({
-  url: "http://carolinesprings.sweetutsav.com.au/", // Your store URL
-  ssl: true,
+  url: "https://carolinesprings.sweetutsav.com.au/", // Your store URL
+  ssl: false,
   consumerKey: "ck_6a971880cc3e358b3e892536128d515795bc1ca0", // Your consumer secret
   consumerSecret: "cs_d0355515970cabedf9ac1ac351dab8bb15435066", // Your consumer secret
   wpAPI: true, // Enable the WP REST API integration
-  version: "wc/v2", // WooCommerce WP REST API version
+  version: "wc/v3", // WooCommerce WP REST API version
   queryStringAuth: true,
 });
 

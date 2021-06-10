@@ -10,7 +10,7 @@ import mainContext from "../context/Context";
 const sweetCities = [
   {
     id: 1,
-    title: "Melbourne Coperator",
+    title: "Melbourne Coperate",
     acronym: "COP",
     img: require("../assets/CityLogo/Melbourne.jpg"),
   },
