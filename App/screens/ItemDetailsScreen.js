@@ -17,7 +17,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import WooCommerceAPI from "react-native-woocommerce-api";
 import Reviews from "../components/Reviews";
 
-function onClickAddCart(data, price, amount, category) {
+function onClickAddCart(data, price, amount, category, variationNum) {
   const itemcart = {
     id: data.id,
     name: data.name,
@@ -25,13 +25,13 @@ function onClickAddCart(data, price, amount, category) {
     option: category,
     price: price,
     image: data.images[0].src,
+    variation:variationNum,
   };
 
   AsyncStorage.getItem("cart")
     .then((datacart) => {
       if (datacart !== null) {
         const cart = JSON.parse(datacart);
-
         for (let i in cart) {
           if (
             cart[i].id == itemcart.id &&
@@ -60,13 +60,13 @@ function ItemDetailsScreen({ route, navigation }) {
   const listing = route.params["item"];
   const [listings, setListings] = useState([]);
   const [price, setPrice] = useState(listing.price);
+  const [variationNum,setVariationNum]=useState("");
   const categories = [];
   const attributes = listing.attributes[0].options;
   const variations = listing.variations;
   const pricelist = [];
-  let pricesLoaded = false;
   const WooCommerceApp2 = new WooCommerceAPI({
-    url: "http://carolinesprings.sweetutsav.com.au/", // Your store URL
+    url: "https://carolinesprings.sweetutsav.com.au/", // Your store URL
     ssl: true,
     consumerKey: "ck_6a971880cc3e358b3e892536128d515795bc1ca0", // Your consumer secret
     consumerSecret: "cs_d0355515970cabedf9ac1ac351dab8bb15435066", // Your consumer secret
@@ -81,17 +81,16 @@ function ItemDetailsScreen({ route, navigation }) {
     });
   }
 
-  if (!pricesLoaded) {
     for (let i in variations) {
+      
       WooCommerceApp2.get("products/" + variations[i], {
         status: "publish",
       }).then((newData) => {
-        pricelist.push({ price: newData.price });
+        pricelist.push({ price: newData.price, variation: variations[i] });
         pricelist.sort((a, b) => a.price - b.price);
       });
     }
-    pricesLoaded = true;
-  }
+
   useEffect(() => {
     loadListings();
   }, []);
@@ -137,6 +136,7 @@ function ItemDetailsScreen({ route, navigation }) {
               onSelectItem={(item) => {
                 setCategory(item);
                 setPrice(pricelist[item.value].price);
+                setVariationNum(pricelist[item.value].variation);
               }}
             ></AppPicker>
           </View>
@@ -153,7 +153,15 @@ function ItemDetailsScreen({ route, navigation }) {
         </View>
         <AppButton
           title="Add to Cart"
-          onPress={() => onClickAddCart(listing, price, amount, category)}
+          onPress={() =>
+            onClickAddCart(
+              listing,
+              price,
+              amount,
+              category,
+              variationNum
+            )
+          }
         ></AppButton>
         <View style={styles.underlineTextbox}>
           <AppText style={styles.primaryTitle}>Description</AppText>

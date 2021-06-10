@@ -31,7 +31,6 @@ import LogoTitle from "./App/components/LogoTitle";
 import CityScreen from "./App/screens/CityScreen";
 import LocationSelecter from "./App/components/LocationSelecter";
 import AddressScreen from "./App/screens/AddressScreen";
-import MailScreen from "./App/screens/MailScreen";
 
 export default function App({ route }) {
   let [fontsLoaded] = useFonts({
@@ -201,7 +200,6 @@ export default function App({ route }) {
               ),
             })}
           />
-
           <Stack.Screen
             name="Address"
             component={AddressScreen}
@@ -211,17 +209,6 @@ export default function App({ route }) {
               },
               headerLeftContainerStyle: { alignItems: "center" },
               headerTitle: "Almost There",
-            })}
-          />
-          <Stack.Screen
-            name="Email"
-            component={MailScreen}
-            options={() => ({
-              headerStyle: {
-                backgroundColor: colors.primary,
-              },
-              headerLeftContainerStyle: { alignItems: "center" },
-              headerTitle: "Confirm Order",
             })}
           />
         </>

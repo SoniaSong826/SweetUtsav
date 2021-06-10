@@ -70,7 +70,6 @@ function CartItem({
 const styles = StyleSheet.create({
   card: {
     width: windowWidth - 20,
-    marginHorizontal: 10,
     backgroundColor: colors.white,
     marginVertical: 5,
     paddingHorizontal: 12,

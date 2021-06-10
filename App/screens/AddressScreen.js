@@ -5,17 +5,14 @@ import {
   View,
   TouchableOpacity,
   KeyboardAvoidingView,
+  Alert,
 } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import * as Yup from "yup";
 import AppText from "../components/AppText";
 import colors from "../config/colors";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import RNSmtpMailer from "react-native-smtp-mailer";
-
-import {
-  MailButton,
-} from "../components/form";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   AppForm,
   AppPicker,
@@ -23,18 +20,27 @@ import {
   AppFormFieldWithTitle,
 } from "../components/form";
 import { ScrollView } from "react-native-gesture-handler";
-import AppButton from "../components/AppButton";
-import { color } from "ansi-styles";
+import WooCommerceAPI from "react-native-woocommerce-api";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+const WooCommerceApp = new WooCommerceAPI({
+  url: "https://carolinesprings.sweetutsav.com.au/", // Your store URL
+  ssl: false,
+  consumerKey: "ck_6a971880cc3e358b3e892536128d515795bc1ca0", // Your consumer secret
+  consumerSecret: "cs_d0355515970cabedf9ac1ac351dab8bb15435066", // Your consumer secret
+  wpAPI: true, // Enable the WP REST API integration
+  version: "wc/v3", // WooCommerce WP REST API version
+  queryStringAuth: true,
+});
 
-// const validationSchema = Yup.object().shape({
-//   lastName: Yup.string().required().min(1).label("LastName"),
-//   firstName: Yup.string().required().min(1).label("FirstName"),
-//   email: Yup.string().required().email().label("Email"),
-//   address: Yup.string().required().min(1).label("Address"),
-//   city: Yup.string().required().min(1).label("City"),
-//   mobileNumber: Yup.string().required().min(8).label("MobileNumber"),
-//   postcode: Yup.number().required().label("Postcode"),
-// });
+const validationSchema = Yup.object().shape({
+  lastName: Yup.string().required().min(1).label("LastName"),
+  firstName: Yup.string().required().min(1).label("FirstName"),
+  email: Yup.string().required().email().label("Email"),
+  address: Yup.string().required().min(1).label("Address"),
+  city: Yup.string().required().min(1).label("City"),
+  mobileNumber: Yup.string().required().min(8).label("MobileNumber"),
+  postcode: Yup.number().required().label("Postcode"),
+});
 const states = [
   { label: "NSW", value: 1 }, // New South Wales
   { label: "QLD", value: 2 }, // Queensland
@@ -44,8 +50,8 @@ const states = [
   { label: "WA", value: 6 }, //	Western Australia
 ];
 
-function AddressScreen({navigation}) {
-  const [state, setState] = useState(states[0]);
+function AddressScreen() {
+  const [submitCart, setSubmitCart] = useState([]);
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
   const [pickUpTime, setPickUpTime] = useState("Choose a Pick Up Time");
@@ -73,12 +79,56 @@ function AddressScreen({navigation}) {
     hideTimePicker();
   };
 
+  sendEmail = (value) => {
+    let productList = [];
+    AsyncStorage.getItem("cart").then((cart) => {
+      const cartfood = JSON.parse(cart);
+      for (let i in cartfood) {
+        let product = {
+          product_id: cartfood[i].id,
+          quantity: cartfood[i].quantity,
+          variation_id: cartfood[i].variation,
+        };
+        productList.push(product);
+      }
+      setSubmitCart(productList);
+    });
+
+    const newOrder = {
+      payment_method: "pk",
+      payment_method_title: "Pay at Pick Up",
+      set_paid: false,
+      status: "processing",
+      billing: {
+        first_name: value.firstName,
+        last_name: value.lastName,
+        address_1: value.address,
+        address_2: "",
+        city: value.city,
+        state: value.state,
+        postcode: value.postcode,
+        country: "AU",
+        email: value.email,
+        phone: value.mobileNumber,
+      },
+      line_items: submitCart,
+      customer_note: "Pick up time: " + pickUpTime + " " + value.message,
+    };
+
+    WooCommerceApp.post("orders", newOrder)
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <ImageBackground
       style={styles.backGround}
       source={require("../assets/lightOrange_background.jpg")}
     >
-      <ScrollView
+      <KeyboardAwareScrollView
         contentContainerStyle={{ alignItems: "center" }}
         style={styles.container}
       >
@@ -137,7 +187,12 @@ function AddressScreen({navigation}) {
             state: "",
             message: "",
           }}
-          onSubmit={() => navigation.navigate("Email")}
+          onSubmit={(values) => {
+            sendEmail(values);
+            Alert.alert("Order Sent",
+              "Thank you! Your order has been sent to us. We will contact you soon!"
+            );
+          }}
           // validationSchema={validationSchema}
         >
           <View style={styles.rowContainer}>
@@ -175,7 +230,7 @@ function AddressScreen({navigation}) {
           <AppFormFieldWithTitle name="message" title="Additional Message" />
           <SubmitButton style={styles.submitButton} title="Place Order" />
         </AppForm>
-      </ScrollView>
+      </KeyboardAwareScrollView>
     </ImageBackground>
   );
 }
@@ -254,10 +309,7 @@ const styles = StyleSheet.create({
   text: {
     paddingHorizontal: 15,
     paddingVertical: 5,
-    borderRadius: 7,
-    borderColor: colors.lightGray,
-    borderWidth: 1,
-    color: colors.black,
+    color: colors.primary,
     fontSize: 20,
     marginTop: 20,
   },

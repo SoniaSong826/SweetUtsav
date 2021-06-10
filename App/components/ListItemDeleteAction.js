@@ -18,7 +18,7 @@ function ListItemDeleteAction({onPress}) {
 }
 const styles = StyleSheet.create({
   deleteZone: {
-    marginTop:10,
+    marginVertical:5,
     width: 70,
     justifyContent:"center",
     alignItems:"center",

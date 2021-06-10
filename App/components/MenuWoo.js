@@ -8,7 +8,7 @@ import {
   Dimensions,
 } from "react-native";
 import Card from "./Card";
-import routes from "../navigation/route";
+import routes from "../screens/route";
 import WooCommerceAPI from "react-native-woocommerce-api";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../config/colors";
@@ -108,7 +108,6 @@ export default class MenuWoo extends Component {
             loading: false,
             refreshing: false,
           });
-          console.log(responseJson);
         })
         .catch((error) => {
           this.setState({
@@ -133,7 +132,6 @@ export default class MenuWoo extends Component {
   };
 
   handleLoadMore = () => {
-    console.log("loading triggered");
     this.setState(
       {
         page: this.state.page + 1,

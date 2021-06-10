@@ -5,6 +5,7 @@ import {
   Image,
   Dimensions,
   TouchableOpacity,
+  Linking,
 } from "react-native";
 import colors from "../config/colors";
 import AppText from "./AppText";
