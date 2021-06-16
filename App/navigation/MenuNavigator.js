@@ -6,7 +6,7 @@ import AllProductsScreen from "../screens/AllProductsScreen";
 import CategoriesScreen from "../screens/CategoriesScreen";
 import LocationScreen from "../screens/LocationScreen";
 import EventsScreen from "../screens/EventsScreen";
-import ContactUsScreen from "../screens/ContactUsScreen";
+import CompleteApplicationScreen from "../screens/CompleteApplicationScreen";
 import AboutUsScreen from "../screens/AboutUsScreen";
 import MyAccountScreen from "../screens/MyAccountScreen";
 import CartScreen from "../screens/CartScreen";
@@ -121,7 +121,7 @@ const MenuNavigator = () => (
     />
     <Stack.Screen
       name="Contact Us"
-      component={ContactUsScreen}
+      component={CompleteApplicationScreen}
       options={{
         title: "Contact Us",
       }}

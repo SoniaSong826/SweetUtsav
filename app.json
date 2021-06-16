@@ -2,7 +2,7 @@
   "expo": {
     "name": "sweetutsav",
     "slug": "sweetutsav",
-    "version": "1.0.0",
+    "version": "2.1.0",
     "orientation": "portrait",
     "icon": "./App/assets/icon.png",
     "splash": {
@@ -19,11 +19,11 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier":"com.sonia.sweetUtsav",
-      "buildNumber":"1.0.0"
+      "buildNumber":"2.0.0"
     },
     "android": {
       "package":"com.sonia.sweetUtsav",
-      "versionCode":3,
+      "versionCode":5,
       "adaptiveIcon": {
         "foregroundImage": "./App/assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"

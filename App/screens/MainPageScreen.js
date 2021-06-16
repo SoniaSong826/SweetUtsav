@@ -2,20 +2,23 @@ import React, { useEffect } from "react";
 import { View, StyleSheet, ImageBackground, ScrollView } from "react-native";
 import MenuWoo from '../components/MenuWoo';
 import PostSlides from "../components/PostSlides";
-import useLocation from "../hooks/useLocation";
 import FunctionMenu from "../components/FunctionMenu";
 
 function MainPageScreen({ navigation }) {
-  const location = useLocation();
-
+  
   return (
     <ImageBackground
       style={styles.backGround}
       source={require("../assets/lightGreen_background.jpg")}
     >
       <FunctionMenu navigation={navigation}></FunctionMenu>
-      <PostSlides />
-      <MenuWoo searchBarVisible={false} categoryVisible={false} category={95} navigation={navigation} />
+      <PostSlides navigation={navigation} />
+      <MenuWoo
+        searchBarVisible={false}
+        categoryVisible={false}
+        category={95}
+        navigation={navigation}
+      />
     </ImageBackground>
   );
 }

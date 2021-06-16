@@ -16,7 +16,14 @@ import { ScrollView } from "react-native-gesture-handler";
 export default class Panel extends Component {
   constructor() {
     super();
-    this.state = { expanded1: false, expanded2: false, expanded3: false };
+    this.state = {
+      expanded1: false,
+      expanded2: false,
+      expanded3: false,
+      expanded4: false,
+      expanded5: false,
+      expanded6: false,
+    };
 
     if (Platform.OS === "android") {
       UIManager.setLayoutAnimationEnabledExperimental(true);
@@ -35,6 +42,18 @@ export default class Panel extends Component {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     this.setState({ expanded3: !this.state.expanded3 });
   };
+  changeLayout4 = () => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    this.setState({ expanded4: !this.state.expanded4 });
+  };
+  changeLayout5 = () => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    this.setState({ expanded5: !this.state.expanded5 });
+  };
+  changeLayout6 = () => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    this.setState({ expanded6: !this.state.expanded6 });
+  };
 
   render() {
     return (
@@ -46,6 +65,65 @@ export default class Panel extends Component {
           <TouchableOpacity
             activeOpacity={0.8}
             onPress={this.changeLayout1}
+            style={styles.Btn}
+          >
+            <Text style={styles.title}>Mission</Text>
+            <MaterialCommunityIcons
+              name="chevron-down"
+              size={30}
+              color={colors.secondary}
+            ></MaterialCommunityIcons>
+          </TouchableOpacity>
+          <View
+            style={{
+              height: this.state.expanded1 ? null : 0,
+              overflow: "hidden",
+              paddingHorizontal: 10,
+            }}
+          >
+            <Text style={styles.text}>
+              Sweet Utsav’s goal is to provide the Sydney community with
+              authentic Indian savories and sweets and hence the motto “When
+              only the best will do” Sweet Utsav does not compromise on
+              ingredients and procedure and uses only the finest of ingredients
+              and time-tested procedures that deliver a quality product.
+            </Text>
+          </View>
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={this.changeLayout2}
+            style={styles.Btn}
+          >
+            <Text style={styles.title}>History</Text>
+            <MaterialCommunityIcons
+              name="chevron-down"
+              size={30}
+              color={colors.secondary}
+            ></MaterialCommunityIcons>
+          </TouchableOpacity>
+          <View
+            style={{
+              height: this.state.expanded2 ? null : 0,
+              overflow: "hidden",
+              paddingHorizontal: 10,
+            }}
+          >
+            <Text style={styles.text}>
+              Surya Prakash Revu is the founder of Melbourne’s largest Premium
+              Sweets and snacks manufacturers “Sweet India”. He commenced
+              operations in 2009 opening the factory in Hoppers Crossing in
+              2009. From its manufacturing base initially in Hoppers Crossing it
+              has now grown into Melbourne’s largest Premium Sweets and Snacks
+              Manufacturer with 6 outlets all over Australia. {"\n"}
+              Sweet Utsav was born from the same person who pursued his dream of setting up
+              Australia’s largest sweet and snacks manufacturing factory at
+              Seven Hills, Sydney. It will cater to distribute sweets to
+              selected outlets in Sydney and Canberra.
+            </Text>
+          </View>
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={this.changeLayout4}
             style={styles.Btn}
           >
             <Text style={styles.title}>Shipping and Delivery</Text>
@@ -171,7 +249,7 @@ export default class Panel extends Component {
           </View>
           <TouchableOpacity
             activeOpacity={0.8}
-            onPress={this.changeLayout2}
+            onPress={this.changeLayout5}
             style={styles.Btn}
           >
             <Text style={styles.title}>Privacy Policy</Text>
@@ -383,7 +461,7 @@ export default class Panel extends Component {
           </View>
           <TouchableOpacity
             activeOpacity={0.8}
-            onPress={this.changeLayout3}
+            onPress={this.changeLayout6}
             style={styles.Btn}
           >
             <Text style={styles.title}>Terms and Conditions</Text>

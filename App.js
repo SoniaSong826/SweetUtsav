@@ -18,7 +18,7 @@ import AllProductsScreen from "./App/screens/AllProductsScreen";
 import CategoriesScreen from "./App/screens/CategoriesScreen";
 import LocationScreen from "./App/screens/LocationScreen";
 import EventsScreen from "./App/screens/EventsScreen";
-import ContactUsScreen from "./App/screens/ContactUsScreen";
+import CompleteApplicationScreen from "./App/screens/CompleteApplicationScreen";
 import AboutUsScreen from "./App/screens/AboutUsScreen";
 import MyAccountScreen from "./App/screens/MyAccountScreen";
 import CartScreen from "./App/screens/CartScreen";
@@ -31,6 +31,7 @@ import LogoTitle from "./App/components/LogoTitle";
 import CityScreen from "./App/screens/CityScreen";
 import LocationSelecter from "./App/components/LocationSelecter";
 import AddressScreen from "./App/screens/AddressScreen";
+import CareerApplyScreen from "./App/screens/CareerApplyScreen";
 
 export default function App({ route }) {
   let [fontsLoaded] = useFonts({
@@ -161,10 +162,17 @@ export default function App({ route }) {
             }}
           />
           <Stack.Screen
-            name="Contact Us"
-            component={ContactUsScreen}
+            name="Franchise Apply"
+            component={CompleteApplicationScreen}
             options={{
-              title: "Contact Us",
+              title: "Franchise Apply",
+            }}
+          />
+          <Stack.Screen
+            name="Career Apply"
+            component={CareerApplyScreen}
+            options={{
+              title: "Career Apply",
             }}
           />
           <Stack.Screen

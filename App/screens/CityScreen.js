@@ -1,16 +1,22 @@
 import React, { useContext, useState } from "react";
-import { View, StyleSheet, ImageBackground, FlatList } from "react-native";
+import {
+  View,
+  StyleSheet,
+  ImageBackground,
+  FlatList,
+  Dimensions,
+} from "react-native";
 import CityPicker from "../components/CityPicker";
-import colors from "../config/colors";
-import store from "../constants/const";
-import LocationSelecter from "../components/LocationSelecter";
 import ListItemSeparator from "../components/ListItemSeparator";
 import mainContext from "../context/Context";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+const windowWidth = Dimensions.get("window").width;
 
 const sweetCities = [
   {
     id: 1,
-    title: "Melbourne Coperate",
+    title: "Melbourne Corporate",
     acronym: "COP",
     img: require("../assets/CityLogo/Melbourne.jpg"),
   },
@@ -34,12 +40,18 @@ const sweetCities = [
   },
   {
     id: 5,
+    title: "Hoppers Crossing",
+    acronym: "HOP",
+    img: require("../assets/CityLogo/Melbourne.jpg"),
+  },
+  {
+    id: 6,
     title: "Seven Hills",
     acronym: "SYD",
     img: require("../assets/CityLogo/Sydney.jpg"),
   },
   {
-    id: 6,
+    id: 7,
     title: "Grand Plaza",
     acronym: "BRI",
     img: require("../assets/CityLogo/Brisbane.jpg"),
@@ -48,13 +60,6 @@ const sweetCities = [
 
 function CityScreen({ route, navigation }) {
 
-  const [store, setStore] = useState(sweetCities[0]);
-  // const { store } = useContext(mainContext);
-  // useEffect(() => {
-  //   AsyncStorage.getItem("store").then((value) => {
-  //       setStore(false);
-  //   });
-  // }, []);
   return (
     <ImageBackground
       style={styles.backGround}
@@ -73,7 +78,7 @@ function CityScreen({ route, navigation }) {
               navigation.navigate("Home");
             }}
             onPress={() => {
-              store = item;
+             AsyncStorage.setItem("city",{item});
             }}
           ></CityPicker>
         )}
@@ -85,20 +90,8 @@ const styles = StyleSheet.create({
   backGround: {
     flex: 1,
   },
-  locationText: {
-    fontFamily: "Roboto_500Medium",
-    fontSize: 13,
-    color: colors.white,
-  },
-  text: {
-    fontFamily: "Roboto_700Bold",
-    fontSize: 22,
-    paddingTop: 50,
-    color: colors.primary,
-  },
   flatList: {
     alignItems: "center",
-    flexGrow: 0,
   },
 });
 

@@ -74,6 +74,8 @@ const styles = StyleSheet.create({
   image: {
     width: 105,
     height: 105,
+    flex: 1,
+    resizeMode: "contain",
     marginBottom: 10,
   },
 });

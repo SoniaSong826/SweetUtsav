@@ -25,7 +25,7 @@ function onClickAddCart(data, price, amount, category, variationNum) {
     option: category,
     price: price,
     image: data.images[0].src,
-    variation:variationNum,
+    variation: variationNum,
   };
 
   AsyncStorage.getItem("cart")
@@ -60,7 +60,7 @@ function ItemDetailsScreen({ route, navigation }) {
   const listing = route.params["item"];
   const [listings, setListings] = useState([]);
   const [price, setPrice] = useState(listing.price);
-  const [variationNum,setVariationNum]=useState("");
+  const [variationNum, setVariationNum] = useState(listing.variations[0]);
   const categories = [];
   const attributes = listing.attributes[0].options;
   const variations = listing.variations;
@@ -80,16 +80,14 @@ function ItemDetailsScreen({ route, navigation }) {
       label: attributes[i],
     });
   }
-
-    for (let i in variations) {
-      
-      WooCommerceApp2.get("products/" + variations[i], {
-        status: "publish",
-      }).then((newData) => {
-        pricelist.push({ price: newData.price, variation: variations[i] });
-        pricelist.sort((a, b) => a.price - b.price);
-      });
-    }
+  for (let i in variations) {
+    WooCommerceApp2.get("products/" + variations[i], {
+      status: "publish",
+    }).then((newData) => {
+      pricelist.push({ price: newData.price, variation: variations[i] });
+      pricelist.sort((a, b) => a.price - b.price);
+    });
+  }
 
   useEffect(() => {
     loadListings();
@@ -154,13 +152,7 @@ function ItemDetailsScreen({ route, navigation }) {
         <AppButton
           title="Add to Cart"
           onPress={() =>
-            onClickAddCart(
-              listing,
-              price,
-              amount,
-              category,
-              variationNum
-            )
+            onClickAddCart(listing, price, amount, category, variationNum)
           }
         ></AppButton>
         <View style={styles.underlineTextbox}>

@@ -78,7 +78,7 @@ function CategoriesScreen({ navigation }) {
               onPress={() =>
                 navigation.navigate("Category Products", {
                   categoryID: 79,
-                  categoryName: "Snakes",
+                  categoryName: "Snacks",
                 })
               }
             >
@@ -111,7 +111,7 @@ function CategoriesScreen({ navigation }) {
               style={styles.postView}
               onPress={() =>
                 navigation.navigate("Category Products", {
-                  categoryID: 100,
+                  categoryID: 114,
                   categoryName: "Gift Boxes",
                 })
               }

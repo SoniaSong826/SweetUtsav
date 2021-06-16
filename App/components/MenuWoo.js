@@ -17,13 +17,13 @@ import CategoryButton from "./CategoryButton";
 const windowWidth = Dimensions.get("window").width;
 
 const categories = [
-  { id: 95, title: "All Products", color: "primary" }, // check
-  { id: 77, title: "Desserts", color: "secondary" }, // old fridge sweets
-  { id: 78, title: "Sweets", color: "secondary" }, // old dry sweets
-  { id: 79, title: "Snacks", color: "secondary" },
-  { id: 100, title: "Gift Boxes", color: "secondary" }, //unknow id
-  { id: 80, title: "Platters", color: "secondary" },
-  { id: 112, title: "Savouries", color: "secondary" }, // new category
+  { id: 95, title: "All Products", color: "primary" },
+  { id: 78, title: "Sweets", color: "secondary" },
+  { id: 77, title: "Desserts", color: "secondary" },
+  { id: 79, title: "Snacks", color: "secondary" }, 
+  { id: 112, title: "Savouries", color: "secondary" },
+  { id: 114, title: "Gift Boxes", color: "secondary" }, 
+  { id: 80, title: "Gift Platters", color: "secondary" },
 ];
 
 const WooCommerceApp = new WooCommerceAPI({
@@ -57,7 +57,9 @@ export default class MenuWoo extends Component {
     WooCommerceApp.get("products", {
       category: this.state.category,
       per_page: 30,
-      page:this.state.page,
+      orderby: "menu_order",
+      page: this.state.page,
+      order:"asc",
       status: "publish",
     })
       .then((newData) => {
@@ -70,14 +72,15 @@ export default class MenuWoo extends Component {
       });
   }
 
-
   fetchProductList = () => {
     if (this.state.searchValue) {
       WooCommerceApp.get("products", {
         search: this.state.searchValue,
         per_page: 30,
+        orderby: "menu_order",
         page: this.state.page,
         status: "publish",
+        order: "asc",
       })
         .then((responseJson) => {
           this.setState({
@@ -97,7 +100,9 @@ export default class MenuWoo extends Component {
     } else {
       WooCommerceApp.get("products", {
         category: this.state.category,
+        orderby: "menu_order",
         per_page: 30,
+        order: "asc",
         page: this.state.page,
         status: "publish",
       })

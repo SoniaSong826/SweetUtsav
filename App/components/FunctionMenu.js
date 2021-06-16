@@ -1,7 +1,9 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, TouchableOpacity } from "react-native";
 import FunctionIcon from "./FunctionIcon";
 import colors from "../config/colors";
+import AppText from "./AppText";
+import SvgUri from "react-native-svg-uri";
 
 function FunctionMenu({ navigation }) {
   return (
@@ -9,52 +11,72 @@ function FunctionMenu({ navigation }) {
       <View style={styles.menuColumn}>
         <View style={styles.menuRow}>
           <FunctionIcon
-            title="Order Now"
+            title="Sweets"
+            iconName="candycane"
+            color="secondary"
+            onPress={() =>
+              navigation.navigate("Category Products", {
+                categoryID: 78,
+                categoryName: "Sweets",
+              })
+            }
+          ></FunctionIcon>
+          <FunctionIcon
+            title="Desserts"
             iconName="cupcake"
-            color="red"
-            onPress={() => navigation.navigate("Order Now")}
+            color="secondary"
+            onPress={() =>
+              navigation.navigate("Category Products", {
+                categoryID: 77,
+                categoryName: "Desserts",
+              })
+            }
+          ></FunctionIcon>
+
+          <FunctionIcon
+            title="Snacks"
+            iconName="food-croissant"
+            color="secondary"
+            onPress={() =>
+              navigation.navigate("Category Products", {
+                categoryID: 79,
+                categoryName: "Snacks",
+              })
+            }
           ></FunctionIcon>
           <FunctionIcon
-            title="Categories"
-            iconName="apps"
-            onPress={() => navigation.navigate("Categories")}
+            title="Gift Boxes"
+            iconName="gift-outline"
+            color="secondary"
+            onPress={() =>
+              navigation.navigate("Category Products", {
+                categoryID: 114,
+                categoryName: "Gift Boxes",
+              })
+            }
           ></FunctionIcon>
-          <FunctionIcon
-            title="My Account"
-            iconName="account"
-            // onPress={() => navigation.navigate("My Account")}
-            
-          ></FunctionIcon>
+        </View>
+        <View style={styles.menuRow}>
           <FunctionIcon
             title="Locations"
             iconName="map-marker-multiple"
             onPress={() => navigation.navigate("Locations")}
           ></FunctionIcon>
-        </View>
-        <View style={styles.menuRow}>
-          <FunctionIcon
-            title="Policies"
-            iconName="format-list-bulleted-square"
-            color="secondary"
-            onPress={() => navigation.navigate("Policies")}
-          ></FunctionIcon>
           <FunctionIcon
             title="Join Us"
             iconName="hand"
-            color="secondary"
             onPress={() => navigation.navigate("Events")}
-          ></FunctionIcon>
-          <FunctionIcon
-            title="Contact Us"
-            iconName="face-agent"
-            color="secondary"
-            onPress={() => navigation.navigate("Contact Us")}
           ></FunctionIcon>
           <FunctionIcon
             title="About Us"
             iconName="at"
-            color="secondary"
             onPress={() => navigation.navigate("Follow Us")}
+          ></FunctionIcon>
+          <FunctionIcon
+            title="Order Now"
+            iconName="shopping"
+            color="red"
+            onPress={() => navigation.navigate("Order Now")}
           ></FunctionIcon>
         </View>
       </View>
@@ -76,6 +98,23 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     marginBottom: 4,
+  },
+  iconContainer: {
+    width: 90,
+    height: 76,
+    marginBottom: 12,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  iconCircle: {
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  title: {
+    marginTop: 4,
   },
 });
 export default FunctionMenu;

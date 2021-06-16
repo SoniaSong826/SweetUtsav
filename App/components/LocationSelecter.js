@@ -9,12 +9,13 @@ import {
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../config/colors";
-import { FlatList } from "react-native-gesture-handler";
-import CityPicker from "./CityPicker";
-import { SafeAreaView } from "react-native-safe-area-context";
-import ListItemSeparator from "./ListItemSeparator";
-import {store} from "../constants/const"
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 function LocationSelecter({ onPress }) {
+  let city = "COP";
+  AsyncStorage.getItem("city").then((value) => {
+    city = value;
+  });
   return (
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.container}>
@@ -23,7 +24,7 @@ function LocationSelecter({ onPress }) {
           size={25}
           color={colors.white}
         />
-        <Text style={styles.locationText}>{store.acronym}</Text>
+        <Text style={styles.locationText}>{city}</Text>
       </View>
     </TouchableWithoutFeedback>
   );

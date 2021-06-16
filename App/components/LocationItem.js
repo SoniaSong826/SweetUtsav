@@ -25,6 +25,8 @@ function LocationItem({
   tel,
   mobile,
   facebookLink,
+  showTel,
+  showMobile,
   emailLink,
 }) {
   const telephone = {
@@ -39,10 +41,10 @@ function LocationItem({
         <AppText style={styles.text}>{address1}</AppText>
         <AppText style={styles.text}>{address2}</AppText>
         <View style={styles.telContainer}>
-          <AppText style={styles.text}>Tel: {tel}</AppText>
+          <AppText style={styles.text}>Tel: {showTel}</AppText>
         </View>
         <View style={styles.telContainer}>
-          <AppText style={styles.text}>Mobile: {mobile}</AppText>
+          <AppText style={styles.text}>Mobile: {showMobile}</AppText>
         </View>
         <View style={styles.buttonContainer}>
           <TouchableOpacity

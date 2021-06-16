@@ -24,22 +24,22 @@ const user = {
   email: "sonia-826@outlook.com",
 };
 
-const initialOrders = [
-  {
-    id: 1,
-    title: "Balushahi...",
-    dateTime: "8:00 pm 29 Mar 2021",
-    price: "$15.50",
-    image: require("../assets/FoodExample/DrySweets/Balushahi-S411A-170x185.jpg"),
-  },
-  {
-    id: 2,
-    title: "Anjeer Pista Slice...",
-    dateTime: "5:00 pm 29 Apr 2021",
-    price: "$19.98",
-    image: require("../assets/FoodExample/DrySweets/Anjeer-Pista-Slice-2.jpg"),
-  },
-];
+// const initialOrders = [
+//   {
+//     id: 1,
+//     title: "Balushahi...",
+//     dateTime: "8:00 pm 29 Mar 2021",
+//     price: "$15.50",
+//     image: require("../assets/FoodExample/DrySweets/Balushahi-S411A-170x185.jpg"),
+//   },
+//   {
+//     id: 2,
+//     title: "Anjeer Pista Slice...",
+//     dateTime: "5:00 pm 29 Apr 2021",
+//     price: "$19.98",
+//     image: require("../assets/FoodExample/DrySweets/Anjeer-Pista-Slice-2.jpg"),
+//   },
+// ];
 
 function MyAccountScreen({ navigation }) {
   const { userProfile, loggingIn, doLogout, error } = useContext(mainContext);

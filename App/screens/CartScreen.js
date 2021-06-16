@@ -102,28 +102,28 @@ export default class CartScreen extends Component {
   }
   render() {
     const { navigation } = this.props;
-
+    
     return (
       <ImageBackground
         style={styles.backGround}
         source={require("../assets/lightOrange_background.jpg")}
       >
-          <ScrollView contentContainerStyle={{ height:height}}>
-            {this.state.dataCart.map((item, i) => {
-              return (
-                <CartItem
-                  title={item.name}
-                  price={item.price}
-                  amount={item.quantity}
-                  option={item.option.label}
-                  image={item.image}
-                  renderRightAction={() => this.handleDelete(i)}
-                  minusAction={() => this.onChangeQual(i, false)}
-                  plusAction={() => this.onChangeQual(i, true)}
-                ></CartItem>
-              );
-            })}
-          </ScrollView>
+        <ScrollView contentContainerStyle={{ height: height }}>
+          {this.state.dataCart.map((item, i) => {
+            return (
+              <CartItem
+                title={item.name}
+                price={item.price}
+                amount={item.quantity}
+                option={item.option.label}
+                image={item.image}
+                renderRightAction={() => this.handleDelete(i)}
+                minusAction={() => this.onChangeQual(i, false)}
+                plusAction={() => this.onChangeQual(i, true)}
+              ></CartItem>
+            );
+          })}
+        </ScrollView>
 
         <View style={styles.buttomRound}>
           <View style={styles.textContainer}>

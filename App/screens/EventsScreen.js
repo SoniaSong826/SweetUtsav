@@ -18,7 +18,7 @@ const windowScale = Dimensions.get("window").scale;
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-function EventsScreen() {
+function EventsScreen({navigation}) {
   return (
     <ImageBackground
       style={styles.backGround}
@@ -28,31 +28,27 @@ function EventsScreen() {
         <Image
           style={styles.banner}
           source={{
-            uri: "http://carolinesprings.sweetutsav.com.au/wp-content/uploads/2021/06/e53e3dd2783eb80a5aa1f92d78f3603.png",
+            uri: "https://carolinesprings.sweetutsav.com.au/wp-content/uploads/2021/06/e53e3dd2783eb80a5aa1f92d78f3603-e1623825342693.png",
           }}
         ></Image>
-        <AppText style={styles.textEmphasisGreen}>FRANCHISE</AppText>
+        <AppText style={styles.textEmphasisGreen}>Franchise</AppText>
         <AppText style={styles.text}>
           Thank you for your interest in joining the "Sweet Utsav Family"
         </AppText>
         <AppButton
-          onPress={() =>
-            Linking.openURL("https://sweetutsav.com.au/Franchise.html")
-          }
+          onPress={() => navigation.navigate("Franchise Apply")}
           color="secondary"
-          title={"Complete Application"}
+          title={"Franchise Apply"}
         ></AppButton>
         <ListItemSeparator></ListItemSeparator>
-        <AppText style={styles.textEmphasisOrange}>CAREER</AppText>
+        <AppText style={styles.textEmphasisOrange}>Career</AppText>
         <AppText style={styles.text}>
           We require full time/ part time/ casual chefs cook pastry cooker
           bakers trainee apprentices. For our resturants in different locations.
         </AppText>
         <AppButton
-          onPress={() =>
-            Linking.openURL("https://sweetutsav.com.au/career.html")
-          }
-          title={"Send Interest"}
+          onPress={() => navigation.navigate("Career Apply")}
+          title={"Career Apply"}
         >
           Complete Application
         </AppButton>
@@ -74,7 +70,7 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
   },
   textEmphasisGreen: {
-    marginTop: 30,
+    marginTop: 20,
     fontSize: 25,
     lineHeight: 25,
     textAlign: "justify",
@@ -90,8 +86,8 @@ const styles = StyleSheet.create({
   },
   banner: {
     width: windowWidth * 0.9,
-    height: 120,
-    marginVertical: 25,
+    height: 70,
+    marginVertical: 15,
   },
 });
 

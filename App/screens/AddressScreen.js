@@ -51,6 +51,7 @@ const states = [
 ];
 
 function AddressScreen() {
+  const [state, setState] = useState(states[0]);
   const [submitCart, setSubmitCart] = useState([]);
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
@@ -79,10 +80,12 @@ function AddressScreen() {
     hideTimePicker();
   };
 
-  sendEmail = (value) => {
-    let productList = [];
-    AsyncStorage.getItem("cart").then((cart) => {
+  sendEmail = async (value) => {
+    const productList = [];
+
+    AsyncStorage.getItem("cart", (err, cart) => {
       const cartfood = JSON.parse(cart);
+
       for (let i in cartfood) {
         let product = {
           product_id: cartfood[i].id,
@@ -92,36 +95,36 @@ function AddressScreen() {
         productList.push(product);
       }
       setSubmitCart(productList);
+
+      const newOrder = {
+        payment_method: "pk",
+        payment_method_title: "Pay at Pick Up",
+        set_paid: false,
+        status: "processing",
+        billing: {
+          first_name: value.firstName,
+          last_name: value.lastName,
+          address_1: value.address,
+          address_2: "",
+          city: value.city,
+          state: state.label,
+          postcode: value.postcode,
+          country: "AU",
+          email: value.email,
+          phone: value.mobileNumber,
+        },
+        line_items: productList,
+        customer_note: "Pick up time: " + pickUpTime + " " + value.message,
+      };
+
+      WooCommerceApp.post("orders", newOrder)
+        .then((data) => {
+          console.warn(data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     });
-
-    const newOrder = {
-      payment_method: "pk",
-      payment_method_title: "Pay at Pick Up",
-      set_paid: false,
-      status: "processing",
-      billing: {
-        first_name: value.firstName,
-        last_name: value.lastName,
-        address_1: value.address,
-        address_2: "",
-        city: value.city,
-        state: value.state,
-        postcode: value.postcode,
-        country: "AU",
-        email: value.email,
-        phone: value.mobileNumber,
-      },
-      line_items: submitCart,
-      customer_note: "Pick up time: " + pickUpTime + " " + value.message,
-    };
-
-    WooCommerceApp.post("orders", newOrder)
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
   };
   return (
     <ImageBackground
@@ -189,7 +192,8 @@ function AddressScreen() {
           }}
           onSubmit={(values) => {
             sendEmail(values);
-            Alert.alert("Order Sent",
+            Alert.alert(
+              "Order Sent",
               "Thank you! Your order has been sent to us. We will contact you soon!"
             );
           }}
@@ -203,18 +207,17 @@ function AddressScreen() {
           <AppFormFieldWithTitle name="address" title="Address" />
           <View style={styles.rowContainer}>
             <AppFormFieldWithTitle name="city" title="City" />
-            {/* <View style={styles.pickerContainer}>
-                <AppText style={styles.stateText}>State</AppText>
-                <AppPicker
-                  items={states}
-                  name="state"
-                  placeholder="Select"
-                  items={states}
-                  selectedItem={state}
-                  onSelectItem={(item) => setState(item)}
-                />
-              </View> */}
-            <AppFormFieldWithTitle name="state" title="State" />
+            <View style={styles.pickerContainer}>
+              <AppText style={styles.stateText}>State</AppText>
+              <AppPicker
+                items={states}
+                name="state"
+                placeholder="Select"
+                items={states}
+                selectedItem={state}
+                onSelectItem={(item) => setState(item)}
+              />
+            </View>
             <AppFormFieldWithTitle
               keyboardType="numeric"
               name="postcode"
