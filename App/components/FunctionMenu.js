@@ -1,9 +1,6 @@
 import React from "react";
 import { StyleSheet, View, TouchableOpacity } from "react-native";
 import FunctionIcon from "./FunctionIcon";
-import colors from "../config/colors";
-import AppText from "./AppText";
-import SvgUri from "react-native-svg-uri";
 
 function FunctionMenu({ navigation }) {
   return (
@@ -35,7 +32,7 @@ function FunctionMenu({ navigation }) {
 
           <FunctionIcon
             title="Snacks"
-            iconName="food-croissant"
+            iconName="hamburger"
             color="secondary"
             onPress={() =>
               navigation.navigate("Category Products", {
@@ -45,13 +42,13 @@ function FunctionMenu({ navigation }) {
             }
           ></FunctionIcon>
           <FunctionIcon
-            title="Gift Boxes"
+            title="Gift Packs"
             iconName="gift-outline"
             color="secondary"
             onPress={() =>
               navigation.navigate("Category Products", {
-                categoryID: 114,
-                categoryName: "Gift Boxes",
+                categoryID: 117,
+                categoryName: "Gift Packs",
               })
             }
           ></FunctionIcon>

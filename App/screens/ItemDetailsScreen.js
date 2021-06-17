@@ -3,6 +3,7 @@ import {
   Image,
   View,
   StyleSheet,
+  Alert,
   ImageBackground,
   ScrollView,
 } from "react-native";
@@ -54,6 +55,7 @@ function onClickAddCart(data, price, amount, category, variationNum) {
     .catch((err) => {
       console.log(err);
     });
+  Alert.alert("Product Added", "You can continue shopping or check out.");
 }
 
 function ItemDetailsScreen({ route, navigation }) {

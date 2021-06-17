@@ -33,6 +33,22 @@ export default class CartScreen extends Component {
     this.setState({ dataCart: dataCar });
     AsyncStorage.removeItem("cart");
     AsyncStorage.setItem("cart", JSON.stringify(dataCar));
+
+    AsyncStorage.getItem("cart").then((cart) => {
+      const cartfood = JSON.parse(cart);
+      this.setState({ dataCart: cartfood });
+      let addAmount = 0;
+      let addPrice = 0;
+      for (let i in this.state.dataCart) {
+        addAmount = addAmount + parseInt(this.state.dataCart[i].quantity);
+        addPrice =
+          addPrice +
+          parseFloat(this.state.dataCart[i].price) *
+            parseFloat(this.state.dataCart[i].quantity);
+      }
+      this.setState({ totalPrice: addPrice });
+      this.setState({ totalAmount: addAmount });
+    });
   };
 
   componentDidMount() {
@@ -102,7 +118,7 @@ export default class CartScreen extends Component {
   }
   render() {
     const { navigation } = this.props;
-    
+
     return (
       <ImageBackground
         style={styles.backGround}

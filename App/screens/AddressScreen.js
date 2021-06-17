@@ -35,11 +35,11 @@ const WooCommerceApp = new WooCommerceAPI({
 const validationSchema = Yup.object().shape({
   lastName: Yup.string().required().min(1).label("LastName"),
   firstName: Yup.string().required().min(1).label("FirstName"),
-  email: Yup.string().required().email().label("Email"),
-  address: Yup.string().required().min(1).label("Address"),
-  city: Yup.string().required().min(1).label("City"),
-  mobileNumber: Yup.string().required().min(8).label("MobileNumber"),
-  postcode: Yup.number().required().label("Postcode"),
+  email: Yup.string().email().required().email().label("Email"),
+  address: Yup.string().label("Address"),
+  city: Yup.string().label("City"),
+  mobileNumber: Yup.string().required().min(10).label("MobileNumber"),
+  postcode: Yup.number().label("Postcode"),
 });
 const states = [
   { label: "NSW", value: 1 }, // New South Wales
@@ -52,9 +52,10 @@ const states = [
 
 function AddressScreen() {
   const [state, setState] = useState(states[0]);
-  const [submitCart, setSubmitCart] = useState([]);
+  const [submitCart, setSubmitCart] = useState();
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
+  const [pickUpDate, setPickUpDate] = useState("Choose a Pick Up Date");
   const [pickUpTime, setPickUpTime] = useState("Choose a Pick Up Time");
   const showDatePicker = () => {
     setDatePickerVisibility(true);
@@ -72,59 +73,112 @@ function AddressScreen() {
   };
 
   const handleDateConfirm = (date) => {
-    setPickUpTime(date.toString().substring(0, 21));
-    hideDatePicker();
+    let today = new Date();
+    const diffTime = date - today;
+    const diffDays = diffTime / (1000 * 60 * 60 * 24);
+
+    if (diffDays > 0 && diffDays <= 28) {
+      setPickUpDate(date.toLocaleDateString());
+      hideDatePicker();
+    } else {
+      Alert.alert(
+        "Pick Up Date Invalid",
+        "Please select a date from tomorrow to 28 days from today."
+      );
+    }
   };
   const handleTimeConfirm = (time) => {
-    setPickUpTime(time.toString().substring(0, 21));
-    hideTimePicker();
+    const hour = time.getHours();
+    const minus = time.getMinutes();
+
+    if (
+      (hour == 10 && minus >= 30) ||
+      (hour == 19 && minus <= 30) ||
+      (hour > 10 && hour < 19)
+    ) {
+      setPickUpTime(
+        time.toLocaleTimeString("en-GB", { hour: "numeric", minute: "numeric" })
+      );
+      hideTimePicker();
+    } else {
+      Alert.alert(
+        "Pick Up Time Invalid",
+        "Please select a time between our working hours(10:30 a.m - 7:30 p.m)."
+      );
+    }
   };
 
   sendEmail = async (value) => {
-    const productList = [];
+    if (pickUpDate == "Choose a Pick Up Date") {
+      Alert.alert(
+        "Pick Up Date Missing",
+        "You must choose a date to pick up your order."
+      );
+    } else if (pickUpTime == "Choose a Pick Up Time") {
+      Alert.alert(
+        "Pick Up Time Missing",
+        "You must choose a time to pick up your order."
+      );
+    } else {
+      const productList = [];
 
-    AsyncStorage.getItem("cart", (err, cart) => {
-      const cartfood = JSON.parse(cart);
+      AsyncStorage.getItem("cart", (err, cart) => {
+        const cartfood = JSON.parse(cart);
 
-      for (let i in cartfood) {
-        let product = {
-          product_id: cartfood[i].id,
-          quantity: cartfood[i].quantity,
-          variation_id: cartfood[i].variation,
-        };
-        productList.push(product);
-      }
-      setSubmitCart(productList);
+        for (let i in cartfood) {
+          let product = {
+            product_id: cartfood[i].id,
+            quantity: cartfood[i].quantity,
+            variation_id: cartfood[i].variation,
+          };
+          productList.push(product);
+        }
+        setSubmitCart(productList);
 
-      const newOrder = {
-        payment_method: "pk",
-        payment_method_title: "Pay at Pick Up",
-        set_paid: false,
-        status: "processing",
-        billing: {
-          first_name: value.firstName,
-          last_name: value.lastName,
-          address_1: value.address,
-          address_2: "",
-          city: value.city,
-          state: state.label,
-          postcode: value.postcode,
-          country: "AU",
-          email: value.email,
-          phone: value.mobileNumber,
-        },
-        line_items: productList,
-        customer_note: "Pick up time: " + pickUpTime + " " + value.message,
-      };
+        if (productList.length == 0) {
+          Alert.alert("Cart Empty", "Please add products into the cart.");
+        } else {
+          const newOrder = {
+            payment_method: "pk",
+            payment_method_title: "Pay at Pick Up",
+            set_paid: false,
+            status: "processing",
+            billing: {
+              first_name: value.firstName,
+              last_name: value.lastName,
+              address_1: value.address,
+              address_2: "",
+              city: value.city,
+              state: state.label,
+              postcode: value.postcode,
+              country: "AU",
+              email: value.email,
+              phone: value.mobileNumber,
+            },
+            line_items: productList,
+            customer_note:
+              "Pick up time: " +
+              pickUpDate +
+              " " +
+              pickUpTime +
+              " " +
+              value.message,
+          };
 
-      WooCommerceApp.post("orders", newOrder)
-        .then((data) => {
-          console.warn(data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    });
+          WooCommerceApp.post("orders", newOrder)
+            .then((data) => {
+              console.warn(data);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+          Alert.alert(
+            "Order Sent",
+            "Thank you! Your order has been sent to us. We will contact you soon!"
+          );
+        }
+      });
+    }
   };
   return (
     <ImageBackground
@@ -135,7 +189,11 @@ function AddressScreen() {
         contentContainerStyle={{ alignItems: "center" }}
         style={styles.container}
       >
-        <AppText style={styles.text}>{pickUpTime}</AppText>
+        <AppText style={styles.text}>
+          {pickUpDate}
+          {"\n"}
+          {pickUpTime}
+        </AppText>
         <View style={styles.rowContainer}>
           <View>
             <TouchableOpacity style={styles.button} onPress={showDatePicker}>
@@ -192,19 +250,20 @@ function AddressScreen() {
           }}
           onSubmit={(values) => {
             sendEmail(values);
-            Alert.alert(
-              "Order Sent",
-              "Thank you! Your order has been sent to us. We will contact you soon!"
-            );
           }}
-          // validationSchema={validationSchema}
+          validationSchema={validationSchema}
         >
           <View style={styles.rowContainer}>
             <AppFormFieldWithTitle name="firstName" title="First Name" />
             <AppFormFieldWithTitle name="lastName" title="Last Name" />
           </View>
+          <AppFormFieldWithTitle
+            name="mobileNumber"
+            title="Mobile Number"
+            keyboardType="numeric"
+          />
           <AppFormFieldWithTitle name="email" title="Email" />
-          <AppFormFieldWithTitle name="address" title="Address" />
+          <AppFormFieldWithTitle name="address" title="Address (Optional)" />
           <View style={styles.rowContainer}>
             <AppFormFieldWithTitle name="city" title="City" />
             <View style={styles.pickerContainer}>
@@ -226,11 +285,9 @@ function AddressScreen() {
           </View>
 
           <AppFormFieldWithTitle
-            name="mobileNumber"
-            title="Mobile Number"
-            keyboardType="numeric"
+            name="message"
+            title="Additional Message (Optional)"
           />
-          <AppFormFieldWithTitle name="message" title="Additional Message" />
           <SubmitButton style={styles.submitButton} title="Place Order" />
         </AppForm>
       </KeyboardAwareScrollView>
@@ -285,8 +342,9 @@ const styles = StyleSheet.create({
     paddingBottom: 80,
   },
   button: {
+    height:50,
     backgroundColor: colors.primary,
-    padding: 7,
+    paddingHorizontal: 17,
     borderRadius: 10,
     margin: 10,
     flexDirection: "row",
@@ -305,15 +363,16 @@ const styles = StyleSheet.create({
   },
   icontext: {
     fontFamily: "Roboto_700Bold",
-    fontSize: 20,
+    fontSize: 25,
     color: colors.white,
     paddingHorizontal: 5,
   },
   text: {
     paddingHorizontal: 15,
     paddingVertical: 5,
-    color: colors.primary,
-    fontSize: 20,
+    textAlign: "center",
+    color: colors.black,
+    fontSize: 19,
     marginTop: 20,
   },
 });
