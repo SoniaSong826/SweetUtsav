@@ -25,12 +25,12 @@ This is a [React Native](https://reactnative.dev/) e-commerce mobile application
 
 ## ScreenShots
 <p align="center">
-  <img src="./Screenshots/7917c51f8b50cb0f9439e28196b08c6.jpg" alt="screen1" width="140" >
-  <img src="./Screenshots/fa158908fbc8c7037280acdd9145d03.jpg" alt="screen2" width="140" >
-  <img src="./Screenshots/2a84bd67dfbb737526608a2878b2d39.jpg" alt="screen3" width="140" >
-  <img src="./Screenshots/eb58a4493370a49c445f515341513a0.jpg" alt="screen4" width="140" >
-  <img src="./Screenshots/5249b5ce940f3cfb1b85ef397821f4c.jpg" alt="screen5" width="140" >
-  <img src="./Screenshots/c01920c634cf8b77ba310f2b6feb1a6.jpg" alt="screen6" width="140" >
+  <img src="./Screenshots/7917c51f8b50cb0f9439e28196b08c6.jpg" alt="screen1" width="120" >
+  <img src="./Screenshots/fa158908fbc8c7037280acdd9145d03.jpg" alt="screen2" width="120" >
+  <img src="./Screenshots/2a84bd67dfbb737526608a2878b2d39.jpg" alt="screen3" width="120" >
+  <img src="./Screenshots/eb58a4493370a49c445f515341513a0.jpg" alt="screen4" width="120" >
+  <img src="./Screenshots/5249b5ce940f3cfb1b85ef397821f4c.jpg" alt="screen5" width="120" >
+  <img src="./Screenshots/c01920c634cf8b77ba310f2b6feb1a6.jpg" alt="screen6" width="120" >
 </p>
 
 
