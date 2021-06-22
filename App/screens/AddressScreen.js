@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   Alert,
+  Dimensions,
 } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import * as Yup from "yup";
@@ -22,6 +23,9 @@ import {
 import { ScrollView } from "react-native-gesture-handler";
 import WooCommerceAPI from "react-native-woocommerce-api";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+
+const windowWidth = Dimensions.get("window").width;
+
 const WooCommerceApp = new WooCommerceAPI({
   url: "https://carolinesprings.sweetutsav.com.au/", // Your store URL
   ssl: false,
@@ -85,6 +89,7 @@ function AddressScreen() {
         "Pick Up Date Invalid",
         "Please select a date from tomorrow to 28 days from today."
       );
+      hideDatePicker();
     }
   };
   const handleTimeConfirm = (time) => {
@@ -105,6 +110,7 @@ function AddressScreen() {
         "Pick Up Time Invalid",
         "Please select a time between our working hours(10:30 a.m - 7:30 p.m)."
       );
+      hideTimePicker();
     }
   };
 
@@ -342,7 +348,8 @@ const styles = StyleSheet.create({
     paddingBottom: 80,
   },
   button: {
-    height:50,
+    height: 50,
+    width: windowWidth * 0.4,
     backgroundColor: colors.primary,
     paddingHorizontal: 17,
     borderRadius: 10,
@@ -363,7 +370,7 @@ const styles = StyleSheet.create({
   },
   icontext: {
     fontFamily: "Roboto_700Bold",
-    fontSize: 25,
+    fontSize: 23,
     color: colors.white,
     paddingHorizontal: 5,
   },

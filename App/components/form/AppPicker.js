@@ -4,6 +4,7 @@ import {
   View,
   StyleSheet,
   TouchableWithoutFeedback,
+  Platform,
   Modal,
   Button,
 } from "react-native";
@@ -21,14 +22,14 @@ function AppPicker({
   items,
   placeholder,
   onSelectItem,
-  PickerItemComponent=PickerItem,
+  PickerItemComponent = PickerItem,
   selectedItem,
 }) {
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <React.Fragment>
       <TouchableWithoutFeedback onPress={() => setModalVisible(true)}>
-        <View style={styles.container}>
+        <View style={Platform.OS === "android"?(styles.containerAndroid):(styles.containerIOS)}>
           {icon && (
             <MaterialCommunityIcons
               name={icon}
@@ -42,7 +43,6 @@ function AppPicker({
           ) : (
             <AppText style={styles.placeholder}>{placeholder}</AppText>
           )}
-
           <MaterialCommunityIcons
             name="chevron-down"
             size={16}
@@ -73,7 +73,17 @@ function AppPicker({
   );
 }
 const styles = StyleSheet.create({
-  container: {
+  containerAndroid: {
+    backgroundColor: colors.white,
+    borderColor: colors.lightGray,
+    borderWidth: 1,
+    borderRadius: 7,
+    flexDirection: "row",
+    marginTop: 8,
+    padding: 14,
+    width: "100%",
+  },
+  containerIOS: {
     backgroundColor: colors.white,
     borderColor: colors.lightGray,
     borderWidth: 1,
