@@ -1,20 +1,15 @@
 import React, { Component } from "react";
-import {
-  FlatList,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { FlatList, StyleSheet, Text, View } from "react-native";
 import ReviewCard from "./ReviewCard";
 import WooCommerceAPI from "react-native-woocommerce-api";
 
 const WooCommerceApp = new WooCommerceAPI({
-  url: "https://melbourne.sweetutsav.com.au/", // Your store URL
-  ssl: true,
-  consumerKey: "ck_c051b081b4f1dcecabddabfe83682fcc4ea49b72", // Your consumer secret
-  consumerSecret: "cs_c4a1ee8a76a58cbb53b75a9704fc1806056c58b0", // Your consumer secret
+  url: "https://carolinesprings.sweetutsav.com.au/", // Your store URL
+  ssl: false,
+  consumerKey: "ck_6a971880cc3e358b3e892536128d515795bc1ca0", // Your consumer secret
+  consumerSecret: "cs_d0355515970cabedf9ac1ac351dab8bb15435066", // Your consumer secret
   wpAPI: true, // Enable the WP REST API integration
-  version: "wc/v2", // WooCommerce WP REST API version, Remember to use v2 for reviews
+  version: "wc/v2", // WooCommerce WP REST API version
   queryStringAuth: true,
 });
 
@@ -42,7 +37,7 @@ export default class Reviews extends Component {
       <View style={styles.container}>
         <FlatList
           data={this.state.data}
-          keyExtractor={(item) => `${item.id}`}
+          keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
             <ReviewCard
               name={item.name}
@@ -64,12 +59,12 @@ export default class Reviews extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width:"90%",
+    width: "90%",
   },
   emptyMessageStyle: {
-      textAlign:"left",
+    textAlign: "left",
     fontFamily: "Roboto_400Regular",
     fontSize: 15,
-    marginBottom:20,
+    marginBottom: 20,
   },
 });

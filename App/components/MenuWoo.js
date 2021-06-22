@@ -56,7 +56,7 @@ export default class MenuWoo extends Component {
 
     WooCommerceApp.get("products", {
       category: this.state.category,
-      per_page: 30,
+      per_page: 10,
       orderby: "menu_order",
       page: this.state.page,
       order:"asc",
@@ -76,7 +76,7 @@ export default class MenuWoo extends Component {
     if (this.state.searchValue) {
       WooCommerceApp.get("products", {
         search: this.state.searchValue,
-        per_page: 30,
+        per_page: 10,
         orderby: "menu_order",
         page: this.state.page,
         status: "publish",
@@ -101,7 +101,7 @@ export default class MenuWoo extends Component {
       WooCommerceApp.get("products", {
         category: this.state.category,
         orderby: "menu_order",
-        per_page: 30,
+        per_page: 10,
         order: "asc",
         page: this.state.page,
         status: "publish",
