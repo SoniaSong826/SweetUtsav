@@ -5,9 +5,9 @@ import AppText from "./AppText";
 
 const windowWidth = Dimensions.get("window").width;
 
-function CityPicker({ img, onPress, title, navigation }) {
+function CityPicker({ img, onPress, title }) {
   return (
-    <TouchableOpacity onPress={(onPress, navigation)}>
+    <TouchableOpacity onPress={onPress}>
         <View style={styles.innerContainer}>
           <Image style={styles.image} source={img}></Image>
           <AppText style={styles.text}>{title}</AppText>

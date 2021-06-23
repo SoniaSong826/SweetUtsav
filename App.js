@@ -65,6 +65,14 @@ export default function App({ route }) {
       >
         <>
           <Stack.Screen
+            name="Pick City"
+            component={CityScreen}
+            options={() => ({
+              headerLeftContainerStyle: { alignItems: "center" },
+              headerTitle: "Choose Your City",
+            })}
+          />
+          <Stack.Screen
             name="Home"
             component={MainPageScreen}
             options={({ navigation, route }) => ({
@@ -84,14 +92,7 @@ export default function App({ route }) {
               ),
             })}
           />
-          <Stack.Screen
-            name="Pick City"
-            component={CityScreen}
-            options={() => ({
-              headerLeftContainerStyle: { alignItems: "center" },
-              headerTitle: "Choose Your City",
-            })}
-          />
+
           <Stack.Screen
             name="Order Now"
             component={AllProductsScreen}

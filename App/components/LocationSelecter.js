@@ -9,22 +9,17 @@ import {
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../config/colors";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function LocationSelecter({ onPress }) {
-  let city = "COP";
-  AsyncStorage.getItem("city").then((value) => {
-    city = value;
-  });
   return (
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.container}>
         <MaterialCommunityIcons
-          name="map-marker"
+          name="storefront"
           size={25}
           color={colors.white}
         />
-        <Text style={styles.locationText}>{city}</Text>
+        <Text style={styles.locationText}>{global.userCity}</Text>
       </View>
     </TouchableWithoutFeedback>
   );

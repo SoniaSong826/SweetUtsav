@@ -2,8 +2,9 @@
   "expo": {
     "name": "sweetutsav",
     "slug": "sweetutsav",
-    "version": "2.2.0",
+    "version": "2.2.1",
     "orientation": "portrait",
+    "platforms": ["ios", "android"],
     "icon": "./App/assets/icon.png",
     "splash": {
       "image": "./App/assets/splash.png",
@@ -13,19 +14,17 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier":"com.sonia.sweetUtsav",
-      "buildNumber":"2.2.0"
+      "bundleIdentifier": "com.sonia.sweetUtsav",
+      "buildNumber": "2.2.1"
     },
     "android": {
-      "package":"com.sonia.sweetUtsav",
-      "versionCode":6,
+      "package": "com.sonia.sweetUtsav",
+      "versionCode": 7,
       "adaptiveIcon": {
-        "foregroundImage": "./App/assets/adaptive-icon.png",
+        "foregroundImage": "./App/assets/icon.png",
         "backgroundColor": "#FFFFFF"
       }
     },

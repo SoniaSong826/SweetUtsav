@@ -8,8 +8,6 @@ import {
 } from "react-native";
 import CityPicker from "../components/CityPicker";
 import ListItemSeparator from "../components/ListItemSeparator";
-import mainContext from "../context/Context";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const windowWidth = Dimensions.get("window").width;
 
@@ -59,7 +57,6 @@ const sweetCities = [
 ];
 
 function CityScreen({ route, navigation }) {
-
   return (
     <ImageBackground
       style={styles.backGround}
@@ -74,11 +71,10 @@ function CityScreen({ route, navigation }) {
           <CityPicker
             img={item.img}
             title={item.title}
-            navigation={() => {
-              navigation.navigate("Home");
-            }}
             onPress={() => {
-             AsyncStorage.setItem("city",{item});
+              console.warn(item.acronym);
+              global.userCity = item.acronym;
+              navigation.navigate("Home");
             }}
           ></CityPicker>
         )}

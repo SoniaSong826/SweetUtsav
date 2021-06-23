@@ -42,7 +42,7 @@ const validationSchema = Yup.object().shape({
   email: Yup.string().email().required().email().label("Email"),
   address: Yup.string().label("Address"),
   city: Yup.string().label("City"),
-  mobileNumber: Yup.string().required().min(10).label("MobileNumber"),
+  mobileNumber: Yup.string().required().max(10).min(10).label("MobileNumber"),
   postcode: Yup.number().label("Postcode"),
 });
 const states = [
@@ -82,35 +82,45 @@ function AddressScreen() {
     const diffDays = diffTime / (1000 * 60 * 60 * 24);
 
     if (diffDays > 0 && diffDays <= 28) {
-      setPickUpDate(date.toLocaleDateString());
-      hideDatePicker();
+      setPickUpDate("Pick Up Date: " + date.toLocaleDateString());
     } else {
       Alert.alert(
         "Pick Up Date Invalid",
-        "Please select a date from tomorrow to 28 days from today."
+        "Please select a date from tomorrow to 28 days from today.",
+        [
+          {
+            text: "OK",
+            onPress: () => hideDatePicker(),
+            style: "cancel",
+          },
+        ]
       );
-      hideDatePicker();
     }
   };
   const handleTimeConfirm = (time) => {
     const hour = time.getHours();
     const minus = time.getMinutes();
 
-    if (
-      (hour == 10 && minus >= 30) ||
-      (hour == 19 && minus <= 30) ||
-      (hour > 10 && hour < 19)
-    ) {
+    if (hour > 10 && hour < 19) {
       setPickUpTime(
-        time.toLocaleTimeString("en-GB", { hour: "numeric", minute: "numeric" })
+        "Pick Up Time: " +
+          time.toLocaleTimeString("en-GB", {
+            hour: "numeric",
+            minute: "numeric",
+          })
       );
-      hideTimePicker();
     } else {
       Alert.alert(
         "Pick Up Time Invalid",
-        "Please select a time between our working hours(10:30 a.m - 7:30 p.m)."
+        "Please select a time between our working hours(11:00 a.m - 8:00 p.m).",
+        [
+          {
+            text: "OK",
+            onPress: () => hideTimePicker(),
+            style: "cancel",
+          },
+        ]
       );
-      hideTimePicker();
     }
   };
 
