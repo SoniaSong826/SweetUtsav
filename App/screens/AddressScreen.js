@@ -50,7 +50,7 @@ const states = [
 	{ label: 'WA', value: 6 }, //	Western Australia
 ];
 
-function AddressScreen() {
+function AddressScreen({navigation}) {
 	const [state, setState] = useState(states[0]);
 	const [submitCart, setSubmitCart] = useState();
 	const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
@@ -172,6 +172,7 @@ function AddressScreen() {
 						});
 					Alert.alert('Order Sent', 'Thank you! Your order has been sent to us. We will contact you soon!');
 				}
+				AsyncStorage.setItem('cart',JSON.stringify([]));
 			});
 		}
 	};
@@ -239,6 +240,7 @@ function AddressScreen() {
 					}}
 					onSubmit={(values) => {
 						sendEmail(values);
+						navigation.navigate("Home")
 					}}
 					validationSchema={validationSchema}
 				>
