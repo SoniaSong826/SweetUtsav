@@ -1,8 +1,8 @@
 {
   "expo": {
     "name": "Sweet Utsav Australia",
-    "slug": "Sweet Utsav Australia",
-    "version": "1.0.0",
+    "slug": "SweetUtsavAustralia",
+    "version": "1.1.0",
     "orientation": "portrait",
     "platforms": ["ios", "android"],
     "icon": "./App/assets/icon.png",
@@ -18,11 +18,11 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.sweetUtsav",
-      "buildNumber": "1.0.0"
+      "buildNumber": "1.1.0"
     },
     "android": {
       "package": "com.sweetUtsav",
-      "versionCode": 9,
+      "versionCode": 10,
       "adaptiveIcon": {
         "foregroundImage": "./App/assets/icon.png",
         "backgroundColor": "#FFFFFF"
@@ -33,3 +33,4 @@
     }
   }
 }
+

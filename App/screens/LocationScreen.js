@@ -16,7 +16,7 @@ const sweetLocation = [
     showMobile: "0414 907 705",
     image: require("../assets/icon.png"),
     facebook: "https://www.facebook.com/Sweetutsav.melbourne/",
-    email: "sales@sweetutsav.com.au",
+    email: "nikee@nikeeworld.com",
   },
   {
     id: 2,
@@ -29,7 +29,7 @@ const sweetLocation = [
     showMobile: "0450 740 277",
     image: require("../assets/icon.png"),
     facebook: "https://www.facebook.com/SweetUtsav/",
-    email: "sales@sweetutsav.com.au",
+    email: "revusurya@gmail.com",
   },
   {
     id: 3,
@@ -55,12 +55,12 @@ const sweetLocation = [
     showMobile: "0410 855 028",
     image: require("../assets/icon.png"),
     facebook: "https://www.facebook.com/SweetUtsavCarolineSprings",
-    email: "sales@sweetutsav.com.au",
+    email: "CSsweetutsav@gmail.com",
   },
   {
     id: 5,
     title: "Lyndhurst",
-    address1: "A17 Marriot Waters Shoppins Centre",
+    address1: "A17 Marriot Waters Shopping Centre",
     address2: "Lyndhurst, VIC, 3975",
     tel: "0387389170",
     showTel: "(03) 8738 9170",
