@@ -48,7 +48,7 @@ export default function App({ route }) {
   ) : (
     <NavigationContainer theme={navigationTheme}>
       <Stack.Navigator
-        initialRouteName="Login"
+        initialRouteName="Home"
         screenOptions={{
           headerTitleAlign: "center",
           headerBackTitle: "Back",
@@ -64,18 +64,11 @@ export default function App({ route }) {
         }}
       >
         <>
-          <Stack.Screen
-            name="Pick City"
-            component={CityScreen}
-            options={() => ({
-              headerLeftContainerStyle: { alignItems: "center" },
-              headerTitle: "Choose Your City",
-            })}
-          />
+     
           <Stack.Screen
             name="Home"
             component={MainPageScreen}
-            options={({ navigation, route }) => ({
+            options={({ navigation }) => ({
               headerLeftContainerStyle: { alignItems: "center" },
               title: "Home",
               headerTitle: (props) => <LogoTitle {...props} />,
@@ -91,8 +84,15 @@ export default function App({ route }) {
                 />
               ),
             })}
+          />     
+          <Stack.Screen
+            name="Pick City"
+            component={CityScreen}
+            options={() => ({
+              headerLeftContainerStyle: { alignItems: "center" },
+              headerTitle: "Choose Your Outlet",
+            })}
           />
-
           <Stack.Screen
             name="Order Now"
             component={AllProductsScreen}

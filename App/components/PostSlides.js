@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { View, StyleSheet, Dimensions, TouchableOpacity } from "react-native";
 import colors from "../config/colors";
 import { SliderBox } from "react-native-image-slider-box";
-
 const windowWidth = Dimensions.get("window").width;
 
 export default class PostSlides extends Component {
@@ -28,23 +27,23 @@ export default class PostSlides extends Component {
 
   render() {
     return (
-        <View style={styles.container}>
-          <SliderBox
-            sliderBoxHeight={130}
-            images={this.state.images}
-            ImageComponentStyle={{ borderRadius: 10, width: windowWidth - 20 }}
-            resizeMethod={"scale"} //"auto","resize","scale"
-            resizeMode={"stretch"} //"cover","contain","stretch","repeat","center"
-            imageLoadingColor={colors.primary}
-            dotColor={colors.primary}
-            inactiveDotColor={colors.lightGray}
-            autoplay
-            circleLoop
-            onCurrentImagePressed={() =>
-              this.props.navigation.navigate("Categories")
-            }
-          />
-        </View>
+      <View style={styles.container}>
+        <SliderBox
+          sliderBoxHeight={130}
+          images={this.state.images}
+          ImageComponentStyle={{ borderRadius: 10, width: windowWidth - 20 }}
+          resizeMethod={"scale"} //"auto","resize","scale"
+          resizeMode={"stretch"} //"cover","contain","stretch","repeat","center"
+          imageLoadingColor={colors.primary}
+          dotColor={colors.primary}
+          inactiveDotColor={colors.lightGray}
+          autoplay
+          circleLoop
+          onCurrentImagePressed={() =>
+            this.props.navigation.navigate("Categories")
+          }
+        />
+      </View>
     );
   }
 }
