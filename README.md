@@ -5,14 +5,14 @@
     <img src="https://carolinesprings.sweetutsav.com.au/wp-content/uploads/2021/06/icon.png" alt="Logo" width="120" height="120">
   </a>
 
-  <h1 align="center" >Sweet Utsav</h1>
+  <h1 align="center" >Sweet Utsav Australia</h1>
 
   <p align="center">
-    This is a mobile application for <a href="https://carolinesprings.sweetutsav.com.au/"><strong>Sweet Utsav</strong></a> implemented with React Native.
+    This is a mobile application for <a href="https://carolinesprings.sweetutsav.com.au/"><strong>Sweet Utsav Australia</strong></a> implemented with React Native.
     <br />
-    <a href="https://apps.apple.com/cn/app/sweet-utsav/id1569121232?l=en"><strong>Explore on App Store »</strong></a>
+    <a href="https://apps.apple.com/cn/app/sweet-utsav-australia/id1575367584?l=en"><strong>Explore on App Store »</strong></a>
     <br />
-    <a href="https://play.google.com/store/apps/details?id=com.sonia.sweetUtsav"><strong>Explore on Google Play »</strong></a>
+    <a href="https://play.google.com/store/apps/details?id=com.sweetUtsav"><strong>Explore on Google Play »</strong></a>
   </p>
 </p>
 
